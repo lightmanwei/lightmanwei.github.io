@@ -1,2 +1,0 @@
-# lightmanwei.github.io
-simiki
