@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/hb.JPG">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/hb.JPG">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hb.JPG">
+  <link rel="mask-icon" href="/images/hb.JPG" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://lightmanwei.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="unix基础知识，包括各种硬件软件、shell脚本、环境配置等等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="unix大法好">
+<meta property="og:url" content="http://lightmanwei.github.io/unix%E5%A4%A7%E6%B3%95%E5%A5%BD/2019/11/13/index.html">
+<meta property="og:site_name" content="Akunda_blog">
+<meta property="og:description" content="unix基础知识，包括各种硬件软件、shell脚本、环境配置等等">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images10.m.china.com.cn/newschina/oss/nimg/20190527/13/img_01035e438cd16038bbbaef77626198da.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-61485282b4fab8f5b8578e9c0160b633_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-5785adafcbdaad8353cbe59d7e4dff37_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-5defc07aba78afe98ef28eed97d5ee3f_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-2aa8b2366fff8a147a453a8bc84a5367_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-90ccc47e2f028ea96bcbffa565634013_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-2aa680862d4201c7179c1215a6fbbeb3_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-9c186f561aaee3b971e663dcd68e0f12_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-d6a3d34aa7d282e69897dddf2ce58fb3_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-54774742ca5ec164cb322ad10588ad3d_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-db1d7503e0743462466c25ce7c289b71_hd.jpg">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/755823-bb50e0deba1e5ad0.png">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-c4a58bedd0e31cdceaf34278f899be87_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-87644619445c3fe4556bfa17b4d0a692_hd.jpg">
+<meta property="article:published_time" content="2019-11-13T14:26:07.000Z">
+<meta property="article:modified_time" content="2019-11-13T14:26:07.000Z">
+<meta property="article:author" content="Akunda">
+<meta property="article:tag" content="CS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images10.m.china.com.cn/newschina/oss/nimg/20190527/13/img_01035e438cd16038bbbaef77626198da.jpg">
+
+<link rel="canonical" href="http://lightmanwei.github.io/unix%E5%A4%A7%E6%B3%95%E5%A5%BD/2019/11/13/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>unix大法好 | Akunda_blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Akunda_blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lightmanwei.github.io/unix%E5%A4%A7%E6%B3%95%E5%A5%BD/2019/11/13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/hb.JPG">
+      <meta itemprop="name" content="Akunda">
+      <meta itemprop="description" content="Akunda blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Akunda_blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          unix大法好
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：19-11-13 22:26:07" itemprop="dateCreated datePublished" datetime="2019-11-13T22:26:07+08:00">19-11-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac/" itemprop="url" rel="index">
+                    <span itemprop="name">mac</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>unix基础知识，包括各种硬件软件、shell脚本、环境配置等等</p>
+<a id="more"></a>
+
+<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><p><a href="https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="noopener">参考网站</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh user@host</span><br><span class="line"><span class="meta">#</span><span class="bash"> ssh默认端口22</span></span><br><span class="line">ssh -p 2222 user@host</span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改端口</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h2 id="机理"><a href="#机理" class="headerlink" title="机理"></a>机理</h2><p>SSH之所以能够保证安全，原因在于它采用了公钥加密。</p>
+<p>整个过程是这样的：（1）远程主机收到用户的登录请求，把自己的公钥发给用户。（2）用户使用这个公钥，将登录密码加密后，发送回来。（3）远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。</p>
+<p>这个过程本身是安全的，但是实施的时候存在一个风险：如果有人截获了登录请求，然后冒充远程主机，将伪造的公钥发给用户，那么用户很难辨别真伪。因为不像https协议，SSH协议的公钥是没有证书中心（CA）公证的，也就是说，都是自己签发的。</p>
+<p>可以设想，如果攻击者插在用户与远程主机之间（比如在公共的wifi区域），用伪造的公钥，获取用户的登录密码。再用这个密码登录远程主机，那么SSH的安全机制就荡然无存了。这种风险就是著名的<a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener">“中间人攻击”</a>（Man-in-the-middle attack）。</p>
+<p><a href="https://blog.csdn.net/u012611878/article/details/54000607" target="_blank" rel="noopener">什么是md5算法</a></p>
+<p><a href="https://blog.csdn.net/wo541075754/article/details/81734770" target="_blank" rel="noopener">什么是base64算法</a></p>
+</li>
+<li><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>config：/etc/ssh/</p>
+<p>公钥私钥，knownhost：$HOME/.ssh/</p>
+</li>
+</ul>
+<h1 id="shell命令汇总"><a href="#shell命令汇总" class="headerlink" title="shell命令汇总"></a>shell命令汇总</h1><ul>
+<li><p>循环</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for varible1 in &#123;1..5&#125;</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="keyword">for</span> varible1 <span class="keyword">in</span> 1 2 3 4 5</span></span><br><span class="line">do</span><br><span class="line">     echo "Hello, Welcome $varible1 times "</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>for i in {0..8}; do sh run.sh 1 $i;sleep 0.1;done</p>
+</li>
+<li><p>dkpg</p>
+<p>Debian Packager</p>
+</li>
+<li><p>端口使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i tcp:8080</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp | grep 6060</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><p><a href="https://zhuanlan.zhihu.com/p/35361663" target="_blank" rel="noopener">参考网站:知乎</a></p>
+<p><a href="https://www.jianshu.com/p/e1e5564626b8" target="_blank" rel="noopener">参考网站:简书</a></p>
+<h2 id="区分接口与协议"><a href="#区分接口与协议" class="headerlink" title="区分接口与协议"></a><strong>区分接口与协议</strong></h2><h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><p><strong>USB 1.0</strong></p>
+<p>USB规格第一次是于1995年，由Intel、IBM、Compaq、Microsoft、NEC、Digital、North Telecom等七家公司组成的USBIF(USB Implement Forum)共同提出，USBIF于1996年1月正式提出USB1.0规格，不过因为当时支持USB的周边装置少的可怜，所以主机板商不太把USB Port直接设计在主机板上，带宽1.5Mbps（192Kb/s）。</p>
+<p><strong>USB 2.0</strong></p>
+<p>USB2.0技术规范是有由Compaq、Hewlett Packard、Intel、Lucent、Microsoft、NEC、Philips共同制定、发布的，规范把外设数据传输速度提高到了480Mbps，是USB 1.1设备的40倍!2000年制定的USB 2.0标准是真正的USB 2.0，被称为USB 2.0的高速(High-speed)版本，理论传输速度为<strong>480 Mbps（60Mb/s）</strong>.</p>
+<p><strong>USB 3.0</strong></p>
+<p>USB 3.0规范由英特尔等公司发起,,USB3.0 引入全双工数据传输。5根线路中2根用来发送数据，另2根用来接收数据，还有1根是地线。也就是说，USB 3.0可以同步全速地进行读写操作，USB3.0的最大传输带宽<strong>5.0Gbps(640MB/s)</strong>。</p>
+<p><strong>USB 3.1</strong></p>
+<p>USB 3.1是最新的USB规范，该规范由英特尔等公司发起。与USB 3.0技术相比，新USB技术使用一个更高效的数据编码系统，并提供一倍以上的有效数据吞吐率。它完全向下兼容现有的USB连接器与线缆，数据传输速度<strong>10Gbps(1280MB/s)</strong>。</p>
+<h3 id="接口（如下）"><a href="#接口（如下）" class="headerlink" title="接口（如下）"></a>接口（如下）</h3><p><a href="https://h5.china.com.cn/bjh/doc_1_1356316_6379285.html" target="_blank" rel="noopener">参考网站</a></p>
+<p><img src="https://images10.m.china.com.cn/newschina/oss/nimg/20190527/13/img_01035e438cd16038bbbaef77626198da.jpg" alt="img_01035e438cd16038bbbaef77626198da"></p>
+<h2 id="多媒体接口"><a href="#多媒体接口" class="headerlink" title="多媒体接口"></a>多媒体接口</h2><h3 id="VGA-old"><a href="#VGA-old" class="headerlink" title="VGA(old)"></a>VGA(old)</h3><p><img src="https://pic4.zhimg.com/80/v2-61485282b4fab8f5b8578e9c0160b633_hd.jpg" alt="v2-61485282b4fab8f5b8578e9c0160b633_hd"></p>
+<h3 id="S-Vedio-old"><a href="#S-Vedio-old" class="headerlink" title="S-Vedio(old)"></a>S-Vedio(old)</h3><p><img src="https://pic4.zhimg.com/80/v2-5785adafcbdaad8353cbe59d7e4dff37_hd.jpg" alt="v2-5785adafcbdaad8353cbe59d7e4dff37_hd"></p>
+<h3 id="HDMI-now"><a href="#HDMI-now" class="headerlink" title="HDMI(now)"></a>HDMI(now)</h3><p><img src="https://pic4.zhimg.com/80/v2-5defc07aba78afe98ef28eed97d5ee3f_hd.jpg" alt="v2-5defc07aba78afe98ef28eed97d5ee3f_hd"></p>
+<h3 id="DisplayPort-apple"><a href="#DisplayPort-apple" class="headerlink" title="DisplayPort(apple)"></a>DisplayPort(apple)</h3><p><img src="https://pic4.zhimg.com/80/v2-2aa8b2366fff8a147a453a8bc84a5367_hd.jpg" alt="v2-2aa8b2366fff8a147a453a8bc84a5367_hd"></p>
+<h3 id="3-5mm音频接口-now"><a href="#3-5mm音频接口-now" class="headerlink" title="3.5mm音频接口(now)"></a>3.5mm音频接口(now)</h3><p><img src="https://pic4.zhimg.com/80/v2-90ccc47e2f028ea96bcbffa565634013_hd.jpg" alt="v2-90ccc47e2f028ea96bcbffa565634013_hd"></p>
+<p>以前为两个口“耳机口和麦克风口分开”，现在逐渐往一个口“耳机话筒二合一”发展，是所有笔记本都普遍配置的接口，一般用于声音的输入和输出。</p>
+<h2 id="笔记本有限数据传输"><a href="#笔记本有限数据传输" class="headerlink" title="笔记本有限数据传输"></a>笔记本有限数据传输</h2><h3 id="e-SATA-old"><a href="#e-SATA-old" class="headerlink" title="e-SATA(old)"></a>e-SATA(old)</h3><p><img src="https://pic4.zhimg.com/80/v2-2aa680862d4201c7179c1215a6fbbeb3_hd.jpg" alt="v2-2aa680862d4201c7179c1215a6fbbeb3_hd"></p>
+<h3 id="Mini-IEEE-1394接口-old-apple"><a href="#Mini-IEEE-1394接口-old-apple" class="headerlink" title="Mini IEEE 1394接口(old apple)"></a>Mini IEEE 1394接口(old apple)</h3><p><img src="https://pic3.zhimg.com/80/v2-9c186f561aaee3b971e663dcd68e0f12_hd.jpg" alt="v2-9c186f561aaee3b971e663dcd68e0f12_hd"></p>
+<h3 id="thunderbolt雷电接口-now-apple"><a href="#thunderbolt雷电接口-now-apple" class="headerlink" title="thunderbolt雷电接口(now apple)"></a>thunderbolt雷电接口(now apple)</h3><p>1,2代<img src="https://pic4.zhimg.com/80/v2-d6a3d34aa7d282e69897dddf2ce58fb3_hd.jpg" alt="v2-d6a3d34aa7d282e69897dddf2ce58fb3_hd"></p>
+<p>3代</p>
+<p><img src="https://pic2.zhimg.com/80/v2-54774742ca5ec164cb322ad10588ad3d_hd.jpg" alt="v2-54774742ca5ec164cb322ad10588ad3d_hd"></p>
+<h3 id="USB与Type-C接口-now"><a href="#USB与Type-C接口-now" class="headerlink" title="USB与Type-C接口(now)"></a>USB与Type-C接口(now)</h3><p><img src="https://pic2.zhimg.com/80/v2-db1d7503e0743462466c25ce7c289b71_hd.jpg" alt="v2-db1d7503e0743462466c25ce7c289b71_hd"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/755823-bb50e0deba1e5ad0.png" alt="esda"></p>
+<p>苹果电脑上的Type-C接口均<strong>支持雷电3协议</strong></p>
+<h3 id="RJ-45接口-now"><a href="#RJ-45接口-now" class="headerlink" title="RJ-45接口(now)"></a>RJ-45接口(now)</h3><p>主要作为网络连接</p>
+<p><img src="https://pic4.zhimg.com/80/v2-c4a58bedd0e31cdceaf34278f899be87_hd.jpg" alt="v2-c4a58bedd0e31cdceaf34278f899be87_hd"></p>
+<h3 id="多功能读卡器接口"><a href="#多功能读卡器接口" class="headerlink" title="多功能读卡器接口"></a>多功能读卡器接口</h3><p>一般笔记本都配有多功能读卡器，最常规的就是三合一读卡器。也就是可以读取三大种类的存储卡。一般为SD卡、MMC卡、MS卡。其中SD卡是最常用的。目前多功能读卡器一般部署在高端笔记本上，不过苹果笔记本现在取消了这个设计使用了全Type-C的方案</p>
+<p><img src="https://pic3.zhimg.com/80/v2-87644619445c3fe4556bfa17b4d0a692_hd.jpg" alt="v2-87644619445c3fe4556bfa17b4d0a692_hd"></p>
+<h3 id="SIM卡接口"><a href="#SIM卡接口" class="headerlink" title="SIM卡接口"></a>SIM卡接口</h3><h1 id="mac加密压缩命令"><a href="#mac加密压缩命令" class="headerlink" title="mac加密压缩命令"></a>mac加密压缩命令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip -r -P passeword x.zip dir</span><br></pre></td></tr></table></figure>
+
+<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><ul>
+<li><p><strong>窗口快速切换桌面</strong></p>
+<p>defaults write com.apple.dock workspaces-edge-delay -float 0;killall Dock</p>
+<p>defaults delete com.apple.dock workspaces-edge-delay;killall Dock</p>
+</li>
+<li><p>quick player可以录屏</p>
+</li>
+<li><p>source命令作用</p>
+<p>在当前bash环境下读取并执行FileName中的命令。</p>
+<p>比如您在一个脚本里export $KKK=111 ,假如您用./a.sh执行该脚本，执行完毕后，您运行 echo $KKK，发现没有值，假如您用source来执行 ，然后再echo，就会发现KKK=111。因为调用./a.sh来执行shell是在一个子shell里运行的，所以执行后，结构并没有反应到父shell里，但是source不同他就是在本shell中执行的，所以能够看到结果。</p>
+<p><strong>sh是新起一个子shell运行    source和. 命令都是在父shell里直接运行，可以改变父shell参数</strong></p>
+</li>
+</ul>
+<h1 id="修改mac默认python版本（附PATH变量使用说明）"><a href="#修改mac默认python版本（附PATH变量使用说明）" class="headerlink" title="修改mac默认python版本（附PATH变量使用说明）"></a>修改mac默认python版本（附PATH变量使用说明）</h1><ol>
+<li><p>首先打开终端</p>
+</li>
+<li><p>打开配置文件，输入open ~/.bash_profile</p>
+<ul>
+<li><p><strong>bash_profile与.bashrc的区别</strong></p>
+<h4 id="1-作为交互式登录shell或使用“-–login”调用"><a href="#1-作为交互式登录shell或使用“-–login”调用" class="headerlink" title="1. 作为交互式登录shell或使用“ –login”调用"></a>1. 作为交互式登录shell或使用“ –login”调用</h4><p>交互式意味着您可以输入命令。该外壳程序未运行，因为已激活了脚本。登录外壳程序意味着您在向系统进行身份验证后通常通过提供用户名和密码来获得外壳程序。</p>
+<p>读取的文件：</p>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>- `/ etc / profile`
+- `〜/ .bash_profile`，`〜/ .bash_login`或`〜/ .profile`：读取第一个现有的可读文件
+- ``退出后`〜/ .bash_logout`。
+
+如果配置文件存在但不可读，则会显示错误消息。如果文件不存在，bash将搜索下一个文件。
+
+#### 2. 作为交互式非登录外壳程序调用
+
+非登录外壳程序意味着您不必通过系统身份验证。例如，当您使用图标或菜单项打开终端时，即为非登录外壳。
+
+读取的文件：
+
+
+
+- `〜/ .bashrc`
+
+此文件通常在`〜/ .bash_profile中`引用：</code></pre><ol start="3">
+<li><p>在配置文件中，写入python的外部环境变量（后面为python的位置，本人的版本是3.6） export PATH=${PATH}:/Applications/anaconda3/bin/python.app</p>
+<ul>
+<li><p><a href="https://www.jianshu.com/p/acb1f062a925" target="_blank" rel="noopener">mac系统path指南</a></p>
+</li>
+<li><p>Mac系统的环境变量，加载顺序为：<br>/etc/profile /etc/paths ~/.bash_profile ~/.bash_login ~/.profile ~/.bashrc</p>
+<p>/etc/profile和/etc/paths是系统级别的，系统启动就会加载，后面几个是当前用户级的环境变量。后面3个按照从前往后的顺序读取，如果/.bash_profile文件存在，则后面的几个文件就会被忽略不读了，如果/.bash_profile文件不存在，才会以此类推读取后面的文件。~/.bashrc没有上述规则，它是bash shell打开的时候载入的。</p>
+<ul>
+<li>/etc/paths （全局建议修改这个文件 ）<br> 编辑 paths，将环境变量添加到 paths文件中 ，一行一个路径<br> Hint：输入环境变量时，不用一个一个地输入，只要拖动文件夹到 Terminal 里就可以了。</li>
+<li>/etc/profile （建议不修改这个文件 ）<br> 全局（公有）配置，不管是哪个用户，登录时都会读取该文件。</li>
+<li>/etc/bashrc （一般在这个文件中添加系统级环境变量）<br> 全局（公有）配置，bash shell执行时，不管是何种方式，都会读取此文件</li>
+<li>.profile 文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行.并从/etc/profile.d目录的配置文件中搜集shell的设置<br> <strong>使用注意</strong>：如果你有对/etc/profile有修改的话必须得重启你的修改才会生效，此修改对每个用户都生效。</li>
+<li>./bashrc 每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取.<br> <strong>使用注意</strong> 对所有的使用bash的用户修改某个配置并在以后打开的bash都生效的话可以修改这个文件，修改这个文件不用重启，重新打开一个bash即可生效。</li>
+<li>./bash_profile 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该文件被读取.（每个用户都有一个.bashrc文件，在用户目录下）<br> <strong>使用注意</strong> 需要需要重启才会生效，/etc/profile对所有用户生效，~/.bash_profile只对当前用户生效。</li>
+</ul>
+<p>source ./.bash_profile 或者 ./.profile 环境信息生效</p>
+<p><font color=red>一句话：改~/bash_profile加export</font></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$&#123;PATH&#125;:&lt;PATH 1&gt;</span><br><span class="line">export PATH=$&#123;PATH&#125;:&lt;PATH 2&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>重命名python</p>
+</li>
+</ol>
+<p>alias python=”/Applications/anaconda3/bin/python3.6”</p>
+<ol start="5">
+<li><p>关闭文件后，在终端调用 source ~/.bash_profile</p>
+</li>
+<li><p>重启终端，调用 python，查看是否修改成功</p>
+</li>
+</ol>
+<h1 id="brew"><a href="#brew" class="headerlink" title="brew"></a>brew</h1>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/data_structure/2019/11/12/" rel="prev" title="data_structure">
+      <i class="fa fa-chevron-left"></i> data_structure
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/markdown/2019/11/18/" rel="next" title="markdown">
+      markdown <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=E63DBp7WwyBnFheys865P98nkbXv_oh50e4W9iPia9g&cl=ffffff&w=a"></script>
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh"><span class="nav-number">1.</span> <span class="nav-text">ssh</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#机理"><span class="nav-number">1.1.</span> <span class="nav-text">机理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.2.</span> <span class="nav-text">目录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shell命令汇总"><span class="nav-number">2.</span> <span class="nav-text">shell命令汇总</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接口"><span class="nav-number">3.</span> <span class="nav-text">接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#区分接口与协议"><span class="nav-number">3.1.</span> <span class="nav-text">区分接口与协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#协议"><span class="nav-number">3.1.1.</span> <span class="nav-text">协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口（如下）"><span class="nav-number">3.1.2.</span> <span class="nav-text">接口（如下）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多媒体接口"><span class="nav-number">3.2.</span> <span class="nav-text">多媒体接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VGA-old"><span class="nav-number">3.2.1.</span> <span class="nav-text">VGA(old)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#S-Vedio-old"><span class="nav-number">3.2.2.</span> <span class="nav-text">S-Vedio(old)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDMI-now"><span class="nav-number">3.2.3.</span> <span class="nav-text">HDMI(now)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DisplayPort-apple"><span class="nav-number">3.2.4.</span> <span class="nav-text">DisplayPort(apple)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5mm音频接口-now"><span class="nav-number">3.2.5.</span> <span class="nav-text">3.5mm音频接口(now)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#笔记本有限数据传输"><span class="nav-number">3.3.</span> <span class="nav-text">笔记本有限数据传输</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#e-SATA-old"><span class="nav-number">3.3.1.</span> <span class="nav-text">e-SATA(old)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mini-IEEE-1394接口-old-apple"><span class="nav-number">3.3.2.</span> <span class="nav-text">Mini IEEE 1394接口(old apple)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#thunderbolt雷电接口-now-apple"><span class="nav-number">3.3.3.</span> <span class="nav-text">thunderbolt雷电接口(now apple)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USB与Type-C接口-now"><span class="nav-number">3.3.4.</span> <span class="nav-text">USB与Type-C接口(now)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RJ-45接口-now"><span class="nav-number">3.3.5.</span> <span class="nav-text">RJ-45接口(now)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多功能读卡器接口"><span class="nav-number">3.3.6.</span> <span class="nav-text">多功能读卡器接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SIM卡接口"><span class="nav-number">3.3.7.</span> <span class="nav-text">SIM卡接口</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mac加密压缩命令"><span class="nav-number">4.</span> <span class="nav-text">mac加密压缩命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tips"><span class="nav-number">5.</span> <span class="nav-text">tips</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改mac默认python版本（附PATH变量使用说明）"><span class="nav-number">6.</span> <span class="nav-text">修改mac默认python版本（附PATH变量使用说明）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-作为交互式登录shell或使用“-–login”调用"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">1. 作为交互式登录shell或使用“ –login”调用</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#brew"><span class="nav-number">7.</span> <span class="nav-text">brew</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Akunda"
+      src="/images/hb.JPG">
+  <p class="site-author-name" itemprop="name">Akunda</p>
+  <div class="site-description" itemprop="description">Akunda blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lightmanwei" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lightmanwei" rel="noopener" target="_blank"><i class="fa fa-fw fa-GitHub"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Akunda</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

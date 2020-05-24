@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/hb.JPG">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/hb.JPG">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hb.JPG">
+  <link rel="mask-icon" href="/images/hb.JPG" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://lightmanwei.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Welcome to my blog, enter password to read.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rp 入门">
+<meta property="og:url" content="http://lightmanwei.github.io/rp%20%E5%85%A5%E9%97%A8/2020/04/12/index.html">
+<meta property="og:site_name" content="Akunda_blog">
+<meta property="og:description" content="Welcome to my blog, enter password to read.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-12T13:32:16.000Z">
+<meta property="article:modified_time" content="2020-04-12T13:32:16.000Z">
+<meta property="article:author" content="Akunda">
+<meta property="article:tag" content="CS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://lightmanwei.github.io/rp%20%E5%85%A5%E9%97%A8/2020/04/12/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>rp 入门 | Akunda_blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Akunda_blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lightmanwei.github.io/rp%20%E5%85%A5%E9%97%A8/2020/04/12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/hb.JPG">
+      <meta itemprop="name" content="Akunda">
+      <meta itemprop="description" content="Akunda blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Akunda_blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          rp 入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：20-04-12 21:32:16" itemprop="dateCreated datePublished" datetime="2020-04-12T21:32:16+08:00">20-04-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">Welcome to my blog, enter password to read.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="8bfad3ff55451bf8db37558a136e0bfe28718c7ef08336f8d23cf65f15594075">0e5eee5a2d1b6e9fb4e93a93d3085207bb9e45604bbee9a785e0d8039377cdb5f131b32cd9d71cd6be4d23482daed87968c5469c2ca6ade293114185bb30fc8ba3ab42426223954c486019db04a1950169d410c6abfb9d43d5e8a007977c6caba3435680a700887acaf9972d82bc19f849250bad1c77db7d6e252bfbc560868cdad2e89f5fd4b549aacc4119745ca663b06dbaf1417746494c4435b9e14a4873643a83a8c5fbad71d9a4c596e3fd78053c74f4fe0a87b55433bcc8e7224a502d7fbb84d19f8ab86e7e146d7089f42bc52ce0d290a71c0d4c532ef999400d09c7eed6f0c8f5bf347aaf200d21fde08b979acb2deffcf9f61f4828ba032db203e9852bac0124f309df3283fc4238d430637eaaa846a2f292eb4664065a3ec72b352d034b6ecd1ef7327ba2f44d13e55cb08199afd25c8a5594d94f57880236630a400699cfa366087ad9a97fdc403ce49150f11123ea2dd5eeb896976f13dc10e52c2891a2885b784e82b854f0ce8c0221f5177d2ab1ae1896ccc4b54b7b560ae6790cdffcc077048ea8d7fc5e8cd71b6525dc9eafb3e0adbdd22f0f872d3d61d7f958c5752405e17a69607a5f3df50188161ee652c1f9693d5d8dc87de99bbc094116d2423c2808306f2d3920a68c254f0e68a65ae6cfb8786da1521e185c451116ca1315c7e4a3330931d568a167bf1e68dd349da2dc71e9b7023ae8c7ca6aa48d9d9961493f64105a9a1039f6ee8c0387ed8ba77bfba5c0ac69608cc4c1e323d8ddb0e66adbc21e0428764067ffb69a72aec5dbdfd091451a60a8632cea24d3e8b6f83dab980f7f94c7d9a569b52fef352f27a1e2e60ea06068feabde5a97498482085bfdddb23dcadf94ccef0a9c7504d8f0cb641a84634d0608fa29a131b5487aff01d588a35de711d1673b10414d70bf552be5b07d970c32342d9d93310b0818bca3f965272db55495a2037d5383a01cf8cd53dc28411bd128aabb708769946bfbf619c9475f0c056b1b2c452ab1c34cbd7a81b063a89207c813599420152850e62c7ecb917b1078017d1bda3fe06abcf620ea49bfadec12de2387852d63f6565c7bc990cde44087517d020ba6b57100f6e39adb8faa3db09d9f4542fce8c8aef278a0d224d45c8d79f9b581a0cb9ebe038e37db034afb3f938bc233072657db4c0a6a02780e6c7906e7905f2cf333661a93aa5c1c83540a97ac391e66ab073a464ff32d5fbce8cf462d14b651cd1f029eba4df5d4400de8477e7a5ca58de7d9332ac2448fb8a9b8b85f0741da8a8bfbe160d2a9b4e62f3b5964e87f1b13c7af3f8011cfb4c1f2e1b87747225c532dea2bf1f7b80267d8e34f03b4e42ad91342389de5fcc1fdf6023049e79bcaf48b64a07fdde644ecd08049242337089b0a1106b9de2c250b4d057f75ed231163e445fa209e243c9aac0525971f4d542e1a2f10f231b846f455192505470fd57aa7df2ba9feb82b107541b9d961593a9da821844fa57e2b842e5fd30c8702ef2efb9038244c9003706be2184640813f44e0cd27c309cbe8b2a1f97661b03c74fbf574c8a5131f7cc301883cd457fa2710a0b885eebe33044cd220b03831f8376a401858a6f5e71aa24fa52b2d5862428fc967f130088821e299a60c0911591129de5864cd7e20f5d3b6b7f2f6300a7dbfc336c8af429783cbc55500da2fd55460b5a4501be3eeff3049fb5b2fb43fed2e0a8d393a28651492c14d56f00b3a014a751e41baea10e529e3136dbc15853e3437156094ba8b9ffc6968e4bfa77292453fa063b2edc2e23d6b95efa26c2025ad8906b4d04a7a6fc5ac532c30e7b11b0fa8b0b90ac4faacd84114af490edd9337ca5ea6ac32075d688379331a8f84d1c4f712ef77bcc734f3f5bf313ea2606b977bd2094ca21244e7a5300dbda9def6ce1b746a0d664335f6740b32201d6e827361d50425636d1f728a19a5cc8f8c2bae505275f013a538d6cceaf1c99180c88ddfcdfcfc86a77e6843480ebca6d74f19346c9af258b95a58f99b13b07649517f0d45caba4362587187598fb109bd9864b8b3443261eaa21677a661585aa44a388b5d23e6d768b18b2d10f436eaa0b6a1915728df0903e2cb050f3ad21ad77e876021063a67d47347b36c729615de9c08420fdc934e9f7a9a0d409f7f4dab2ed08f6e264f6e58c6c9d8642f17f36d936f48846e5438162de92aa394cc28d9e3a8862512e6ead0fae37d34b4d666a9c2b2dc7519fabf8fac743105e26043cbef4a1666490074d2ba02231e44f2deee6922fa5ebf179c91e1c2f7249cd9d11ce706ee7ae34b6a65b6fe244f1ef8bff454381c837d4b22852cb4b6cac72a7607bf4f6d44b0211612ce44b3478e0f38db4666e8db5c4ccdea76f2b297807a1ab00d190c0c7970da1092509c4a5a70d7c5d33781d5ccc28e1e44c9aa87dbc91a76b7e3a28dabc040b8767c636b4ced7fb9f4823c1e66cd8285ef2426666eeeccf6f0d1270ff543f9941d6d63394d9e7aadabb5e1fa2cce449b630aa15248b1dce0e5369882e0a0fab362e94c7c4181281a8e6a4b3dd05c4784d95c70c99e419b6ecdc250a5773f110686919a296d3f888e1348fe4fe8a050b5b2e3e46f81509f9ff441d87c2f0db358bf7780cfcfd67995099b8dd2e5c28101a0f7e774603d1b16fa0e21036c577d459c1dce667f3fcb760837c003115b6de82c22ab41e0cd9c42f55687a505ab44e499fb8f86496864958b7db3fdcc810ad51dcaaae882ec4e5d24f0039d2f7a44969c0d105808716e6c2f8946db782f7f712f80ea60909c860040f8ac40627ed8a36bb9690c769ed4686b6d098dd22c8a2f965f2ff2c853427ed8fb85fdf0eced6d67c6df565b76dadea241b1e08c5e0b48c646acb2fc36097ae9de9042836c89e800d54015c7bc19d99b1607fa787041961b965c9bcd17c5ac669360933f85d6dbc77535477a9d4657d9e5c8b4e435d993df4d6cf7e76e5565d869c040c37d7f9ff347cc81a6dc6eb808a3c42d56ad46580528bb9af596b2a5ebcc97386bb2afe35b411268d8349aa0e23462ae096534ccc1dff0b8d2ec1644e6259aa96027d54a729f0b58307ab723da4d692837c0358901809ad201a4d87419707cd10bd58c617c4a7071540c06c228902e8bd2cd50fc705eea6f664ef19dbf3d107a4c8efafc0c48b459f626d117612c3db67e55edb96148de61b96465299a2643444825271f82d781c032ecd63c558d4d6f1cfa48ac4a5bc9bb95bc356df398925a114ea5540594a7d29bb17db7e8bb757fa7027a0df46850c4d1d89e4dd8711a20d990995b13059c115201644f23a4</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/2020/04/10/" rel="prev" title="线程问题">
+      <i class="fa fa-chevron-left"></i> 线程问题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2020/04/12/" rel="next" title="机器学习">
+      机器学习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=E63DBp7WwyBnFheys865P98nkbXv_oh50e4W9iPia9g&cl=ffffff&w=a"></script>
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Akunda"
+      src="/images/hb.JPG">
+  <p class="site-author-name" itemprop="name">Akunda</p>
+  <div class="site-description" itemprop="description">Akunda blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lightmanwei" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lightmanwei" rel="noopener" target="_blank"><i class="fa fa-fw fa-GitHub"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Akunda</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

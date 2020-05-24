@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/hb.JPG">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/hb.JPG">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hb.JPG">
+  <link rel="mask-icon" href="/images/hb.JPG" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://lightmanwei.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="参考：廖雪峰 WEBHTTPheader 一个响应码，一个字典 body 内容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web">
+<meta property="og:url" content="http://lightmanwei.github.io/web/2019/11/10/index.html">
+<meta property="og:site_name" content="Akunda_blog">
+<meta property="og:description" content="参考：廖雪峰 WEBHTTPheader 一个响应码，一个字典 body 内容">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-11-09T16:12:19.000Z">
+<meta property="article:modified_time" content="2019-11-09T16:12:19.000Z">
+<meta property="article:author" content="Akunda">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="html">
+<meta property="article:tag" content="css">
+<meta property="article:tag" content="django">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://lightmanwei.github.io/web/2019/11/10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>web | Akunda_blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Akunda_blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lightmanwei.github.io/web/2019/11/10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/hb.JPG">
+      <meta itemprop="name" content="Akunda">
+      <meta itemprop="description" content="Akunda blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Akunda_blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          web
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：19-11-10 00:12:19" itemprop="dateCreated datePublished" datetime="2019-11-10T00:12:19+08:00">19-11-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>参考：<a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017804782304672" target="_blank" rel="noopener">廖雪峰</a></p>
+<h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>header 一个响应码，一个字典</p>
+<p>body 内容</p>
+<a id="more"></a>
+
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p><a href="https://www.runoob.com/html/html-quicklist.html" target="_blank" rel="noopener">html速查列表</a></p>
+<ul>
+<li><p>注释    &lt;!– blablabla –&gt; </p>
+</li>
+<li><p>属性</p>
+<p>color(color: red), font-size(font-size: 16px), font-family, </p>
+</li>
+</ul>
+<p>类选择器</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-tag">h2</span> &#123;<span class="attribute">color</span>: blue;&#125;</span></span><br><span class="line"><span class="xml">  .red-text &#123;color: red;&#125;<span class="comment">&lt;!--注意.--&gt;</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>常用属性：class, id, style, title</p>
+<ul>
+<li><p>导入链接，可以链接css样式表，rel=”stylesheet” type=”text/css”</p>
+<link href="https://fonts.gdgdocs.org/css?family=Lobster" rel="stylesheet" type="text/css">
+</li>
+<li><p>head标签：里面插入各种meta信息</p>
+</li>
+<li><p>img src width alt默认文字</p>
+</li>
+<li><p>格式化标签&lt;b&gt;&lt;i&gt;</p>
+</li>
+<li><p>边框</p>
+</li>
+<li><p>anchor nesting    target=”_blank”在新标签页打开</p>
+</li>
+<li><p>无序列表ul</p>
+<p>有序列表ol</p>
+</li>
+<li><h4 id="input"><a href="#input" class="headerlink" title="input"></a>input</h4><p>Type: text, password, radio, checkbox</p>
+<p>placeholder   &lt;input type=”text” placeholder=”this is placeholder text”&gt;</p>
+<p>label 选择框</p>
+</li>
+<li><p>&lt;form&gt;可以提交到表单服务器</p>
+</li>
+<li><p>button 点击提交</p>
+</li>
+<li><p>body 元素定义文档的主体。</p>
+<p>body 元素包含文档的所有内容（比如文本、超链接、图像、表格和列表等等。）</p>
+</li>
+<li><h4 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h4><ul>
+<li>table 表格由 &lt;table&gt; 标签来定义。每个表格均有若干行（由&lt;tr&gt; 标签定义），每行被分割为若干单元格（由&lt;td&gt; 标签定义）。字母 td 指表格数据（table data），即数据单元格的内容。数据单元格可以包含文本、图片、列表、段落、表单、水平线、表格等等。</li>
+</ul>
+</li>
+<li><p>rgb(0,0,0)</p>
+</li>
+<li><p>字符实体 #</p>
+</li>
+<li><p>href=“#”模板预览中的一个超链接占位符有意义的示例。在模板的单页演示中，我经常看到&lt;a href=”#”&gt;锚标记是一个超链接，但不会随处可见。为什么不将href属性留空？空白href属性实际上是指向当前页面的超链接。换句话说，它将导致页面刷新。正如我所讨论的，href=”#”它也是一个超链接，并导致滚动。因此，实际上是超链接占位符的最佳解决方案是href=”#!”这里的想法是希望页面上没有一个元素id=”!”（谁做到了！？），因此超链接什么也没指-因此什么也没发生。</p>
+</li>
+</ul>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ul>
+<li>引入：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">&lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text&#x2F;css&quot; href&#x3D;&quot;mystyle.css&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>id: #id</p>
+<p>Class: .class</p>
+</li>
+<li><p><a href="https://www.runoob.com/cssref/css-websafe-fonts.html" target="_blank" rel="noopener">web安全字体</a></p>
+</li>
+<li><p>单位长度</p>
+</li>
+</ul>
+<h2 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject mysite</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>urls.py    指定域名与对应view的关系</p>
+</li>
+<li><p>views.py.   处理请求</p>
+</li>
+<li><p><strong>render</strong>    </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">render</span><span class="params">(request, template_name, context=None, content_type=None, status=None, using=None)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Return a HttpResponse whose content is filled with the result of calling</span></span><br><span class="line"><span class="string">    django.template.loader.render_to_string() with the passed arguments.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    content = loader.render_to_string(template_name, context, request, using=using)</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(content, content_type, status)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行manage.py时可能会遇到问题，需要跟踪修改一些文件，还要改一下__init__.py</p>
+</li>
+<li><p><strong>url&amp;path</strong>    path与url是两个不同的模块,效果都是响应返回页面, path调用的是python第三方模块或框架,而url则是自定义的模块,如Views下的def函数对应你url中的参数值.</p>
+</li>
+<li><p>遇到问题</p>
+<p>ile “manage.py”, line 16</p>
+<p>​    ) from exc</p>
+<p>​         ^</p>
+<p>SyntaxError: invalid syntax</p>
+<p><strong>原因</strong>：未指定虚拟环境</p>
+<p>使用工具pipenv</p>
+<p>mac上特有的问题mysqlclient版本不符，按照提示修改文件</p>
+</li>
+<li><p>django数据库思想：</p>
+<p>Python 代码翻译成数据库语言时其规则就是一个 Python 类对应一个数据库表格，类名即表名，类的属性对应着表格的列，属性名即列名。</p>
+</li>
+<li><p>TypeError: <strong>init</strong>() missing 1 required positional argument: ‘on_delete’</p>
+<p>django2之后要求定义外键和一对一关系时，on_delete初始化，防止两个表数据不一致</p>
+<p>修改如下：user=models.OneToOneField(User,on_delete=models.CASCADE)</p>
+</li>
+</ul>
+<h3 id="django要点"><a href="#django要点" class="headerlink" title="django要点"></a>django要点</h3><ol>
+<li>安装pipenv（新建django工程）</li>
+<li>Python3.7</li>
+<li>manage.py(注意mac的bug)</li>
+<li>修改语言settings</li>
+<li>Settings.py 注册app，model，更改数据库引擎，templates模板（’DIRS’: [os.path.join(BASE_DIR, ‘templates’)],</li>
+<li>models中建立数据库魔性，注意foreignkey 和manytomany field</li>
+<li>db_model：foreign key &amp; manyToManyField；数据库操作django shell</li>
+<li>urls.py 对应视路径与视图views.py</li>
+<li>templates中新建html模板标签和模板变量</li>
+<li>注意static路径（里面放css，js</li>
+<li>admin superuser</li>
+<li>admin后台汉化？verbose_name，注册，Meta类</li>
+<li>path converters    &lt;int:pk&gt;</li>
+<li></li>
+</ol>
+<h2 id="WSGI-py"><a href="#WSGI-py" class="headerlink" title="WSGI(py)"></a>WSGI(py)</h2><p>参考：<a href="https://www.letiantian.me/2015-09-10-understand-python-wsgi/" target="_blank" rel="noopener">理解wsgi</a></p>
+<ul>
+<li><p>回调函数</p>
+<p>你到一个商店买东西，刚好你要的东西没有货，于是你在店员那里留下了你的电话，过了几天店里有货了，店员就打了你的电话，然后你接到电话后就到店里去取了货。在这个例子里，你的电话号码就叫回调函数，你把电话留给店员就叫登记回tazsdeeeh调函数，店里后来有货了叫做触发了回调关联的事件，店员给你打电话叫做调用回调函数，你到店里去取货叫做响应回调事件。回答完毕。</p>
+</li>
+<li><p>FLASK(web 框架)</p>
+</li>
+</ul>
+<p>需要下载（用pycharm自带的下载就行，不用conda或者console（命令行））</p>
+<h2 id="网络知识"><a href="#网络知识" class="headerlink" title="网络知识"></a>网络知识</h2><ul>
+<li><p>有线网，无线网，wifi：<br>wifi是wlan的一种实现形式</p>
+</li>
+<li><p>ip：</p>
+<p>IP 地址是指互联网协议地址，是 IP 协议提供的一种统一的地址格式，它为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异。IP 地址编址方案将 IP 地址空间划分为 A、B、C、D、E 五类，其中 A、B、C 是基本类，D、E 类作为多播和保留使用，为特殊地址。</p>
+<p>每个 IP 地址包括两个标识码（ID），即网络 ID 和主机 ID。同一个物理网络上的所有主机都使用同一个网络 ID，网络上的一个主机（包括网络上工作站，服务器和路由器等）有一个主机 ID 与其对应。A~E 类地址的特点如下：</p>
+<p>A 类地址：以 0 开头，第一个字节范围：0~127；</p>
+<p>B 类地址：以 10 开头，第一个字节范围：128~191；</p>
+<p>C 类地址：以 110 开头，第一个字节范围：192~223；</p>
+<p>D 类地址：以 1110 开头，第一个字节范围为 224~239；</p>
+<p>E 类地址：以 1111 开头，保留地址</p>
+</li>
+<li><p>mac地址是身份证号, ip地址是邮编 你一生下来, 身份证号就已经定了, 你换个地方, 每个地方的邮编都不一样 这就是区别</p>
+</li>
+<li><p>tcp三次握手</p>
+<p>最初客户端和服务端都处于 CLOSED(关闭) 状态。本例中 A（Client） 主动打开连接，B（Server） 被动打开连接。</p>
+<p>一开始，B 的 TCP 服务器进程首先创建传输控制块TCB，准备接受客户端进程的连接请求。然后服务端进程就处于 LISTEN(监听) 状态，等待客户端的连接请求。如有，立即作出响应。</p>
+<p>第一次握手：A 的 TCP 客户端进程也是首先创建传输控制块 TCB。然后，在打算建立 TCP 连接时，向 B 发出连接请求报文段，这时首部中的同步位 SYN=1，同时选择一个初始序号 seq = x。TCP 规定，SYN 报文段（即 SYN = 1 的报文段）不能携带数据，但要消耗掉一个序号。这时，TCP 客户进程进入 SYN-SENT（同步已发送）状态。</p>
+<p>第二次握手：B 收到连接请求报文后，如果同意建立连接，则向 A 发送确认。在确认报文段中应把 SYN 位和 ACK 位都置 1，确认号是 ack = x + 1，同时也为自己选择一个初始序号 seq = y。请注意，这个报文段也不能携带数据，但同样要消耗掉一个序号。这时 TCP 服务端进程进入 SYN-RCVD（同步收到）状态。</p>
+<p>第三次握手：TCP 客户进程收到 B 的确认后，还要向 B 给出确认。确认报文段的 ACK 置 1，确认号 ack = y + 1，而自己的序号 seq = x + 1。这时 ACK 报文段可以携带数据。但如果不携带数据则不消耗序号，这种情况下，下一个数据报文段的序号仍是 seq = x + 1。这时，TCP 连接已经建立，A 进入 ESTABLISHED（已建立连接）状态。</p>
+</li>
+<li><p>tcp四次挥手</p>
+<p>第一次挥手：A 的应用进程先向其 TCP 发出连接释放报文段，并停止再发送数据，主动关闭 TCP 连接。A 把连接释放报文段首部的终止控制位 FIN 置 1，其序号 seq = u（等于前面已传送过的数据的最后一个字节的序号加 1），这时 A 进入 FIN-WAIT-1（终止等待1）状态，等待 B 的确认。请注意：TCP 规定，FIN 报文段即使不携带数据，也将消耗掉一个序号。</p>
+<p>第二次挥手：B 收到连接释放报文段后立即发出确认，确认号是 ack = u + 1，而这个报文段自己的序号是 v（等于 B 前面已经传送过的数据的最后一个字节的序号加1），然后 B 就进入 CLOSE-WAIT（关闭等待）状态。TCP 服务端进程这时应通知高层应用进程，因而从 A 到 B 这个方向的连接就释放了，这时的 TCP 连接处于半关闭（half-close）状态，即 A 已经没有数据要发送了，但 B 若发送数据，A 仍要接收。也就是说，从 B 到 A 这个方向的连接并未关闭，这个状态可能会持续一段时间。A 收到来自 B 的确认后，就进入 FIN-WAIT-2(终止等待2)状态，等待 B 发出的连接释放报文段。</p>
+<p>第三次挥手：若 B 已经没有要向 A 发送的数据，其应用进程就通知 TCP 释放连接。这时 B 发出的连接释放报文段必须使 FIN = 1。假定 B 的序号为 w（在半关闭状态，B 可能又发送了一些数据）。B 还必须重复上次已发送过的确认号 ack = u + 1。这时 B 就进入 LAST-ACK(最后确认)状态，等待 A 的确认。</p>
+<p>第四次挥手：A 在收到 B 的连接释放报文后，必须对此发出确认。在确认报文段中把 ACK 置 1，确认号 ack = w + 1，而自己的序号 seq = u + 1（前面发送的 FIN 报文段要消耗一个序号）。然后进入 TIME-WAIT(时间等待) 状态。请注意，现在 TCP 连接还没有释放掉。必须经过时间等待计时器设置的时间 2MSL（MSL：最长报文段寿命）后，A 才能进入到 CLOSED 状态，然后撤销传输控制块，结束这次 TCP 连接。当然如果 B 一收到 A 的确认就进入 CLOSED 状态，然后撤销传输控制块。所以在释放连接时，B 结束 TCP 连接的时间要早于 A。</p>
+</li>
+<li><p>http状态码</p>
+<ul>
+<li><strong>1XX 信息</strong></li>
+</ul>
+<p>\1. 100 Continue ：表明到目前为止都很正常，客户端可以继续发送请求或者忽略这个响应。</p>
+<ul>
+<li><strong>2XX 成功</strong></li>
+</ul>
+<p>\1. 200 OK</p>
+<p>\2. 204 No Content ：请求已经成功处理，但是返回的响应报文不包含实体的主体部分。一般在只需要从客户端往服务器发送信息，而不需要返回数据时使用。</p>
+<p>\3. 206 Partial Content ：表示客户端进行了范围请求，响应报文包含由 Content-Range 指定范围的实体内容。</p>
+<ul>
+<li><strong>3XX 重定向</strong></li>
+</ul>
+<p>\1. 301 Moved Permanently ：永久性重定向；</p>
+<p>\2. 302 Found ：临时性重定向；</p>
+<p>\3. 303 See Other ：和 302 有着相同的功能，但是 303 明确要求客户端应该采用 GET 方法获取资源。</p>
+<p>\4. 304 Not Modified ：如果请求报文首部包含一些条件，例如：If-Match，If-Modified-Since，If-None-Match，If-Range，If-Unmodified-Since，如果不满足条件，则服务器会返回 304 状态码。</p>
+<p>\5. 307 Temporary Redirect ：临时重定向，与 302 的含义类似，但是 307 要求浏览器不会把重定向请求的 POST 方法改成 GET 方法。</p>
+<ul>
+<li><strong>4XX 客户端错误</strong></li>
+</ul>
+<p>\1. 400 Bad Request ：请求报文中存在语法错误。</p>
+<p>\2. 401 Unauthorized ：该状态码表示发送的请求需要有认证信息（BASIC 认证、DIGEST 认证）。如果之前已进行过一次请求，则表示用户认证失败。</p>
+<p>\3. 403 Forbidden ：请求被拒绝。</p>
+<p>\4. 404 Not Found</p>
+<ul>
+<li><strong>5XX 服务器错误</strong></li>
+</ul>
+<p>\1. 500 Internal Server Error ：服务器正在执行请求时发生错误；</p>
+<p>\2. 503 Service Unavailable ：服务器暂时处于超负载或正在进行停机维护，现在无法处理请求。</p>
+</li>
+<li><p>vpn ss ssr</p>
+<p>socks5协议</p>
+<p>NAT network address translation</p>
+</li>
+</ul>
+<h2 id="神奇的bug"><a href="#神奇的bug" class="headerlink" title="神奇的bug"></a>神奇的bug</h2><ul>
+<li><p>ssl/tls版本过低</p>
+<p>curl <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="noopener">https://bootstrap.pypa.io/get-pip.py</a> | python3</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/web/" rel="tag"># web</a>
+              <a href="/tags/html/" rel="tag"># html</a>
+              <a href="/tags/css/" rel="tag"># css</a>
+              <a href="/tags/django/" rel="tag"># django</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/xjb%E5%AD%A6python/2019/11/10/" rel="prev" title="python xjb学">
+      <i class="fa fa-chevron-left"></i> python xjb学
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog-making/2019/11/11/" rel="next" title="blog_making">
+      blog_making <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=E63DBp7WwyBnFheys865P98nkbXv_oh50e4W9iPia9g&cl=ffffff&w=a"></script>
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">1.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">1.2.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#input"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#布局"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">布局</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">1.3.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Django"><span class="nav-number">1.4.</span> <span class="nav-text">Django</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#django要点"><span class="nav-number">1.4.1.</span> <span class="nav-text">django要点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WSGI-py"><span class="nav-number">1.5.</span> <span class="nav-text">WSGI(py)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络知识"><span class="nav-number">1.6.</span> <span class="nav-text">网络知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神奇的bug"><span class="nav-number">1.7.</span> <span class="nav-text">神奇的bug</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Akunda"
+      src="/images/hb.JPG">
+  <p class="site-author-name" itemprop="name">Akunda</p>
+  <div class="site-description" itemprop="description">Akunda blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lightmanwei" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lightmanwei" rel="noopener" target="_blank"><i class="fa fa-fw fa-GitHub"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Akunda</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

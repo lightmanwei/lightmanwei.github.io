@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/hb.JPG">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/hb.JPG">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hb.JPG">
+  <link rel="mask-icon" href="/images/hb.JPG" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://lightmanwei.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="正则表达式（re）官方文档  r”string”的内容不会转义   re.match 返回匹配对象Match ​    Match.group()可以找匹配对应的内容（在Pattern里加好括号） ​    或者直接以数组形式访问 匹配中文字符的正则表达式： [\u4e00-\u9fa5] 1234idPattern &#x3D; re.compile(        &quot;员工姓名：([\u4e00-\u9f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python xjb学">
+<meta property="og:url" content="http://lightmanwei.github.io/xjb%E5%AD%A6python/2019/11/10/index.html">
+<meta property="og:site_name" content="Akunda_blog">
+<meta property="og:description" content="正则表达式（re）官方文档  r”string”的内容不会转义   re.match 返回匹配对象Match ​    Match.group()可以找匹配对应的内容（在Pattern里加好括号） ​    或者直接以数组形式访问 匹配中文字符的正则表达式： [\u4e00-\u9fa5] 1234idPattern &#x3D; re.compile(        &quot;员工姓名：([\u4e00-\u9f">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-2a0bf9157e7c09926093f91636d91177_hd.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-0340c7e376d8215515f33c1c05c388f0_r.jpg">
+<meta property="article:published_time" content="2019-11-09T16:12:19.000Z">
+<meta property="article:modified_time" content="2019-11-09T16:12:19.000Z">
+<meta property="article:author" content="Akunda">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-2a0bf9157e7c09926093f91636d91177_hd.jpg">
+
+<link rel="canonical" href="http://lightmanwei.github.io/xjb%E5%AD%A6python/2019/11/10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>python xjb学 | Akunda_blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Akunda_blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lightmanwei.github.io/xjb%E5%AD%A6python/2019/11/10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/hb.JPG">
+      <meta itemprop="name" content="Akunda">
+      <meta itemprop="description" content="Akunda blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Akunda_blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python xjb学
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：19-11-10 00:12:19" itemprop="dateCreated datePublished" datetime="2019-11-10T00:12:19+08:00">19-11-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="正则表达式（re）"><a href="#正则表达式（re）" class="headerlink" title="正则表达式（re）"></a>正则表达式（re）</h2><p><a href="https://docs.python.org/zh-cn/3/library/re.html" target="_blank" rel="noopener">官方文档</a></p>
+<ul>
+<li>r”string”的内容不会转义</li>
+<li></li>
+</ul>
+<p>re.match 返回匹配对象Match</p>
+<p>​    Match.group()可以找匹配对应的内容（在Pattern里加好括号）</p>
+<p>​    或者直接以数组形式访问</p>
+<p>匹配中文字符的正则表达式： [\u4e00-\u9fa5]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">idPattern = re.compile(</span><br><span class="line">        <span class="string">"员工姓名：([\u4e00-\u9fa5]&#123;2,4&#125;)\s*日期：(\d&#123;1,2&#125;)月(\d&#123;1,2&#125;)日\s*办公地点：([\u4e00-\u9fa5]&#123;2,10&#125;)\s*当日健康状况：([\u4e00-\u9fa5]&#123;2,10&#125;)\s*"</span>)</span><br><span class="line">    idResult = re.match(idPattern, id)</span><br><span class="line">    dic[<span class="string">"name"</span>] = idResult.group(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><p>os.remove(filepath)</p>
+<h2 id="range"><a href="#range" class="headerlink" title="range"></a>range</h2><p>range(3)</p>
+<p>0,1,2</p>
+<h2 id="numpy"><a href="#numpy" class="headerlink" title="numpy"></a>numpy</h2><ul>
+<li><p>ndarray类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.array(object, dtype &#x3D; None, copy &#x3D; True, order &#x3D; None, subok &#x3D; False, ndmin &#x3D; 0)</span><br></pre></td></tr></table></figure>
+
+<p>ndarray属性</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ndarray.ndim</td>
+<td align="left">秩，即轴的数量或维度的数量</td>
+</tr>
+<tr>
+<td align="left">ndarray.shape</td>
+<td align="left">数组的维度，对于矩阵，n 行 m 列</td>
+</tr>
+<tr>
+<td align="left">ndarray.size</td>
+<td align="left">数组元素的总个数，相当于 .shape 中 n*m 的值</td>
+</tr>
+<tr>
+<td align="left">ndarray.dtype</td>
+<td align="left">ndarray 对象的元素类型</td>
+</tr>
+<tr>
+<td align="left">ndarray.itemsize</td>
+<td align="left">ndarray 对象中每个元素的大小，以字节为单位</td>
+</tr>
+<tr>
+<td align="left">ndarray.flags</td>
+<td align="left">ndarray 对象的内存信息</td>
+</tr>
+<tr>
+<td align="left">nd,array.real</td>
+<td align="left">ndarray元素的实部</td>
+</tr>
+<tr>
+<td align="left">ndarray.imag</td>
+<td align="left">ndarray 元素的虚部</td>
+</tr>
+<tr>
+<td align="left">ndarray.data</td>
+<td align="left">包含实际数组元素的缓冲区，由于一般通过数组的索引获取元素，所以通常不需要使用这个属性。</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>dtype类</p>
+</li>
+<li><p>创建数组：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">numpy.empty(shape, dtype = float, order = <span class="string">'C'</span>)</span><br><span class="line">numpy.zeros(shape, dtype = float, order = <span class="string">'C'</span>)</span><br><span class="line">numpy.ones(shape, dtype = <span class="literal">None</span>, order = <span class="string">'C'</span>)</span><br><span class="line">numpy.asarray(a, dtype = <span class="literal">None</span>, order = <span class="literal">None</span>) <span class="comment"># a为输入数组，如列表，元组等</span></span><br><span class="line">numpy.arange(start, stop, step, dtype)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组运算（broadcast）</p>
+<p><strong>广播的规则:</strong></p>
+<ul>
+<li>让所有输入数组都向其中形状最长的数组看齐，形状中不足的部分都通过在前面加 1 补齐。</li>
+<li>输出数组的形状是输入数组形状的各个维度上的最大值。</li>
+<li>如果输入数组的某个维度和输出数组的对应维度的长度相同或者其长度为 1 时，这个数组能够用来计算，否则出错。</li>
+<li>当输入数组的某个维度的长度为 1 时，沿着此维度运算时都用此维度上的第一组值。</li>
+</ul>
+<p><strong>简单理解：</strong>对两个数组，分别比较他们的每一个维度（若其中一个数组没有当前维度则忽略），满足：</p>
+<ul>
+<li>数组拥有相同形状。</li>
+<li>当前维度的值相等。</li>
+<li>当前维度的值有一个是 1。</li>
+</ul>
+<p>若条件不满足，抛出 <strong>“ValueError: frames are not aligned”</strong> 异常。</p>
+<p>.T数组转置</p>
+<p>最大最小</p>
+<p>numpy.amin(array, axis) 用于计算数组中的元素沿指定轴的最小值。</p>
+<p>numpy.amax() 用于计算数组中的元素沿指定轴的最大值。</p>
+<p>极差np.ptp(a, axis =  0</p>
+<p>算数平均值numpy.mean()</p>
+<p>加权平均值numpy.average()</p>
+<p>标准差</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std &#x3D; sqrt(mean((x - x.mean())**2))</span><br></pre></td></tr></table></figure>
+
+<p>np.std([1,2,3,4])</p>
+<p>方差numpy.var()</p>
+</li>
+</ul>
+<ul>
+<li>h</li>
+</ul>
+<h2 id="函数自动添加注释"><a href="#函数自动添加注释" class="headerlink" title="函数自动添加注释"></a>函数自动添加注释</h2><p>输入```后再输入回车</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">AddLoglevel</span><span class="params">(table, pre_number)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    填写db_type</span></span><br><span class="line"><span class="string">    :param table: 单个表格对象</span></span><br><span class="line"><span class="string">    :param pre_number: 上一行的序号</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br></pre></td></tr></table></figure>
+
+<p>##关键词？</p>
+<p><strong>编码     # -*- coding: UTF-8 -*-</strong> 或者 <strong># coding=utf-8</strong> </p>
+<p><strong>括号</strong>    ()元组 []列表 {}字典</p>
+<p><strong><em>global</em></strong>    python如果想使用作用域之外的全局变量，则需要加global前缀。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">global</span> a</span><br><span class="line"> <span class="comment">#此处声明，告诉执行引擎：我要用全局变量a，不要整成局部的了！</span></span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'In test func: a = %d'</span> % a</span><br><span class="line"> </span><br><span class="line">test()</span><br><span class="line"><span class="keyword">print</span> <span class="string">'Global a = %d'</span> % a</span><br><span class="line"></span><br><span class="line">In test func: a = <span class="number">1</span></span><br><span class="line">Global a = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>pycache文件</strong>    是产生的二进制文件，如果存在，下次执行代码就可不用编译节省时间</p>
+<p><strong>extend &amp; append</strong>    extend将参数list里的每一个元素加到列表中，append将整个对象加入列表中</p>
+<p><strong>切片</strong>    L[0:3] 取列表L的前三个元素</p>
+<p><strong>list slice</strong>    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str_object[start_pos:end_pos:step]</span><br></pre></td></tr></table></figure>
+
+<p>切片以start_pos索引（包括）开始（0），以end_pos索引（排除）结束（长度）。step参数用于指定从开始到结束索引要执行的步骤。</p>
+<p>Python字符串切片始终遵循以下规则：<strong>s [：i] + s [i：] == s</strong>用于任何索引’i’。</p>
+<p><strong>foo&amp;bar&amp;baz</strong>    意思就是张三李四王二麻子    </p>
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><ul>
+<li><p>访问字典就像访问数组一样 dic[key]</p>
+</li>
+<li><p>判断字典里是否有key的方法</p>
+<ul>
+<li>d.has_key(‘name’)</li>
+<li>‘name’ in d.keys()</li>
+</ul>
+</li>
+</ul>
+<p>##类class</p>
+<p>类的方法第一个参数必须是self，self代表当前类的实例，self.<em>\</em>class__指向类</p>
+<p>##python目录</p>
+<p>###模块module</p>
+<p>import module</p>
+<p>module.func()</p>
+<p>from module import *</p>
+<p>func()</p>
+<p><strong>命名空间</strong>    dir()函数显示命名空间里所有的变量名字</p>
+<p>###包package</p>
+<p>文件夹 包含<em>\</em>init__.py</p>
+<h2 id="lambda函数"><a href="#lambda函数" class="headerlink" title="lambda函数"></a>lambda函数</h2><p>Python中，lambda函数也叫匿名函数，及即没有具体名称的函数，它允许快速定义单行函数，类似于C语言的宏，可以用在任何需要函数的地方。这区别于def定义的函数。<br>lambda与def的区别：<br>1）def创建的方法是有名称的，而lambda没有。<br>2）lambda会返回一个函数对象，但这个对象不会赋给一个标识符，而def则会把函数对象赋值给一个变量（函数名）。<br>3）lambda只是一个表达式，而def则是一个语句。<br>4）lambda表达式” : “后面，只能有一个表达式，def则可以有多个。<br>5）像if或for或print等语句不能用于lambda中，def可以。<br>6）lambda一般用来定义简单的函数，而def可以定义复杂的函数。<br>6）lambda函数不能共享给别的程序调用，def可以。<br>lambda语法格式：<br>lambda 变量 : 要执行的语句</p>
+<h2 id="函数传参（可变不可变参数）"><a href="#函数传参（可变不可变参数）" class="headerlink" title="函数传参（可变不可变参数）"></a>函数传参（可变不可变参数）</h2><p>在 python 中，strings, tuples, 和 numbers 是不可更改的对象，而 list,dict 等则是可以修改的对象。</p>
+<ul>
+<li><strong>不可变类型：</strong>变量赋值 <strong>a=5</strong> 后再赋值 <strong>a=10</strong>，这里实际是新生成一个 int 值对象 10，再让 a 指向它，而 5 被丢弃，不是改变a的值，相当于新生成了a。</li>
+<li><strong>可变类型：</strong>变量赋值 <strong>la=[1,2,3,4]</strong> 后再赋值 <strong>la[2]=5</strong> 则是将 list la 的第三个元素值更改，本身la没有动，只是其内部的一部分值被修改了。</li>
+</ul>
+<p>python 函数的参数传递：</p>
+<ul>
+<li><strong>不可变类型：</strong>类似 c++ 的值传递，如 整数、字符串、元组。如fun（a），传递的只是a的值，没有影响a对象本身。比如在 fun（a）内部修改 a 的值，只是修改另一个复制的对象，不会影响 a 本身。</li>
+<li><strong>可变类型：</strong>类似 c++ 的引用传递，如 列表，字典。如 fun（la），则是将 la 真正的传过去，修改后fun外部的la也会受影响</li>
+</ul>
+<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><ol>
+<li>str float bytes 转 int<br>int()</li>
+<li>str int bytes 转 float<br>float()</li>
+<li>str float bytes 转 complex<br>complex()</li>
+<li>str()可转换任意类型</li>
+<li>str 转 bytes<br>bytes()</li>
+<li>list() tuple()</li>
+</ol>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><ol>
+<li>while，for循环可以用else</li>
+<li>for i in sequence</li>
+<li>多变量循环    for title, mark in zip(titles, marks):<h2 id="GUI"><a href="#GUI" class="headerlink" title="GUI"></a>GUI</h2></li>
+</ol>
+<h3 id="tkinter包"><a href="#tkinter包" class="headerlink" title="tkinter包"></a>tkinter包</h3><p>说明：py自带包，跨平台，简单<br>直接看文档就行<br>布局：grid pack place<br>master 父组件，frame一般认为master=None<br>StringVar</p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><h3 id="threading包"><a href="#threading包" class="headerlink" title="threading包"></a>threading包</h3><p>先创建，再start，join主线程，分线程结束后主线程才结束<br><strong>线程安全</strong>    </p>
+<h2 id="format函数"><a href="#format函数" class="headerlink" title="format函数"></a>format函数</h2><h2 id="date"><a href="#date" class="headerlink" title="date"></a>date</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式化成2016-03-20 11:45:39形式</span></span><br><span class="line"><span class="keyword">print</span> (time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>, time.localtime()))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式化成Sat Mar 28 22:24:24 2016形式</span></span><br><span class="line"><span class="keyword">print</span> (time.strftime(<span class="string">"%a %b %d %H:%M:%S %Y"</span>, time.localtime()))</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 将格式字符串转换为时间戳</span></span><br><span class="line">a = <span class="string">"Sat Mar 28 22:24:24 2016"</span></span><br><span class="line"><span class="keyword">print</span> (time.mktime(time.strptime(a,<span class="string">"%a %b %d %H:%M:%S %Y"</span>)))</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="string转time"><a href="#string转time" class="headerlink" title="string转time"></a>string转time</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_ymd</span><span class="params">(s)</span>:</span></span><br><span class="line">    year_s, mon_s, day_s = s.split(<span class="string">'-'</span>)</span><br><span class="line">    <span class="keyword">return</span> datetime(int(year_s), int(mon_s), int(day_s))</span><br></pre></td></tr></table></figure>
+
+<h2 id="下划线"><a href="#下划线" class="headerlink" title="下划线"></a>下划线</h2><ol>
+<li><p>_var    单个下划线是一个Python命名约定，表示这个名称是供内部使用的。 它通常不由Python解释器强制执行，仅仅作为一种对程序员的提示。</p>
+</li>
+<li><p>Var_    有时候，一个变量的最合适的名称已经被一个关键字所占用。 因此，像class或def这样的名称不能用作Python中的变量名称。 在这种情况下，你可以附加一个下划线来解决命名冲突</p>
+</li>
+<li><p>__var    双下划线前缀会导致Python解释器重写属性名称，以避免子类中的命名冲突。这也叫做名称修饰（name mangling） - 解释器更改变量的名称，以便在类被扩展的时候不容易产生冲突。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">       self.foo = <span class="number">11</span></span><br><span class="line">       self._bar = <span class="number">23</span></span><br><span class="line">       self.__baz = <span class="number">23</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t = Test()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir(t)<span class="comment">#内置函数</span></span><br><span class="line">[<span class="string">'_Test__baz'</span>, <span class="string">'__class__'</span>, <span class="string">'__delattr__'</span>, <span class="string">'__dict__'</span>, <span class="string">'__dir__'</span>,</span><br><span class="line"><span class="string">'__doc__'</span>, <span class="string">'__eq__'</span>, <span class="string">'__format__'</span>, <span class="string">'__ge__'</span>, <span class="string">'__getattribute__'</span>,</span><br><span class="line"><span class="string">'__gt__'</span>, <span class="string">'__hash__'</span>, <span class="string">'__init__'</span>, <span class="string">'__le__'</span>, <span class="string">'__lt__'</span>, <span class="string">'__module__'</span>,</span><br><span class="line"><span class="string">'__ne__'</span>, <span class="string">'__new__'</span>, <span class="string">'__reduce__'</span>, <span class="string">'__reduce_ex__'</span>, <span class="string">'__repr__'</span>,</span><br><span class="line"><span class="string">'__setattr__'</span>, <span class="string">'__sizeof__'</span>, <span class="string">'__str__'</span>, <span class="string">'__subclasshook__'</span>,</span><br><span class="line"><span class="string">'__weakref__'</span>, <span class="string">'_bar'</span>, <span class="string">'foo'</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>__var__    Python保留了有双前导和双末尾下划线的名称，用于特殊用途。 这样的例子有，__init__对象构造函数，或__call__ — 它使得一个对象可以被调用。而且不会有名称修饰</p>
+</li>
+<li><p>_    单下划线表示一个临时变量。除了用作临时变量之外，“_”是大多数Python REPL中的一个特殊变量，它表示由解释器评估的最近一个表达式的结果。</p>
+</li>
+</ol>
+<h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h2><p>@符号的意义</p>
+<p>就是将一个函数包装起来，而且能保持代码结构不变</p>
+<p><a href="https://foofish.net/python-decorator.html" target="_blank" rel="noopener">参考网站：装饰器</a></p>
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p>迭代器是一个可以记住遍历的位置的对象。</p>
+<p>迭代器对象从集合的第一个元素开始访问，直到所有的元素被访问完结束。迭代器只能往前不会后退。</p>
+<p>迭代器有两个基本的方法：<strong>iter()</strong>（用于通过列表创建迭代器） 和 <strong>next()</strong>。</p>
+<p>字符串，列表或元组对象都可用于创建迭代器：</p>
+<h2 id="with"><a href="#with" class="headerlink" title="with"></a>with</h2><p>with 语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源，比如文件使用后自动关闭／线程中锁的自动获取和释放等。</p>
+<p>（１）紧跟with后面的语句被求值后，返回对象的“–enter–()”方法被调用，这个方法的返回值将被赋值给as后面的变量；<br>（２）当with后面的代码块全部被执行完之后，将调用前面返回对象的“–exit–()”方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">"１.txt"</span>) <span class="keyword">as</span> file:</span><br><span class="line">    data = file.read()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="字符串格式化"><a href="#字符串格式化" class="headerlink" title="字符串格式化"></a>字符串格式化</h2><ul>
+<li><p>%[数据名称][对齐标志][宽度].[精度]类型</p>
+<p><img src="https://pic4.zhimg.com/80/v2-2a0bf9157e7c09926093f91636d91177_hd.jpg" alt="img"></p>
+</li>
+<li><p>str.format函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[填充字符]对齐方式][符号标志][#][宽度][,][.精度][类型]</span><br><span class="line">&#39;&#123;:S^+#016,.2f&#125;&#39;.format(1234)  # 输出&#39;SSS+1,234.00SSSS&#39;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.zhimg.com/v2-0340c7e376d8215515f33c1c05c388f0_r.jpg" alt="preview"></p>
+</li>
+<li><p>f-string</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'My name is %s and i'</span>m %s years old.<span class="string">' % (name, age)</span></span><br><span class="line"><span class="string">'</span>My name <span class="keyword">is</span> &#123;&#125; <span class="keyword">and</span> i<span class="string">'m &#123;&#125; years old.'</span>.format(name, age)</span><br><span class="line"><span class="string">f'My name is <span class="subst">&#123;name&#125;</span> and i'</span>m &#123;age&#125; years old.<span class="string">'</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="虚拟环境"><a href="#虚拟环境" class="headerlink" title="虚拟环境"></a>虚拟环境</h2><h2 id="神奇的库"><a href="#神奇的库" class="headerlink" title="神奇的库"></a>神奇的库</h2><p>tqdm进度条</p>
+<h2 id="generator-amp-yield"><a href="#generator-amp-yield" class="headerlink" title="generator&amp;yield"></a>generator&amp;yield</h2><h3 id="generator参考网站"><a href="#generator参考网站" class="headerlink" title="generator参考网站"></a>generator<a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/index.html" target="_blank" rel="noopener">参考网站</a></h3><p>如果列表元素可以按照某种算法推算出来，那我们是否可以在循环的过程中不断推算出后续的元素呢？这样就不必创建完整的list，从而节省大量的空间。在Python中，这种一边循环一边计算的机制，称为生成器：generator。</p>
+<p>要创建一个generator，有很多种方法。第一种方法很简单，只要把一个列表生成式的<code>[]</code>改成<code>()</code>，就创建了一个generator：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>L = [x * x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>L</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>, <span class="number">36</span>, <span class="number">49</span>, <span class="number">64</span>, <span class="number">81</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>g = (x * x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>g</span><br><span class="line">&lt;generator object &lt;genexpr&gt; at <span class="number">0x1022ef630</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果要一个一个打印出来，可以通过<code>next()</code>函数获得generator的下一个返回值（每一次generator的值都会更新）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> g:</span><br><span class="line">	print(n)</span><br></pre></td></tr></table></figure>
+
+<h3 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h3><p>通常的for…in…循环中，in后面是一个数组，这个数组就是一个可迭代对象，类似的还有链表，字符串，文件。它可以是mylist = [1, 2, 3]，也可以是mylist = [x*x for x in range(3)]。<br> 它的缺陷是所有数据都在内存中，如果有海量数据的话将会非常耗内存。</p>
+<p>生成器是可以迭代的，但只可以读取它一次。因为用的时候才生成。比如 mygenerator = (x*x for x in range(3))，注意这里用到了()，它就不是数组，而上面的例子是[]。</p>
+<p>我理解的生成器(generator)能够迭代的关键是它有一个next()方法，工作原理就是通过重复调用next()方法，直到捕获一个异常。可以用上面的mygenerator测试。</p>
+<p>带有 yield 的函数不再是一个普通函数，而是一个生成器generator，可用于迭代，工作原理同上。</p>
+<p>yield 是一个类似 return 的关键字，迭代一次遇到yield时就返回yield后面(右边)的值。重点是：下一次迭代时，从上一次迭代遇到的yield后面的代码(下一行)开始执行。</p>
+<p>简要理解：yield就是 return 返回一个值，并且记住这个返回的位置，下次迭代就从这个位置后(下一行)开始。</p>
+<p>带有yield的函数不仅仅只用于for循环中，而且可用于某个函数的参数，只要这个函数的参数允许迭代参数。比如array.extend函数，它的原型是array.extend(iterable)。</p>
+<p>send(msg)与next()的区别在于send可以传递参数给yield表达式，这时传递的参数会作为yield表达式的值，而yield的参数是返回给调用者的值。——换句话说，就是send可以强行修改上一个yield表达式值。比如函数中有一个yield赋值，a = yield 5，第一次迭代到这里会返回5，a还没有赋值。第二次迭代时，使用.send(10)，那么，就是强行修改yield 5表达式的值为10，本来是5的，那么a=10</p>
+<p>send(msg)与next()都有返回值，它们的返回值是当前迭代遇到yield时，yield后面表达式的值，其实就是当前迭代中yield后面的参数。</p>
+<p>第一次调用时必须先next()或send(None)，否则会报错，send后之所以为None是因为这时候没有上一个yield(根据第8条)。可以认为，next()等同于send(None)。</p>
+<p><a href="https://www.jianshu.com/p/d09778f4e055来源：简书著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。" target="_blank" rel="noopener">https://www.jianshu.com/p/d09778f4e055来源：简书著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E4%BB%A3kan%E7%A0%81bu%E8%A7%84dong%E8%8C%83_python/2019/11/10/" rel="prev" title="code_format_py">
+      <i class="fa fa-chevron-left"></i> code_format_py
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/web/2019/11/10/" rel="next" title="web">
+      web <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=E63DBp7WwyBnFheys865P98nkbXv_oh50e4W9iPia9g&cl=ffffff&w=a"></script>
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式（re）"><span class="nav-number">1.</span> <span class="nav-text">正则表达式（re）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除文件"><span class="nav-number">2.</span> <span class="nav-text">删除文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#range"><span class="nav-number">3.</span> <span class="nav-text">range</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#numpy"><span class="nav-number">4.</span> <span class="nav-text">numpy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数自动添加注释"><span class="nav-number">5.</span> <span class="nav-text">函数自动添加注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典"><span class="nav-number">6.</span> <span class="nav-text">字典</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lambda函数"><span class="nav-number">7.</span> <span class="nav-text">lambda函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数传参（可变不可变参数）"><span class="nav-number">8.</span> <span class="nav-text">函数传参（可变不可变参数）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型转换"><span class="nav-number">9.</span> <span class="nav-text">数据类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环"><span class="nav-number">10.</span> <span class="nav-text">循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GUI"><span class="nav-number">11.</span> <span class="nav-text">GUI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tkinter包"><span class="nav-number">11.1.</span> <span class="nav-text">tkinter包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">12.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#threading包"><span class="nav-number">12.1.</span> <span class="nav-text">threading包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#format函数"><span class="nav-number">13.</span> <span class="nav-text">format函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#date"><span class="nav-number">14.</span> <span class="nav-text">date</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string转time"><span class="nav-number">15.</span> <span class="nav-text">string转time</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下划线"><span class="nav-number">16.</span> <span class="nav-text">下划线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器"><span class="nav-number">17.</span> <span class="nav-text">装饰器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代器"><span class="nav-number">18.</span> <span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#with"><span class="nav-number">19.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串格式化"><span class="nav-number">20.</span> <span class="nav-text">字符串格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟环境"><span class="nav-number">21.</span> <span class="nav-text">虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神奇的库"><span class="nav-number">22.</span> <span class="nav-text">神奇的库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generator-amp-yield"><span class="nav-number">23.</span> <span class="nav-text">generator&amp;yield</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#generator参考网站"><span class="nav-number">23.1.</span> <span class="nav-text">generator参考网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yield"><span class="nav-number">23.2.</span> <span class="nav-text">yield</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Akunda"
+      src="/images/hb.JPG">
+  <p class="site-author-name" itemprop="name">Akunda</p>
+  <div class="site-description" itemprop="description">Akunda blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lightmanwei" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lightmanwei" rel="noopener" target="_blank"><i class="fa fa-fw fa-GitHub"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Akunda</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
