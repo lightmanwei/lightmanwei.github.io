@@ -48,12 +48,12 @@
   };
 </script>
 
-  <meta name="description" content="MFC消息机制综述在SDK中消息其实非常容易理解，当窗口建立后便会有一个函数（窗口处理函数）开始执行一个消息循环，我们还可以清楚的看到消息处理的脉络。一个switch case语句就可以搞定，消息循环直到遇到WM_QUIT消息才会结束，其余的消息均被拦截后调用相应的处理函数。 但在封装了API的MFC中，消息似乎变的有些复杂了，我们看不到熟悉的switch case语句了，取而代之的是一个叫消息映">
+  <meta name="description" content="mfc 消息机制概述">
 <meta property="og:type" content="article">
 <meta property="og:title" content="消息映射">
 <meta property="og:url" content="http://lightmanwei.github.io/%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84/2020/06/13/index.html">
 <meta property="og:site_name" content="Akunda_blog">
-<meta property="og:description" content="MFC消息机制综述在SDK中消息其实非常容易理解，当窗口建立后便会有一个函数（窗口处理函数）开始执行一个消息循环，我们还可以清楚的看到消息处理的脉络。一个switch case语句就可以搞定，消息循环直到遇到WM_QUIT消息才会结束，其余的消息均被拦截后调用相应的处理函数。 但在封装了API的MFC中，消息似乎变的有些复杂了，我们看不到熟悉的switch case语句了，取而代之的是一个叫消息映">
+<meta property="og:description" content="mfc 消息机制概述">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://images0.cnblogs.com/blog/78946/201307/24143620-b97541c154d04b2b9d308466f20f93fb.png">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ges7snighkj30f804rjrb.jpg">
@@ -213,7 +213,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="MFC消息机制"><a href="#MFC消息机制" class="headerlink" title="MFC消息机制"></a>MFC消息机制</h1><h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>在SDK中消息其实非常容易理解，当窗口建立后便会有一个函数（窗口处理函数）开始执行一个消息循环，我们还可以清楚的看到消息处理的脉络。一个<strong>switch case</strong>语句就可以搞定，消息循环直到遇到WM_QUIT消息才会结束，其余的消息均被拦截后调用相应的处理函数。</p>
+        <blockquote>
+<p>mfc 消息机制概述</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="MFC消息机制"><a href="#MFC消息机制" class="headerlink" title="MFC消息机制"></a>MFC消息机制</h1><h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>在SDK中消息其实非常容易理解，当窗口建立后便会有一个函数（窗口处理函数）开始执行一个消息循环，我们还可以清楚的看到消息处理的脉络。一个<strong>switch case</strong>语句就可以搞定，消息循环直到遇到WM_QUIT消息才会结束，其余的消息均被拦截后调用相应的处理函数。</p>
 <p>但在封装了API的MFC中，消息似乎变的有些复杂了，我们看不到熟悉的switch case语句了，取而代之的是一个叫<strong>消息映射</strong>的东西。</p>
 <p>为什么MFC要引入消息映射机制，你可以想象一下，在现在的程序开发活动中，你的一个程序是否拥有多个窗体，主窗口就算只有一个，那菜单、工具条、控件这些都是子窗口，那我们需要写多少个switch case，并且还要为每个消息分配一个消息处理函数，这样做是多么的复杂呀。</p>
 <p>因此MFC采用了一种新的机制。利用一个<strong>数组</strong>，将窗口消息和相对应的消息处理函数进行映射，你可以理解成这是一个表。这种机制就是消息映射。这张表在窗口基类CWnd定义，派生类的消息映射表如果你没有动作它是空的，也就是说如果你不手工的增加消息处理函数，则当派生窗口接受一个消息时会执行父类的消息处理函数。这样做显然是高效的。</p>
@@ -439,7 +444,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

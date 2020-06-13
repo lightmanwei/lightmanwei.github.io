@@ -273,135 +273,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="MFC消息机制"><a href="#MFC消息机制" class="headerlink" title="MFC消息机制"></a>MFC消息机制</h1><h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>在SDK中消息其实非常容易理解，当窗口建立后便会有一个函数（窗口处理函数）开始执行一个消息循环，我们还可以清楚的看到消息处理的脉络。一个<strong>switch case</strong>语句就可以搞定，消息循环直到遇到WM_QUIT消息才会结束，其余的消息均被拦截后调用相应的处理函数。</p>
-<p>但在封装了API的MFC中，消息似乎变的有些复杂了，我们看不到熟悉的switch case语句了，取而代之的是一个叫<strong>消息映射</strong>的东西。</p>
-<p>为什么MFC要引入消息映射机制，你可以想象一下，在现在的程序开发活动中，你的一个程序是否拥有多个窗体，主窗口就算只有一个，那菜单、工具条、控件这些都是子窗口，那我们需要写多少个switch case，并且还要为每个消息分配一个消息处理函数，这样做是多么的复杂呀。</p>
-<p>因此MFC采用了一种新的机制。利用一个<strong>数组</strong>，将窗口消息和相对应的消息处理函数进行映射，你可以理解成这是一个表。这种机制就是消息映射。这张表在窗口基类CWnd定义，派生类的消息映射表如果你没有动作它是空的，也就是说如果你不手工的增加消息处理函数，则当派生窗口接受一个消息时会执行父类的消息处理函数。这样做显然是高效的。</p>
-<p>Windows中，消息使用统一的结构体（MSG）来存放信息.</p>
-<ul>
-<li><p>hwnd   接收消息的32位窗口句柄。窗口可以是任何类型的屏幕对象, 因为Win32能够维护大多数可视对象的句柄(窗口、对话框、按钮、编辑框等)。 </p>
-<p>message   用于区别其他消息的常量值，这些常量可以是Windows单元中预定义的常量，也可以是自定义的常量。 </p>
-<p>  wParam   通常是一个与消息有关的常量值，也可能是窗口或控件的句柄。通常用于存储小段信息，如标志<br>  lParam   通常是一个指向内存中数据的指针，通常用于存储消息所需的对象。 </p>
-<p>  由于wParam,lParam和指针都是32位的，需要时可以强制类型转换。具体表示什么，与message相关，</p>
-<p>而wParam，lParam是其最灵活的两个变量，为不同的消息类型时，存放数据的含义也不一样。</p>
-<p>time表示产生消息的时间，pt表示产生消息时鼠标的位置。</p>
-<p><img src="https://images0.cnblogs.com/blog/78946/201307/24143620-b97541c154d04b2b9d308466f20f93fb.png" alt="img"></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> uint wparam;<span class="comment">//就是无符号整形</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> lparam;<span class="comment">//就是长整形</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="消息种类"><a href="#消息种类" class="headerlink" title="消息种类"></a>消息种类</h2><h3 id="消息分类"><a href="#消息分类" class="headerlink" title="消息分类"></a>消息分类</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ges7snighkj30f804rjrb.jpg" alt="img"></p>
-<ul>
-<li><p>1、标准WINDOWS消息：这类消息是以WM_为前缀，不过WM_COMMAND例外。 </p>
-<p>窗口消息：即与窗口的内部运作有关的消息，如创建窗口，绘制窗口，销毁窗口等。可以是一般的窗口，也可以是MainFrame,Dialog,控件等。 如：WM_CREATE, WM_PAINT, WM_MOUSEMOVE, WM_CTLCOLOR, WM_HSCROLL等</p>
-</li>
-<li><p>2、命令消息：命令消息以WM_COMMAND为消息名。在消息中含有命令的标志符ID，以区分具体的命令。由菜单，工具栏等命令接口对象产生。当用户从菜单选中一个命令项目、按下一个快捷键或者点击工具栏上的一个按钮，都将发送WM_COMMAND命令消息。</p>
-<p>   LOWORD(wParam)表示菜单项，工具栏按钮或控件的ID；如果是控件, HIWORD(wParam)表示控件消息类型。</p>
-<blockquote>
-<p><a href="https://stackoverflow.com/questions/28625729/i-cant-understand-why-hiword-macro-uses-0xffff-mask" target="_blank" rel="noopener">对于下列宏的解释</a></p>
-<p>#define LOWORD(l) ((WORD)(l))</p>
-<p>#define HIWORD(l) ((WORD)(((DWORD)(l) &gt;&gt; 16) &amp; 0xFFFF))</p>
+          <blockquote>
+<p>mfc 消息机制概述</p>
 </blockquote>
-</li>
-<li><p><strong>3、控件通知消息</strong></p>
-<p>控件通知消息是指这样一种消息，一个窗口内的子控件发生了一些事情，需要通知父窗口。</p>
-<p>通知消息只适用于标准的窗口控件如按钮、列表框、组合框、编辑框，以及Windows公共控件如树状视图、列表视图等。例如，单击或双击一个控件、在控件中选择部分文本、操作控件的滚动条都会产生通知消息。她类似于命令消息，当用户与控件窗口交互时，那么控件通知消息就会从控件窗口发送到它的主窗口。但是这种消息的存在并不是为了处理用户命令，而是为了让主窗口能够改变控件，例如加载、显示数据。例如按下一个按钮，他向父窗口发送的消息也可以看作是一个控件通知消息；单击鼠标所产生的消息可以由主窗口直接处理，然后交给控件窗口处理。</p>
-<ul>
-<li><p>NMHDR</p>
-<p>随着控件的种类越来越多，越来越复杂（如列表控件、树控件等），仅仅将wParam，lParam将视为一个32位无符号整数，已经装不下太多信息了。</p>
-<p>  为了给父窗口发送更多的信息，微软定义了一个新的WM_NOTIFY消息来扩展WM_COMMAND消息。</p>
-<p>  WM_NOTIFY消息仍然使用MSG消息结构，只是此时wParam为控件ID，lParam为一个NMHDR指针，</p>
-<p>  不同的控件可以按照规则对NMHDR进行扩充，因此WM_NOTIFY消息传送的信息量可以相当的大。<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1geoq24akk7j30su05ogm5.jpg" alt="截屏2020-05-11 下午7.12.19"></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NMHDR</span><br><span class="line">&#123;</span><br><span class="line">HWnd hWndFrom ; <span class="comment">//相当于原WM_COMMAND传递方式的lParam</span></span><br><span class="line">UINT idFrom ; <span class="comment">//相当于原WM_COMMAND传递方式的wParam（low-order）</span></span><br><span class="line">UINT code ; <span class="comment">//相当于原WM_COMMAND传递方式的Notify Code(wParam"s high-order)</span></span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>4、windwos也允许程序员定义自己的消息，使用SendMessage或PostMessage来发送消息。</p>
-</li>
-</ul>
-<p><strong>或者, windows 消息还可以按以下分类</strong></p>
-<ul>
-<li><p>(1) 队列消息(Queued Messages)<br>消息会先保存在消息队列中，消息循环会从此队列中取出消息并分发到各窗口处理<br>如：WM_PAINT，WM_TIMER，WM_CREATE，WM_QUIT，以及鼠标，键盘消息等。<br>其中，WM_PAINT，WM_TIMER只有在队列中没有其他消息的时候才会被处理，<br>WM_PAINT消息还会被合并以提高效率。其他所有消息以先进先出（FIFO）的方式被处理。</p>
-</li>
-<li><p>(2) 非队列消息(NonQueued Messages)<br>消息会绕过系统消息队列和线程消息队列，直接发送到窗口过程进行处理<br>如：WM_ACTIVATE, WM_SETFOCUS, WM_SETCURSOR，WM_WINDOWPOSCHANGED</p>
-</li>
-</ul>
-<h3 id="消息-id"><a href="#消息-id" class="headerlink" title="消息 id"></a>消息 id</h3><ul>
-<li><p>系统定义消息ID范围：</p>
-<p>[0x0000, 0x03ff]   例：WM_NULL（0x0000）表示空消息  WM_CLOSE（0x0010）表示窗口关闭消息</p>
-</li>
-<li><p>用户自定义的消息ID范围：</p>
-<p>WM_USER: 0x0400-0x7FFF (例：WM_USER+10)<br>WM_APP(winver&gt; 4.0)：0x8000-0xBFFF (例：WM_APP+4)<br>RegisterWindowMessage：0xC000-0xFFFF【用来和其他应用程序通信，为了ID的唯一性，使用::RegisterWindowMessage来得到该范围的消息ID 】</p>
-</li>
-</ul>
-<h2 id="消息处理基本流程"><a href="#消息处理基本流程" class="headerlink" title="消息处理基本流程"></a>消息处理基本流程</h2><h3 id="win32-消息处理流程"><a href="#win32-消息处理流程" class="headerlink" title="win32 消息处理流程"></a>win32 消息处理流程</h3><p>每一个线程都对应有一个消息队列，利用API函数GetMessage从消息队列中获取消息，然后利用TranslateMessage翻译消息（主要是一些键盘消息），再利用DispatchMessage将消息分发给对应的窗口过程函数处理。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (GetMessage(&amp;msg, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">&#123;</span><br><span class="line">    TranslateMessage(&amp;msg);</span><br><span class="line">    DispatchMessage(&amp;msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="mfc-消息处理流程"><a href="#mfc-消息处理流程" class="headerlink" title="mfc 消息处理流程"></a>mfc 消息处理流程</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL AFXAPI <span class="title">AfxInternalPumpMessage</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        MSG msg;</span><br><span class="line">        ::GetMessage(&amp;msg, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">        <span class="keyword">if</span> (!AfxPreTranslateMessage(&amp;msg))</span><br><span class="line">        &#123;</span><br><span class="line">            ::TranslateMessage(&amp;msg);</span><br><span class="line">	    ::DispatchMessage(&amp;msg);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>增加了类似过滤的函数AfxPreTranslateMessage。该函数会调用CWnd类的PreTranslateMessage函数，函数返回True则消息将不会被处理。我们经常会通过重载CWnd类的PreTranslateMessage来改变MFC的消息控制流程。</p>
-<p>AfxWndProc-&gt;WindowProc-&gt;OnWndMsg</p>
-<h2 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h2><h3 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h3><p>除了一些没有基类的类或CObject的直接派生类外，其他的类都可以自动生成消息映射表。下面的讲解都以CMainFrame为例。消息映射表如下：</p>
-<p><strong>C++代码：</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)</span><br><span class="line"></span><br><span class="line">ON_WM_CREATE()</span><br><span class="line"></span><br><span class="line">ON_COMMAND(ID_VIEW_CUSTOMIZE, &amp;CMainFrame::OnViewCustomize)</span><br><span class="line"></span><br><span class="line">ON_REGISTERED_MESSAGE(AFX_WM_CREATETOOLBAR, &amp;CMainFrame:OnToolbarCreateNew)</span><br><span class="line"></span><br><span class="line">ON_COMMAND_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &amp;CMainFrame::OnApplicationLook)</span><br><span class="line"></span><br><span class="line">ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &amp;CMainFrame::OnUpdateApplicationLook)</span><br><span class="line"></span><br><span class="line">ON_WM_SETTINGCHANGE()</span><br><span class="line"></span><br><span class="line">END_MESSAGE_MAP()</span><br></pre></td></tr></table></figure>
-
-<p><strong>在BEGIN_MESSAGE_MAG和END_MESSAGE_MAP之间的内容成为消息映射入口项。</strong>消息映射除了在CMainFrame的实线文件中添加消息映射表外，在类的定义文件MainFrame.h中还会添加一个宏调用:</p>
-<p>DECLARE_MESSAGE_MAP()</p>
-<p>一般这个宏调用写在类定义的结尾处。</p>
-<p>不管是自动添加还是手动添加都有三个步骤：</p>
-<p><strong>★1、</strong>在类定义中加入消息处理函数的函数声明，注意要以afx_msg打头。</p>
-<p>例如MainFrame.h中WM_CREATE的消息处理函数</p>
-<p><strong>声明:</strong>afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);</p>
-<p><strong>★2、</strong>在类的消息映射表中添加该消息的消息映射入口项。</p>
-<p>例如WM_CREATE的消息映射入口项：ON_WM_CREATE()。</p>
-<p><strong>★3、</strong>在类的实现中添加消息处理函数的函数实现。</p>
-<p>例如，MainFrm.cpp中WM_CREATE的消息处理函数的实现：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CMainFrame::OnCreate</span><span class="params">(LPCREATESTRUCT lpCreateStruct)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//TODO</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过以上三个步骤以后，WM_CREATE等消息就可以在窗口类中被消息处理函数处理了。</p>
-<h3 id="进一步解释"><a href="#进一步解释" class="headerlink" title="进一步解释"></a>进一步解释</h3><ul>
-<li><p>在MFC的框架结构下，可以进行消息处理的类的头文件里面都会含有DECLARE_MESSAGE_MAP()宏,这里主要进行消息映射和消息处理函数的声明。可以进行消息处理的类的实现文件里一般都含有如下的结构。 </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BEGIN_MESSAGE_MAP(CInheritClass, CBaseClass)</span><br><span class="line"><span class="comment">//&#123;&#123;AFX_MSG_MAP(CInheritClass)</span></span><br><span class="line"><span class="comment">//&#125;&#125;AFX_MSG_MAP</span></span><br><span class="line">END_MESSAGE_MAP()</span><br></pre></td></tr></table></figure>
-
-<p>DECLARE_MESSAGE_MAP()宏的定义如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DECLARE_MESSAGE_MAP() \</span></span><br><span class="line">　　<span class="keyword">private</span>: \</span><br><span class="line">　　<span class="keyword">static</span> <span class="keyword">const</span> AFX_MSGMAP_ENTRY _messageEntries[]; \</span><br><span class="line">　　<span class="keyword">protected</span>: \</span><br><span class="line">　　<span class="keyword">static</span> AFX_DATA <span class="keyword">const</span> AFX_MSGMAP messageMap; \</span><br><span class="line">　　<span class="function"><span class="keyword">virtual</span> <span class="keyword">const</span> AFX_MSGMAP* <span class="title">GetMessageMap</span><span class="params">()</span> <span class="keyword">const</span></span>; \</span><br></pre></td></tr></table></figure>
-
-<p>其中AFX_MSGMAP_ENTRY和AFX_MSGMAP的定义如下:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AFX_MSGMAP_ENTRY</span></span></span><br><span class="line"><span class="class">　　&#123;</span></span><br><span class="line">　　　UINT nMessage; <span class="comment">// windows message</span></span><br><span class="line">　　　UINT nCode; <span class="comment">// control code or WM_NOTIFY code</span></span><br><span class="line">　　　UINT nID; <span class="comment">// control ID (or 0 for windows messages)</span></span><br><span class="line">　　　UINT nLastID; <span class="comment">// used for entries specifying a range of control id's</span></span><br><span class="line">　　　UINT nSig; <span class="comment">// signature type (action) or pointer to message #</span></span><br><span class="line">　　　AFX_PMSG pfn; <span class="comment">// routine to call (or special value)</span></span><br><span class="line">　　&#125;;</span><br><span class="line">　　<span class="comment">//因此静态数组变量_messageEntries[]实际上定义了一张表，表中的每一项指定了相应的对象所要处理的消息和处理此消息的函数的对应关系，因而这张表也称为消息映射表</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AFX_MSGMAP</span></span></span><br><span class="line"><span class="class">　　&#123;</span></span><br><span class="line">　　　<span class="keyword">const</span> AFX_MSGMAP* pBaseMap;</span><br><span class="line">　　　<span class="keyword">const</span> AFX_MSGMAP_ENTRY* lpEntries;</span><br><span class="line">　　&#125;;</span><br><span class="line">   <span class="comment">//通过这个链表，使得在某个类中调用基类的的消息处理函数很容易，因此，“父类的消息处理函数是子类的缺省消息处理函数”就顺理成章了。</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>BEGIN_MESSAGE_MAP()和END_MESSAGE_MAP()它们的定义如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BEGIN_MESSAGE_MAP(theClass, baseClass) \</span></span><br><span class="line">	PTM_WARNING_DISABLE \</span><br><span class="line">	const AFX_MSGMAP* theClass::GetMessageMap() const \</span><br><span class="line">		&#123; <span class="keyword">return</span> GetThisMessageMap(); &#125; \</span><br><span class="line">	const AFX_MSGMAP* PASCAL theClass::GetThisMessageMap() \</span><br><span class="line">	&#123; \</span><br><span class="line">		<span class="keyword">typedef</span> theClass ThisClass;						   \</span><br><span class="line">		<span class="keyword">typedef</span> baseClass TheBaseClass;					   \</span><br><span class="line">		<span class="keyword">static</span> <span class="keyword">const</span> AFX_MSGMAP_ENTRY _messageEntries[] =  \</span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">#define END_MESSAGE_MAP() \</span><br><span class="line">		&#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, AfxSig_end, (AFX_PMSG)<span class="number">0</span> &#125; \</span><br><span class="line">	&#125;; \</span><br><span class="line">		<span class="keyword">static</span> <span class="keyword">const</span> AFX_MSGMAP messageMap = \</span><br><span class="line">		&#123; &amp;TheBaseClass::GetThisMessageMap, &amp;_messageEntries[<span class="number">0</span>] &#125;; \</span><br><span class="line">		<span class="keyword">return</span> &amp;messageMap; \</span><br><span class="line">	&#125;								  \</span><br><span class="line">	PTM_WARNING_RESTORE</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="如何定义自己的消息"><a href="#如何定义自己的消息" class="headerlink" title="如何定义自己的消息"></a>如何定义自己的消息</h2><p>若要重写基类中定义的处理程序，只需在派生类中定义一个具有相同原型的函数，并创建此处理程序的消息映射项。我们通过ClassWizard可以建立大多数窗口消息或自定义的消息，通过ClassWizard可以自动建立消息映射，和消息处理函数的框架，我们只需要把我们要做的事情填空,添加你要做的事情到处理函数。这个非常简单，就不细说了。但是也许我们需要添加一些ClassWizard不支持的窗口消息或自定义消息，那么就需要我们亲自动手建立消息映射和消息处理的框架，通常步骤如下：</p>
-<ul>
-<li><p>第一步：定义消息。Microsoft推荐用户自定义消息至少是WM_USER+100，因为很多新控件也要使用WM_USER消息。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> WM_MYMESSAGE (WM_USER + 100)</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>第二步：实现消息处理函数。该函数使用WPRAM和LPARAM参数并返回LPESULT。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LPESULT <span class="title">CMainFrame::OnMyMessage</span><span class="params">(WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">// <span class="doctag">TODO:</span> 处理用户自定义消息，填空就是要填到这里。</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>第三步：在类头文件的AFX_MSG块中说明消息处理函数：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#123;&#123;AFX_MSG(CMainFrame)</span></span><br><span class="line"><span class="function">afx_msg LRESULT <span class="title">OnMyMessage</span><span class="params">(WPARAM wParam, LPARAM lParam)</span></span>;</span><br><span class="line"><span class="comment">//&#125;&#125;AFX_MSG</span></span><br><span class="line">DECLARE_MESSAGE_MAP()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>第四步：在用户类的消息块中，使用ON_MESSAGE宏指令将消息映射到消息处理函数中。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ON_MESSAGE( WM_MYMESSAGE, OnMyMessage )</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<p>参考</p>
-<p><a href="https://www.cnblogs.com/kekec/p/3210696.html" target="_blank" rel="noopener">https://www.cnblogs.com/kekec/p/3210696.html</a></p>
-<p><a href="https://www.cnblogs.com/greatverve/archive/2012/11/04/mfc-message.html" target="_blank" rel="noopener">https://www.cnblogs.com/greatverve/archive/2012/11/04/mfc-message.html</a></p>
-<p><a href="https://blog.csdn.net/zz709196484/article/details/76033033" target="_blank" rel="noopener">https://blog.csdn.net/zz709196484/article/details/76033033</a></p>
-<p><a href="https://blog.csdn.net/ljd_1986413/article/details/6258604" target="_blank" rel="noopener">https://blog.csdn.net/ljd_1986413/article/details/6258604</a></p>
-<p><a href="https://blog.csdn.net/lijie45655/article/details/6358779" target="_blank" rel="noopener">https://blog.csdn.net/lijie45655/article/details/6358779</a></p>
-<p><a href="https://blog.csdn.net/hisinwang/article/details/8045017?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-2&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-2" target="_blank" rel="noopener">https://blog.csdn.net/hisinwang/article/details/8045017?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-2&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-2</a></p>
-<p><a href="https://blog.csdn.net/bcbobo21cn/article/details/69666539" target="_blank" rel="noopener">https://blog.csdn.net/bcbobo21cn/article/details/69666539</a></p>
-<p><a href="https://blog.csdn.net/gongxifacai_believe/article/details/50988139" target="_blank" rel="noopener">https://blog.csdn.net/gongxifacai_believe/article/details/50988139</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E6%B6%88%E6%81%AF%E6%98%A0%E5%B0%84/2020/06/13/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1025,7 +907,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
