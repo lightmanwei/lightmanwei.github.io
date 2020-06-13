@@ -311,9 +311,29 @@
 <p>np.std([1,2,3,4])</p>
 <p>方差numpy.var()</p>
 </li>
-</ul>
+<li><p>部分函数</p>
 <ul>
-<li>h</li>
+<li><p>numpy.sum</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">2</span>],</span><br><span class="line">              [<span class="number">9</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">8</span>],</span><br><span class="line">              [<span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">1</span>]])</span><br><span class="line">print(np.sum(a, axis=<span class="number">0</span>))</span><br><span class="line"><span class="comment"># 为了描述方便,a就表示这个二维数组,np.sum(a, axis=0)的含义是a[0][j],a[1][j],a[2]j对应项相加的结果.即[1,5,5,2]+[9,6,2,8]+[3,7,9,1]=[13,18,16,11].</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>numpy.tile</p>
+<p>说白了，就是把数组沿各个方向复制</p>
+<p>比如 a = np.array([0,1,2]),    np.tile(a,(2,1))就是把a先沿x轴（就这样称呼吧）复制1倍，即没有复制，仍然是 [0,1,2]。 再把结果沿y方向复制2倍，即最终得到</p>
+<p> array([[0,1,2],</p>
+<p>​            [0,1,2]])</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.tile(b, <span class="number">2</span>) <span class="comment">#沿X轴复制2倍</span></span><br><span class="line">array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">       [<span class="number">3</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.tile(b, (<span class="number">2</span>, <span class="number">1</span>))<span class="comment">#沿X轴复制1倍（相当于没有复制），再沿Y轴复制2倍</span></span><br><span class="line">array([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">       [<span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">       [<span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="函数自动添加注释"><a href="#函数自动添加注释" class="headerlink" title="函数自动添加注释"></a>函数自动添加注释</h2><p>输入```后再输入回车</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">AddLoglevel</span><span class="params">(table, pre_number)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    填写db_type</span></span><br><span class="line"><span class="string">    :param table: 单个表格对象</span></span><br><span class="line"><span class="string">    :param pre_number: 上一行的序号</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br></pre></td></tr></table></figure>
@@ -444,7 +464,29 @@
 <p>send(msg)与next()的区别在于send可以传递参数给yield表达式，这时传递的参数会作为yield表达式的值，而yield的参数是返回给调用者的值。——换句话说，就是send可以强行修改上一个yield表达式值。比如函数中有一个yield赋值，a = yield 5，第一次迭代到这里会返回5，a还没有赋值。第二次迭代时，使用.send(10)，那么，就是强行修改yield 5表达式的值为10，本来是5的，那么a=10</p>
 <p>send(msg)与next()都有返回值，它们的返回值是当前迭代遇到yield时，yield后面表达式的值，其实就是当前迭代中yield后面的参数。</p>
 <p>第一次调用时必须先next()或send(None)，否则会报错，send后之所以为None是因为这时候没有上一个yield(根据第8条)。可以认为，next()等同于send(None)。</p>
-<p><a href="https://www.jianshu.com/p/d09778f4e055来源：简书著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。" target="_blank" rel="noopener">https://www.jianshu.com/p/d09778f4e055来源：简书著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</a></p>
+<h2 id="anaconda-mac-pycharm"><a href="#anaconda-mac-pycharm" class="headerlink" title="anaconda+mac+pycharm"></a>anaconda+mac+pycharm</h2><ol>
+<li><p>下载安装 anaconda</p>
+</li>
+<li><p>下载安装 pycharm</p>
+</li>
+<li><p>anaconda 安装环境, 可以在创建的环境里用 terminal+pip安装难装的库</p>
+</li>
+<li><p>在pycharm 项目的 interpreter 里选择 anaconda 装好的环境</p>
+<p>可以再命令行里用<code>conda env list</code>命令来找到环境目录, 选择 bin 里的 python 就能使用环境啦!</p>
+</li>
+<li><p>在安装 tensorflow 的时候用了清华的镜像速度快</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --set show_channel_urls yes</span><br><span class="line">conda create -n tensorflow python=3.7</span><br><span class="line"><span class="meta">#</span><span class="bash">使用建好的名为 tensorflow 的环境</span></span><br><span class="line">pip install --upgrade --ignore-installed tensorflow</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+</li>
+</ol>
 
     </div>
 
@@ -530,7 +572,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式（re）"><span class="nav-number">1.</span> <span class="nav-text">正则表达式（re）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除文件"><span class="nav-number">2.</span> <span class="nav-text">删除文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#range"><span class="nav-number">3.</span> <span class="nav-text">range</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#numpy"><span class="nav-number">4.</span> <span class="nav-text">numpy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数自动添加注释"><span class="nav-number">5.</span> <span class="nav-text">函数自动添加注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典"><span class="nav-number">6.</span> <span class="nav-text">字典</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lambda函数"><span class="nav-number">7.</span> <span class="nav-text">lambda函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数传参（可变不可变参数）"><span class="nav-number">8.</span> <span class="nav-text">函数传参（可变不可变参数）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型转换"><span class="nav-number">9.</span> <span class="nav-text">数据类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环"><span class="nav-number">10.</span> <span class="nav-text">循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GUI"><span class="nav-number">11.</span> <span class="nav-text">GUI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tkinter包"><span class="nav-number">11.1.</span> <span class="nav-text">tkinter包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">12.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#threading包"><span class="nav-number">12.1.</span> <span class="nav-text">threading包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#format函数"><span class="nav-number">13.</span> <span class="nav-text">format函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#date"><span class="nav-number">14.</span> <span class="nav-text">date</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string转time"><span class="nav-number">15.</span> <span class="nav-text">string转time</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下划线"><span class="nav-number">16.</span> <span class="nav-text">下划线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器"><span class="nav-number">17.</span> <span class="nav-text">装饰器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代器"><span class="nav-number">18.</span> <span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#with"><span class="nav-number">19.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串格式化"><span class="nav-number">20.</span> <span class="nav-text">字符串格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟环境"><span class="nav-number">21.</span> <span class="nav-text">虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神奇的库"><span class="nav-number">22.</span> <span class="nav-text">神奇的库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generator-amp-yield"><span class="nav-number">23.</span> <span class="nav-text">generator&amp;yield</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#generator参考网站"><span class="nav-number">23.1.</span> <span class="nav-text">generator参考网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yield"><span class="nav-number">23.2.</span> <span class="nav-text">yield</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式（re）"><span class="nav-number">1.</span> <span class="nav-text">正则表达式（re）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除文件"><span class="nav-number">2.</span> <span class="nav-text">删除文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#range"><span class="nav-number">3.</span> <span class="nav-text">range</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#numpy"><span class="nav-number">4.</span> <span class="nav-text">numpy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数自动添加注释"><span class="nav-number">5.</span> <span class="nav-text">函数自动添加注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典"><span class="nav-number">6.</span> <span class="nav-text">字典</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lambda函数"><span class="nav-number">7.</span> <span class="nav-text">lambda函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数传参（可变不可变参数）"><span class="nav-number">8.</span> <span class="nav-text">函数传参（可变不可变参数）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型转换"><span class="nav-number">9.</span> <span class="nav-text">数据类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环"><span class="nav-number">10.</span> <span class="nav-text">循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GUI"><span class="nav-number">11.</span> <span class="nav-text">GUI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tkinter包"><span class="nav-number">11.1.</span> <span class="nav-text">tkinter包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">12.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#threading包"><span class="nav-number">12.1.</span> <span class="nav-text">threading包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#format函数"><span class="nav-number">13.</span> <span class="nav-text">format函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#date"><span class="nav-number">14.</span> <span class="nav-text">date</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string转time"><span class="nav-number">15.</span> <span class="nav-text">string转time</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下划线"><span class="nav-number">16.</span> <span class="nav-text">下划线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器"><span class="nav-number">17.</span> <span class="nav-text">装饰器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代器"><span class="nav-number">18.</span> <span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#with"><span class="nav-number">19.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串格式化"><span class="nav-number">20.</span> <span class="nav-text">字符串格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟环境"><span class="nav-number">21.</span> <span class="nav-text">虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神奇的库"><span class="nav-number">22.</span> <span class="nav-text">神奇的库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generator-amp-yield"><span class="nav-number">23.</span> <span class="nav-text">generator&amp;yield</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#generator参考网站"><span class="nav-number">23.1.</span> <span class="nav-text">generator参考网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yield"><span class="nav-number">23.2.</span> <span class="nav-text">yield</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anaconda-mac-pycharm"><span class="nav-number">24.</span> <span class="nav-text">anaconda+mac+pycharm</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -546,7 +588,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
