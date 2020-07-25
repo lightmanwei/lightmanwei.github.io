@@ -55,13 +55,28 @@
 <meta property="og:site_name" content="Akunda_blog">
 <meta property="og:description" content="git 简介和使用">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2gnf7ccej31gg0rgn6i.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2go0zfo9j31cc0g0ai4.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2h2mi8nrj31d20t278e.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2hg1iq2ej31f00mcwi3.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2hi4e4pqj31dw0iugqd.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2hlh6lc1j31c40ekjti.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2hpueb36j30q20cmqid.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2htn2dnqj306i04omxm.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2i5i6y9yj31650u0tgx.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2i6jmqxmj315f0u07bt.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2lkjp3oqj31bk0s0wkh.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2ll5j1dhj31cw0km0xh.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2lltvxjaj31aq0g4q7h.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2k75saijj31ds0e0jtx.jpg">
+<meta property="og:image" content="https://www.liaoxuefeng.com/files/attachments/919020037470528/0">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-3bc9d5f2c49a713c776e69676d7d56c5_1440w.jpg">
 <meta property="article:published_time" content="2019-11-17T16:04:35.000Z">
 <meta property="article:modified_time" content="2019-11-17T16:04:35.000Z">
 <meta property="article:author" content="Akunda">
 <meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic2.zhimg.com/80/v2-3bc9d5f2c49a713c776e69676d7d56c5_1440w.jpg">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2gnf7ccej31gg0rgn6i.jpg">
 
 <link rel="canonical" href="http://lightmanwei.github.io/git/2019/11/18/">
 
@@ -216,9 +231,81 @@
 </blockquote>
 <a id="more"></a>
 
-<h2 id="git-工作原理"><a href="#git-工作原理" class="headerlink" title="git 工作原理"></a>git 工作原理</h2><p><img src="https://pic2.zhimg.com/80/v2-3bc9d5f2c49a713c776e69676d7d56c5_1440w.jpg" alt="img"></p>
-<p>Workspace：工作区<br>Index / Stage：暂存区<br>Repository：仓库区（或本地仓库）<br>Remote：远程仓库</p>
-<p><strong>.git 文件</strong></p>
+<h2 id="git-命令"><a href="#git-命令" class="headerlink" title="git 命令"></a>git 命令</h2><ul>
+<li><p><code>git status (-s)</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vim CONTRIBUTING.md </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git status </span></span><br><span class="line">On branch master </span><br><span class="line">Changes to be committed:   </span><br><span class="line">		(use "git reset HEAD &lt;file&gt;..." to unstage)</span><br><span class="line">    new file:   README     </span><br><span class="line">    modified:   CONTRIBUTING.md</span><br><span class="line">Changes not staged for commit:   </span><br><span class="line">(use "git add &lt;file&gt;..." to update what will be committed)   </span><br><span class="line">(use "git checkout -- &lt;file&gt;..." to discard changes in working directory)</span><br><span class="line">    modified:   CONTRIBUTING.md</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>git rm (--cached)</code></p>
+</li>
+<li><p><code>git config --global alias.last &#39;log -1 HEAD&#39;</code></p>
+</li>
+</ul>
+<h2 id="git-分支"><a href="#git-分支" class="headerlink" title="git 分支"></a>git 分支</h2><ul>
+<li><p>提交对象</p>
+<p>首次提交</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2gnf7ccej31gg0rgn6i.jpg" alt="截屏2020-07-24 下午11.04.55"></p>
+<p>以后的提交</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2go0zfo9j31cc0g0ai4.jpg" alt="截屏2020-07-24 下午11.05.31"></p>
+</li>
+<li><p>Git 的分支，其实本质上仅仅是指向提交对象的可变指针。</p>
+</li>
+<li><p><strong>HEAD</strong> 的特殊指针。在 Git 中，它是一个指针，指向当前所在的本地分支（译注：将 HEAD 想象为当前分支的别名）。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2h2mi8nrj31d20t278e.jpg" alt="截屏2020-07-24 下午11.19.33"></p>
+</li>
+</ul>
+<h3 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h3><ul>
+<li><p>fast-forward</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2hg1iq2ej31f00mcwi3.jpg" alt="截屏2020-07-24 下午11.32.26"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git checkout master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge hotfix </span></span><br><span class="line">Updating f42c576..3a0874c</span><br><span class="line">Fast-forward </span><br><span class="line">index.html | 2 ++ </span><br><span class="line">1 file changed, 2 insertions(+)</span><br></pre></td></tr></table></figure>
+
+<p>直接指针右移, 没有需要解决的冲突</p>
+</li>
+<li><p>分支之间的合并</p>
+</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2hi4e4pqj31dw0iugqd.jpg" alt="截屏2020-07-24 下午11.34.27"></p>
+<p>和之间将分支指针向前推进所不同的是，Git 将此次三方合并的结果做了一个新的快照并且自动创建一个新的提 交指向它。这个被称作一次合并提交，它的特别之处在于他有不止一个父提交。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2hlh6lc1j31c40ekjti.jpg" alt="截屏2020-07-24 下午11.37.40"></p>
+<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><p>如果你在两个不同的分支中，对<strong>同一个文件的同一个部分</strong>进行了不同的修 改，Git 就没法干净的合并它们。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2hpueb36j30q20cmqid.jpg" alt="截屏2020-07-24 下午11.41.53"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2htn2dnqj306i04omxm.jpg" alt="截屏2020-07-24 下午11.45.31"></p>
+<p>在你解决了所有文件里的冲突之后，对每个文件使用 git add 命令来将其标记为冲突已解决。一旦暂存这 些原本有冲突的文件，Git 就会将它们标记为冲突已解决。</p>
+<h3 id="远程分支"><a href="#远程分支" class="headerlink" title="远程分支"></a>远程分支</h3><ul>
+<li>git clone</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2i5i6y9yj31650u0tgx.jpg" alt="截屏2020-07-24 下午11.56.55"></p>
+<ul>
+<li>git fetch</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2i6jmqxmj315f0u07bt.jpg" alt="截屏2020-07-24 下午11.57.54"></p>
+<ul>
+<li><p>git pull = git fetch + git merge</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2lkjp3oqj31bk0s0wkh.jpg" alt="截屏2020-07-25 上午1.55.11"></p>
+<p>git fetch, git merge</p>
+</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2ll5j1dhj31cw0km0xh.jpg" alt="截屏2020-07-25 上午1.55.46"></p>
+<p>​        git push</p>
+<p>​        <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2lltvxjaj31aq0g4q7h.jpg" alt="截屏2020-07-25 上午1.56.21"></p>
+<p>​        </p>
+<ul>
+<li><p>rebase</p>
+<p>与 git merge 不同, 其实，还有一种方法：你可以提取在 C4 中引入的补丁和修改，然后在 C3 的基础上再应用一次。在 Git 中，这种 操作就叫做 变基。<strong>你可以使用 rebase 命令将提交到某一分支上的所有修改都移至另一分支上，就好像“重新 播放”一样。</strong></p>
+<p>它的原理是首先找到这两个分支（即当前分支 experiment、变基操作的目标基底分支 master）的最近共同祖 先 C2，然后对比当前分支相对于该祖先的历次提交，提取相应的修改并存为临时文件，然后将当前分支指向目 标基底 C3, 最后以此将之前另存为临时文件的修改依序应用。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gh2k75saijj31ds0e0jtx.jpg" alt="截屏2020-07-25 上午1.07.41"></p>
+<p>变基使得提交历史更加整洁</p>
+</li>
+</ul>
+<h2 id="git-工具"><a href="#git-工具" class="headerlink" title="git 工具"></a>git 工具</h2><ul>
+<li>git show SHA-1 </li>
+</ul>
+<h2 id="git-内部原理"><a href="#git-内部原理" class="headerlink" title="git 内部原理"></a>git 内部原理</h2><h3 id="git-基础"><a href="#git-基础" class="headerlink" title="git 基础"></a>git 基础</h3><p><strong>工作区</strong></p>
+<p>电脑里能看到的目录</p>
+<p><strong>版本库</strong></p>
+<p>.git</p>
+<p>其中包含了 <strong>stage/index</strong> 暂存区, 即 git add 操作</p>
+<p><img src="https://www.liaoxuefeng.com/files/attachments/919020037470528/0" alt="git-repo"></p>
+<h3 id="git-数据库"><a href="#git-数据库" class="headerlink" title="git 数据库"></a>git 数据库</h3><p><strong>.git 文件</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ls -F1</span><br><span class="line">HEAD</span><br><span class="line">config*</span><br><span class="line">description</span><br><span class="line">hooks&#x2F;</span><br><span class="line">info&#x2F;</span><br><span class="line">objects&#x2F;</span><br><span class="line">refs&#x2F;</span><br></pre></td></tr></table></figure>
 
 <p>description gitweb 程序使用, 无需关心</p>
@@ -229,6 +316,53 @@
 <p>refs 存储指向数据(分支)的提交对象的指针</p>
 <p>HEAD 只是目前被检出的分支</p>
 <p>index 保存暂存区信息</p>
+<p><strong>objects</strong></p>
+<h3 id="数据对象"><a href="#数据对象" class="headerlink" title="数据对象"></a>数据对象</h3><ul>
+<li><p>git init 用于创建一个空的git仓库，或重置一个已存在的git仓库</p>
+</li>
+<li><p>git hash-object git底层命令，用于向Git数据库中写入数据</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"version 1"</span> | git <span class="built_in">hash</span>-object -w --stdin</span></span><br><span class="line"> 83baae61804e65cc73a7201a7252750c76066a30</span><br><span class="line"><span class="meta">$</span><span class="bash"> find .git/objects/ -<span class="built_in">type</span> f</span></span><br><span class="line">.git/objects/83/baae61804e65cc73a7201a7252750c76066a30</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"version 1"</span> &gt; file.txt</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">hash</span>-object -w file.txt</span></span><br><span class="line">83baae61804e65cc73a7201a7252750c76066a30</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>git cat-file git底层命令，用于查看Git数据库中数据</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git cat-file -p 83baa</span></span><br><span class="line">version 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>问题: </p>
+<p>第一，无法记录文件名的变化；</p>
+<p>第二，无法记录文件夹的变化；</p>
+<p>第三，记忆每一个版本对应的hash值无聊且乏味且不可能；</p>
+<p>第四，无法得知文件的变更时序；</p>
+<p>第五，缺少对每一次版本变化的说明。</p>
+</li>
+</ul>
+<h3 id="树对象"><a href="#树对象" class="headerlink" title="树对象"></a>树对象</h3><p>Git利用树对象（tree object）解决文件名保存的问题，树对象也能够将多个文件组织在一起。</p>
+<ul>
+<li>git update-index git底层命令，用于创建暂存区</li>
+<li>git ls-files –stage git底层命令，用于查看暂存区内容</li>
+<li>git write-tree git底层命令，用于将暂存区内容写入一个树对象</li>
+</ul>
+<p>前两个命令都是对暂存区操作, 第三个则会在 objects 里创建一个树对象</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> find .git/objects -<span class="built_in">type</span> f</span></span><br><span class="line">.git/objects/1f/7a7a472abf3dd9643fd615f6da379c4acb3e3a</span><br><span class="line">.git/objects/83/baae61804e65cc73a7201a7252750c76066a30</span><br><span class="line"><span class="meta">$</span><span class="bash"> git update-index --add file.txt</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> find .git/objects/ -<span class="built_in">type</span> f</span></span><br><span class="line">.git/objects/1f/7a7a472abf3dd9643fd615f6da379c4acb3e3a</span><br><span class="line">.git/objects/83/baae61804e65cc73a7201a7252750c76066a30</span><br><span class="line"><span class="meta">$</span><span class="bash"> git write-tree</span></span><br><span class="line">391a4e90ba882dbc9ea93855103f6b1fa6791cf6</span><br><span class="line"><span class="meta">$</span><span class="bash"> find .git/objects/ -<span class="built_in">type</span> f</span></span><br><span class="line">.git/objects/39/1a4e90ba882dbc9ea93855103f6b1fa6791cf6</span><br><span class="line">.git/objects/1f/7a7a472abf3dd9643fd615f6da379c4acb3e3a</span><br><span class="line">.git/objects/83/baae61804e65cc73a7201a7252750c76066a30</span><br></pre></td></tr></table></figure>
+
+<p>查看内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git cat-file -t 391a4e <span class="comment"># -t 类型</span></span></span><br><span class="line">tree</span><br><span class="line"><span class="meta">$</span><span class="bash"> git cat-file -p 391a4e <span class="comment"># -p 内容</span></span></span><br><span class="line">100644 blob 83baa...    file.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="commit-对象"><a href="#commit-对象" class="headerlink" title="commit 对象"></a>commit 对象</h3><p>commit对象能够帮你记录什么时间，由什么人，因为什么原因提交了一个新的版本，这个新的版本的父版本又是谁。</p>
+<ul>
+<li>git commit-tree git 底层命令, 用来创建提交对象</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git write-tree</span></span><br><span class="line">cb0fbcc484a3376b3e70958a05be0299e57ab495</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> git commit-tree cb0fbcc -m <span class="string">"first commit"</span></span></span><br><span class="line">7020a97c0e792f340e00e1bb8edcbafcc4dfb60f</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> git cat-file 7020a97</span></span><br><span class="line">tree cb0fbcc484a3376b3e70958a05be0299e57ab495</span><br><span class="line">author john &lt;john@163.com&gt; 1537961478 +0800</span><br><span class="line">committer john &lt;john@163.com&gt; 1537961478 +0800</span><br><span class="line"></span><br><span class="line">first commit</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="git-工作原理"><a href="#git-工作原理" class="headerlink" title="git 工作原理"></a>git 工作原理</h2><p><img src="https://pic2.zhimg.com/80/v2-3bc9d5f2c49a713c776e69676d7d56c5_1440w.jpg" alt="img"></p>
+<p>Workspace：工作区<br>Index / Stage：暂存区<br>Repository：仓库区（或本地仓库）<br>Remote：远程仓库</p>
 <h2 id="初次使用-git"><a href="#初次使用-git" class="headerlink" title="初次使用 git"></a>初次使用 git</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;John Doe&quot;</span><br><span class="line">$ git config --global user.email johndoe@example.com</span><br></pre></td></tr></table></figure>
 
 <p>git config 一个用来配置 git 的工具</p>
@@ -364,7 +498,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-工作原理"><span class="nav-number">1.</span> <span class="nav-text">git 工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初次使用-git"><span class="nav-number">2.</span> <span class="nav-text">初次使用 git</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-命令"><span class="nav-number">1.</span> <span class="nav-text">git 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-分支"><span class="nav-number">2.</span> <span class="nav-text">git 分支</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#合并"><span class="nav-number">2.1.</span> <span class="nav-text">合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决冲突"><span class="nav-number">2.2.</span> <span class="nav-text">解决冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程分支"><span class="nav-number">2.3.</span> <span class="nav-text">远程分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-工具"><span class="nav-number">3.</span> <span class="nav-text">git 工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-内部原理"><span class="nav-number">4.</span> <span class="nav-text">git 内部原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-基础"><span class="nav-number">4.1.</span> <span class="nav-text">git 基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-数据库"><span class="nav-number">4.2.</span> <span class="nav-text">git 数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据对象"><span class="nav-number">4.3.</span> <span class="nav-text">数据对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#树对象"><span class="nav-number">4.4.</span> <span class="nav-text">树对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#commit-对象"><span class="nav-number">4.5.</span> <span class="nav-text">commit 对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-工作原理"><span class="nav-number">5.</span> <span class="nav-text">git 工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初次使用-git"><span class="nav-number">6.</span> <span class="nav-text">初次使用 git</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -380,7 +514,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
