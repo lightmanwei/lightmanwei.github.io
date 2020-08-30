@@ -462,59 +462,8 @@
 </ul>
 </li>
 </ul>
-<h3 id="指令合集"><a href="#指令合集" class="headerlink" title="指令合集"></a>指令合集</h3><ul>
-<li><pre><code class="assembly">PUSH OPS; SP=SP-1
+<h3 id="指令合集"><a href="#指令合集" class="headerlink" title="指令合集"></a>指令合集</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br></pre></td><td class="code"><pre><span class="line">MOV OPD, OPS; MOVE DEST SRC</span><br><span class="line"></span><br><span class="line">XLAT; TRANSLATE ([BX+AL])-&gt;AL </span><br><span class="line"></span><br><span class="line">LEA OPD, OPS; LOAD EFFECTIVE ADDRESS 立即寻址 等价于 MOV OPD, OFFSET OPS, 其中 OPD 必须是 16&#x2F;32 位寄存器</span><br><span class="line"></span><br><span class="line">;标志位?</span><br><span class="line"></span><br><span class="line">NEG OPD; NEGTIVE 将 OPD 的每一位取反最后加一, 包括符号位, 得到结论: 负数&quot;取补码&quot;得到绝对值</span><br><span class="line"></span><br><span class="line">IMUL OPD, OPS;INTEGER MULTIPLICATION (OPD)*(OPS)-&gt;OPD</span><br><span class="line">IMUL OPD, OPS, N; (OPS)*N-&gt;OPD</span><br><span class="line">IMUL OPS; </span><br><span class="line">(AL)*(OPS)-&gt;AX</span><br><span class="line">(AX)*(OPS)-&gt;DX, AX</span><br><span class="line">(EAX)*(OPS)-&gt;EDX, EAX</span><br><span class="line">MUL</span><br><span class="line"></span><br><span class="line">DIV OPS;</span><br><span class="line">(AX)&#x2F;(OPS)-&gt;AL 商, AH 余数</span><br><span class="line">(DX, AX)&#x2F;(OPS)-&gt;AX 商, AH 余数</span><br><span class="line">(EDX, EAX)&#x2F;(OPS)-&gt;EAX商, EDX余数</span><br><span class="line">IDIV</span><br><span class="line"></span><br><span class="line">NOT OPD; 取反</span><br><span class="line">AND OPD, OPS; 逻辑与</span><br><span class="line">TEST OPD, OPS</span><br><span class="line">常见用法: TEST ECX, ECX 判断 ecx 是否为空, 如果为空则 zf&#x3D;1</span><br><span class="line">总结: test 是逻辑与运算, cmp 是 sub 运算, cmp a1, a2 执行操作 a1-a2</span><br><span class="line">XOR OPD, OPS; 异或</span><br><span class="line"></span><br><span class="line">SAL OPD, N 或者 SHL OPD, N; ARITHMATIC SHIFT LEFT, SHIFT LEFT 左移, 逻辑算数都一样</span><br><span class="line">SHR OPD, N; 逻辑右移, 加 0</span><br><span class="line">SAR OPD, N; 算数右移, 加符号位</span><br><span class="line"></span><br><span class="line">ROL OPD, N; 循环左移</span><br><span class="line">ROR OPD, N</span><br><span class="line">RCL OPD, N; ROTATE LEFT WITH CARRY 带进位循环左移</span><br><span class="line">RCR OPD, N</span><br><span class="line"></span><br><span class="line">ABOVE, BELOW 无符号, GREATER LESS 有符号</span><br><span class="line">JA; JUMP WHEN ABOVE</span><br><span class="line">JNA; JUMP WHEN NOT ABOVE</span><br><span class="line">JAE; JUMP WHEN ABOVE OR EQUAL</span><br><span class="line">JNAE; JUMP WHEN NOT ABOVE OR EQUAL 不大于, 且不等于</span><br><span class="line"></span><br><span class="line">JB; JUMP WHEN BELOW</span><br><span class="line">JNB; JUMP WHEN NOT BELOW</span><br><span class="line">JBE; JUMP WHEN BELOW OR EQUAL</span><br><span class="line">JNBE; </span><br><span class="line"></span><br><span class="line">JG; JUMP WHEN GREATER</span><br><span class="line">JNG</span><br><span class="line">JGE; JUMP WHEN GREATER OR EQUAL</span><br><span class="line">JNGE; JUMP WHEN NOT GREATER OR EQUAL </span><br><span class="line"></span><br><span class="line">JL; JUMP WHEN LESS</span><br><span class="line">JNL; JUMP WHEN NOT LESS</span><br><span class="line">JLE</span><br><span class="line">JNLE; JUMP WHEN NOT LESS OR EQUAL</span><br><span class="line"></span><br><span class="line">JE; JUMP WHEN EQUAL</span><br><span class="line">JZ; JUMP WHEN HAS ZERO FLAG JZ&#x3D;JE</span><br><span class="line">JNE</span><br><span class="line">JNZ</span><br><span class="line">JO; JUMP WHEN HAS OVERFLOW FLAG</span><br><span class="line">JC; JUMP WHEN HAS CARRY FLAG</span><br><span class="line"></span><br><span class="line">;pf: 奇偶标志位, 结果中 1 为偶数 pf&#x3D;1, 否则 0</span><br><span class="line">JP; JUMP WHEN HAS PARITY(奇偶) FLAG</span><br><span class="line">JPO; JUMP WHEN PARITY FLAG IS ODD, JP &#x3D; JPE</span><br><span class="line">JPE; JUMP WHEN PARITY FLAG IS EVEN, JNP &#x3D; JPO</span><br><span class="line">JS; JUMP WHEN HAS SIGN FLAG</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">INT; INTERRUPT</span><br><span class="line"></span><br><span class="line">DW; DEFINE WORD</span><br><span class="line"></span><br><span class="line">PROC; PROCEDURE</span><br><span class="line"></span><br><span class="line">ENDS; END SEGMENT</span><br><span class="line"></span><br><span class="line">PTR; POINTER</span><br><span class="line"></span><br><span class="line">MOVSX; EXTENDED MOVE WITH SIGN DATA</span><br><span class="line">MOVZX; EXTENDED MOVE WITH ZERO DATA</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">***********************</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">PUSH OPS; SP&#x3D;SP-1</span><br><span class="line"></span><br><span class="line">POP OPD; SP&#x3D;SP+1</span><br><span class="line"></span><br><span class="line">DIV;https:&#x2F;&#x2F;blog.csdn.net&#x2F;loovejava&#x2F;article&#x2F;details&#x2F;7044242</span><br><span class="line"></span><br><span class="line">IMUL OPD, OPS; 有符号数乘法</span><br><span class="line">IMUL OPD, OPS, N; OPS*N-&gt;OPD</span><br><span class="line">IMUL OPS; AL*OPS-&gt;AX 字节</span><br><span class="line">					AX*OPS-&gt;DX,AX 字</span><br><span class="line">					EAX*OPS-&gt;EDX,EAX 双字</span><br><span class="line">MUL;无符号乘法,用法同上</span><br><span class="line"></span><br><span class="line">ADD AX,10;把 ax 加上 10 再存到 ax 里</span><br><span class="line"></span><br><span class="line">SUB</span><br><span class="line"></span><br><span class="line">LOOP 标号</span><br><span class="line"></span><br><span class="line">逻辑移位, 总是用 0 补充</span><br><span class="line">SHL EDX, 7;EDX 左移 7 位</span><br><span class="line">shr ;右移</span><br><span class="line"></span><br><span class="line">算数移位, 用符号位补充</span><br><span class="line">sar;右移</span><br><span class="line"></span><br><span class="line">CBW ;将 AL 中的符号扩展到 AH 里</span><br><span class="line"></span><br><span class="line">;意义    无符号比较     有符号比较</span><br><span class="line">&gt;        JA, JNBE     JG, JNLE</span><br><span class="line">&gt;&#x3D;			 JAE, JNB			JNC, JGE, JNL</span><br><span class="line">&lt;				 JB, JNAE			JC, JL, JN, JNGE</span><br><span class="line">&lt;				 JBE, JNA			JLE, JNG</span><br><span class="line"></span><br><span class="line">CMP BYTE PTR[SI],&quot;#&quot; ;ptr前面的类型有byte（字节）、word（字）、dword（双字）、qword（四字）、tbyte（十字节）、far（远类型）和near（近类型）</span><br><span class="line"></span><br><span class="line">LEA </span><br><span class="line">lea指令</span><br><span class="line">load effective address, 加载有效地址，可以将有效地址传送到指定的的寄存器。指令形式是从存储器读数据到寄存器, 效果是将存储器的有效地址写入到目的操作数, 简单说, 就是C语言中的”&amp;”.</span><br><span class="line">mov指令</span><br><span class="line">在CPU内或CPU和存储器之间传送字或字节，它传送的信息可以从寄存器到寄存器，立即数到寄存器，立即数到存储单元，从存储单元到寄存器，从寄存器到存储单元，从寄存器或存储单元到除CS外的段寄存器(注意立即数不能直接送段寄存器)，从段寄存器到寄存器或存储单元。</span><br><span class="line">但是注意</span><br><span class="line">（1） MOV指令中的源操作数绝对不能是立即数和代码段CS寄存器；</span><br><span class="line">（2） MOV指令中绝对不允许在两个存储单元之间直接传送数据；</span><br><span class="line">（3） MOV指令中绝对不允许在两个段寄存器之间直接传送数据；</span><br><span class="line">（4） MOV指令不会影响标志位</span><br><span class="line">使用[]区别</span><br><span class="line">第二操作数加不加中括号[]的区别就是:</span><br><span class="line">lea对变量没有影响是取地址,对寄存器来说加[]时取值,第二操作数不加[]非法</span><br><span class="line">mov对变量来说没有影响是取值,对寄存器来说是加[]时取地址,第二操作数不加[]是取值</span><br></pre></td></tr></table></figure>
 
-POP OPD; SP=SP+1
-
-DIV;https://blog.csdn.net/loovejava/article/details/7044242
-
-IMUL OPD, OPS; 有符号数乘法
-IMUL OPD, OPS, N; OPS*N-&gt;OPD
-IMUL OPS; AL*OPS-&gt;AX 字节
-                    AX*OPS-&gt;DX,AX 字
-                    EAX*OPS-&gt;EDX,EAX 双字
-MUL;无符号乘法,用法同上
-
-ADD AX,10;把 ax 加上 10 再存到 ax 里
-
-SUB
-
-LOOP 标号
-
-逻辑移位, 总是用 0 补充
-SHL EDX, 7;EDX 左移 7 位
-shr ;右移
-
-算数移位, 用符号位补充
-sar;右移
-
-CBW ;将 AL 中的符号扩展到 AH 里
-
-;意义    无符号比较     有符号比较
-&gt;        JA, JNBE     JG, JNLE
-&gt;=             JAE, JNB            JNC, JGE, JNL
-&lt;                 JB, JNAE            JC, JL, JN, JNGE
-&lt;                 JBE, JNA            JLE, JNG
-
-CMP BYTE PTR[SI],&quot;#&quot; ;ptr前面的类型有byte（字节）、word（字）、dword（双字）、qword（四字）、tbyte（十字节）、far（远类型）和near（近类型）
-
-LEA 
-lea指令
-load effective address, 加载有效地址，可以将有效地址传送到指定的的寄存器。指令形式是从存储器读数据到寄存器, 效果是将存储器的有效地址写入到目的操作数, 简单说, 就是C语言中的”&amp;”.
-mov指令
-在CPU内或CPU和存储器之间传送字或字节，它传送的信息可以从寄存器到寄存器，立即数到寄存器，立即数到存储单元，从存储单元到寄存器，从寄存器到存储单元，从寄存器或存储单元到除CS外的段寄存器(注意立即数不能直接送段寄存器)，从段寄存器到寄存器或存储单元。
-但是注意
-（1） MOV指令中的源操作数绝对不能是立即数和代码段CS寄存器；
-（2） MOV指令中绝对不允许在两个存储单元之间直接传送数据；
-（3） MOV指令中绝对不允许在两个段寄存器之间直接传送数据；
-（4） MOV指令不会影响标志位
-使用[]区别
-第二操作数加不加中括号[]的区别就是:
-lea对变量没有影响是取地址,对寄存器来说加[]时取值,第二操作数不加[]非法
-mov对变量来说没有影响是取值,对寄存器来说是加[]时取地址,第二操作数不加[]是取值</code></pre>
-</li>
-</ul>
 
     </div>
 
@@ -613,7 +562,7 @@ mov对变量来说没有影响是取值,对寄存器来说是加[]时取地址,�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
