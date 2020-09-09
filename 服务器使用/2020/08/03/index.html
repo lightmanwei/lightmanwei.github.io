@@ -260,10 +260,10 @@
 <p>构图逻辑</p>
 <p>辨识度</p>
 <p>段落与段落 </p>
-<h2 id="html-入门"><a href="#html-入门" class="headerlink" title="html 入门"></a><a href="https://deerchao.cn/tutorials/html/html.htm" target="_blank" rel="noopener">html 入门</a></h2><h3 id="html-综述"><a href="#html-综述" class="headerlink" title="html 综述"></a>html 综述</h3><p>所有的HTML文档都应该有一个<html>标签，<html>标签可以包含两个部分:<head>和<body>。</p>
+<h2 id="html-入门"><a href="#html-入门" class="headerlink" title="html 入门"></a><a href="https://deerchao.cn/tutorials/html/html.htm" target="_blank" rel="noopener">html 入门</a></h2><h3 id="html-综述"><a href="#html-综述" class="headerlink" title="html 综述"></a>html 综述</h3><p>所有的HTML文档都应该有一个<code>&lt;html&gt;</code>标签，<code>&lt;html&gt;</code>标签可以包含两个部分:<code>&lt;head&gt;</code>和<code>&lt;body&gt;</code>。</p>
 <head>标签用于包含整个文档的一般信息，比如文档的标题（<title>标签用于包含标题），对整个文档的描述，文档的关键字等等。文档的具体内容就要放在<body>标签里了。
+`<a>`标签用于表示链接，在浏览器（如IE,Firefox等）中查看HTML文档时，点击`<a>`标签括起来的内容时，通常会跳转到另一个页面。这个要跳转到的页面的地址由`<a>`标签的href属性指定。上面的`<a href="https://deerchao.cn" target="_blank" rel="noopener">`中，href属性的值就是https://deerchao.cn。
 
-<p><a>标签用于表示链接，在浏览器（如IE,Firefox等）中查看HTML文档时，点击<a>标签括起来的内容时，通常会跳转到另一个页面。这个要跳转到的页面的地址由<a>标签的href属性指定。上面的<a href="https://deerchao.cn" target="_blank" rel="noopener">中，href属性的值就是https://deerchao.cn。</p>
 <h3 id="html-可以包含的内容"><a href="#html-可以包含的内容" class="headerlink" title="html 可以包含的内容"></a>html 可以包含的内容</h3><ul>
 <li><p>文本</p>
 <p>HTML对文本的支持是最丰富的，你可以设置不同级别的标题，分段和换行，可以指定文本的语义和外观，可以说明文本是引用自其它的地方，等等等等。</p>
@@ -315,7 +315,7 @@
 <p>由于HTML文档会忽略空白符，所以要想保证正常的分段换行的话，必须指出哪些文字是属于同一段落的，这就用到了标签<p>。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是第一段。<span class="tag">&lt;/<span class="name">p</span>&gt;</span> <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是第二段。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>也有人不用<p>，而用<br>。<br>只表示换行，不表示段落的开始或结束，所以通常没有结束标签。</p>
+<p>也有人不用<code>&lt;p&gt;</code>，而用<code>&lt;br&gt;</code>。<code>&lt;br&gt;</code>只表示换行，不表示段落的开始或结束，所以通常没有结束标签。</p>
 <p>点击查看效果</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这是第一段。<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">这是第二段。<span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">这是第三段。</span><br></pre></td></tr></table></figure>
 
@@ -327,16 +327,14 @@
 
 <table>   <tr>     <td>2000</td><td>悉尼</td>   </tr>   <tr>     <td>2004</td><td>雅典</td>   </tr>   <tr>     <td>2008</td><td>北京</td>   </tr> </table>
 
-<p>HTML文档在浏览器里通常是从左到右，从上到下地显示的，到了窗口右边就自动换行。为了实现分栏的效果，很多人使用表格（<table>）进行页面排版（虽然HTML里提供表格的本意不是为了排版）。</p>
+<p>HTML文档在浏览器里通常是从左到右，从上到下地显示的，到了窗口右边就自动换行。为了实现分栏的效果，很多人使用表格（<code>&lt;table&gt;</code>）进行页面排版（虽然HTML里提供表格的本意不是为了排版）。</p>
 <p><code>&lt;table&gt;</code>标签里通常会包含几个<code>&lt;tr&gt;</code>标签，<code>&lt;tr&gt;</code>代表表格里的一行。<code>&lt;tr&gt;</code>标签又会包含<code>&lt;td&gt;</code>标签，每个<code>&lt;td&gt;</code>代表一个单元格。</p>
-<tr>标签还可以被<table>里的<thead>或<tbody>或<tfoot>包含。它们分别代表表头，表正文，表脚。在打印网页的时候，如果表格很大，一页打印不完，<thead>和<tfoot>将在每一页出现。
-
-<th>和<td>非常相似，也用在<tr>里边，不同的是<th>代表这个单元格是它所在的行或列的标题。
-
+<p><code>&lt;tr&gt;</code>标签还可以被<code>&lt;table&gt;</code>里的<code>&lt;thead&gt;</code>或<code>&lt;tbody&gt;</code>或<code>&lt;tfoot&gt;</code>包含。它们分别代表表头，表正文，表脚。在打印网页的时候，如果表格很大，一页打印不完，<code>&lt;thead&gt;</code>和<code>&lt;tfoot&gt;</code>将在每一页出现。</p>
+<p><code>&lt;th&gt;</code>和<code>&lt;td&gt;</code>非常相似，也用在<code>&lt;tr&gt;</code>里边，不同的是<code>&lt;th&gt;</code>代表这个单元格是它所在的行或列的标题。</p>
 <table>   <thead>     <tr><th>时间</th><th>地点</th></tr>   </thead>   <tbody>     <tr><td>2000</td><td>悉尼</td></tr>     <tr><td>2004</td><td>雅典</td></tr>     <tr><td>2000</td><td>北京</td></tr>   </tbody> </table>
 </li>
 <li><p>列表</p>
-<p>表格用于表示二维数据（行，列），一维数据则用列表表示。列表可以分为无序列表（<ul>），有序列表（<ol>）和定义列表（<dl>）。前两种列表更常见一些，都用<li>标签包含列表项目。</p>
+<p>表格用于表示二维数据（行，列），一维数据则用列表表示。列表可以分为无序列表（<code>&lt;ul&gt;</code>），有序列表（<code>&lt;ol&gt;</code>）和定义列表（<code>&lt;dl&gt;</code>）。前两种列表更常见一些，都用<code>&lt;li&gt;</code>标签包含列表项目。</p>
 <p>无序列表表示一系列类似的项目，它们之间没有先后顺序。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>苹果<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>桔子<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>桃<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>打开冰箱门<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>把大象赶进去<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>关上冰箱门<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -353,12 +351,10 @@
 </ol>
 </li>
 <li><p>框架</p>
-<p>最后谈一下框架，曾经非常流行的技术，框架使一个窗口里能同时显示多个文档。主框架页里面没有<body>标签，取代它的是<frameset>。</p>
-<frameset>标签的属性Rows和Cols用于指定框架集(frameset)里有多少行（列），以及每行（列）的高度（宽度）。
-
-<frameset>标签可以包含<frame>标签，每个<frame>标签代表一个文档（src属性指定文档的地址）。
-
-<p>如果觉得这样的页面还不够复杂的话，还可以在<frameset>标签里包含<frameset>标签。</p>
+<p>最后谈一下框架，曾经非常流行的技术，框架使一个窗口里能同时显示多个文档。主框架页里面没有<code>&lt;body&gt;</code>标签，取代它的是<code>&lt;frameset&gt;</code>。</p>
+<p><code>&lt;frameset&gt;</code>标签的属性Rows和Cols用于指定框架集(frameset)里有多少行（列），以及每行（列）的高度（宽度）。</p>
+<p><code>&lt;frameset&gt;</code>标签可以包含<code>&lt;frame&gt;</code>标签，每个<code>&lt;frame&gt;</code>标签代表一个文档（src属性指定文档的地址）。</p>
+<p>如果觉得这样的页面还不够复杂的话，还可以在<code>&lt;frameset&gt;</code>标签里包含<code>&lt;frameset&gt;</code>标签。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">frameset</span> <span class="attr">rows</span>=<span class="string">"15%,*"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"top.html"</span> <span class="attr">name</span>=<span class="string">title</span> <span class="attr">scrolling</span>=<span class="string">no</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">frameset</span> <span class="attr">cols</span>=<span class="string">"20%,*"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"left.html"</span> <span class="attr">name</span>=<span class="string">sidebar</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"right.html"</span> <span class="attr">name</span>=<span class="string">recipes</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 </li>
@@ -389,8 +385,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/%E6%9C%8D%E5%8A%A1%E5%99%A8/2020/08/03/" rel="prev" title="服务器使用">
-      <i class="fa fa-chevron-left"></i> 服务器使用
+    <a href="/mfc%E7%BD%91%E9%A1%B5%E5%B5%8C%E5%85%A5/2020/08/03/" rel="prev" title="mfc网页嵌入">
+      <i class="fa fa-chevron-left"></i> mfc网页嵌入
     </a></div>
       <div class="post-nav-item">
     <a href="/javascript-xjb%E5%AD%A6/2020/08/09/" rel="next" title="javascript_xjb学">
@@ -472,7 +468,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
