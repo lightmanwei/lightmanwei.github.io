@@ -55,13 +55,23 @@
 <meta property="og:site_name" content="Akunda_blog">
 <meta property="og:description" content="简介">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-a445869a1ee93c3110a17c196e301c5f_hd.jpg?source=1940ef5c">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-a445869a1ee93c3110a17c196e301c5f_1440w.jpg?source=1940ef5c">
+<meta property="og:image" content="https://picb.zhimg.com/50/v2-a445869a1ee93c3110a17c196e301c5f_hd.jpg?source=1940ef5c">
+<meta property="og:image" content="https://picb.zhimg.com/80/v2-a445869a1ee93c3110a17c196e301c5f_1440w.jpg?source=1940ef5c">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-a445869a1ee93c3110a17c196e301c5f_hd.jpg?source=1940ef5c">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-a445869a1ee93c3110a17c196e301c5f_1440w.jpg?source=1940ef5c">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ghdvafs6efj30xm0f8n79.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1giv7cs4yyyj30u00u8n0t.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1giv7dd6b94j315v0u0q61.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1giv7f7oa46j30y00swdhy.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1giv7iv33pcj31co08cdh5.jpg">
 <meta property="article:published_time" content="2020-08-03T11:36:13.000Z">
 <meta property="article:modified_time" content="2020-08-03T11:36:13.000Z">
 <meta property="article:author" content="Akunda">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ghdvafs6efj30xm0f8n79.jpg">
+<meta name="twitter:image" content="https://pic3.zhimg.com/50/v2-a445869a1ee93c3110a17c196e301c5f_hd.jpg?source=1940ef5c">
 
 <link rel="canonical" href="http://lightmanwei.github.io/mfc%E7%BD%91%E9%A1%B5%E5%B5%8C%E5%85%A5/2020/08/03/">
 
@@ -216,9 +226,36 @@
 </blockquote>
 <a id="more"></a>
 
-<h2 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h2><p>Preview/TvControlDlg.cpp</p>
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><blockquote>
+<p><a href="https://blog.csdn.net/zhangquan_zone/article/details/77627899" target="_blank" rel="noopener">https://blog.csdn.net/zhangquan_zone/article/details/77627899</a></p>
+</blockquote>
+<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><h2 id="DOM-Document-Object-Model"><a href="#DOM-Document-Object-Model" class="headerlink" title="DOM (Document Object Model)"></a>DOM (Document Object Model)</h2><blockquote>
+<p><a href="https://www.zhihu.com/question/34219998" target="_blank" rel="noopener">https://www.zhihu.com/question/34219998</a></p>
+</blockquote>
+<p>作者：果冻公开课<br>链接：<a href="https://www.zhihu.com/question/34219998/answer/611326215" target="_blank" rel="noopener">https://www.zhihu.com/question/34219998/answer/611326215</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p><strong>文字解析：</strong><br>输入的网址在<strong>通过DNS解析后得到服务器地址</strong><br>浏览器向服务器发起http请求，经过<strong>TCP/IP三次握手确认链接</strong>后，服务器将需要的代码发回给浏览器。<br>浏览器接收到代码后进行解析，经过<strong>三大步骤</strong>：<br><strong>DOM构造、布局以及绘制页面</strong>，最终展现为人人都能看懂的网页。</p>
+<p><img src="https://pic3.zhimg.com/50/v2-a445869a1ee93c3110a17c196e301c5f_hd.jpg?source=1940ef5c" alt="img">)<img src="https://pic3.zhimg.com/80/v2-a445869a1ee93c3110a17c196e301c5f_1440w.jpg?source=1940ef5c" alt="img"></p>
+<p><strong>第一步，DOM构造</strong></p>
+<p>浏览器首先将收到的html代码，<strong>通过html解析器解析构建为一颗DOM树。</strong><br>数据结构中有许多的树<br>（此处植入洗髓换骨营的广告，详情可以去<strong>腾讯课堂</strong>去看修真院的<strong>洗髓换骨营</strong>）<br>而DOM树就像是一颗倒长着的大树，这样的对象模型决定了节点之间都有一定的关联<br>它们关系可能有父子、有兄弟，我们可以顺着这颗树做出许多操作。<br>接着将接收到的css代码，<strong>通过css解析器构建出样式表规则</strong><br>将这些规则分别放到对应的DOM树节点上，得到一颗带有样式属性的DOM树。</p>
+<p><img src="https://picb.zhimg.com/50/v2-a445869a1ee93c3110a17c196e301c5f_hd.jpg?source=1940ef5c" alt="img">)<img src="https://picb.zhimg.com/80/v2-a445869a1ee93c3110a17c196e301c5f_1440w.jpg?source=1940ef5c" alt="img"></p>
+<p><strong>第二步，布局</strong></p>
+<p><strong>浏览器按从上到下，从左到右的顺序，读取DOM树的文档节点</strong>，顺序存放到一条虚拟的传送带上。<br>传送带上的盒子就是节点，而这条流动的传送带就是文档流。<br>如果我们读取到的节点是属于另一个节点下的子节点，那么在放入传送带的时候，就应该按顺序放到该节点盒子的内部。<br>如果子节点下还有子节点，在传送带上的时候就继续套到子一级的盒子内部。<br>根据它在DOM树上的结构，<strong>可以嵌套的层级没有限制</strong>的哦。<br><strong>文档流排完之后，开始获取计算节点的坐标和大小等CSS属性，作为盒子的包装说明。</strong><br>然后把盒子在仓库里一一摆放，这就将节点布局到了页面。</p>
+<p><img src="https://pic2.zhimg.com/50/v2-a445869a1ee93c3110a17c196e301c5f_hd.jpg?source=1940ef5c" alt="img">)<img src="https://pic2.zhimg.com/80/v2-a445869a1ee93c3110a17c196e301c5f_1440w.jpg?source=1940ef5c" alt="img"></p>
+<p><strong>第三步，绘制页面</strong></p>
+<p><strong>布局完成之后</strong>，我们在页面上其实是看不到任何内容的<br>浏览器只是计算出了每一个节点对象应该被放到页面的哪个位置上，但<strong>并没有可视化</strong>。<br>因此<strong>最后一步就是将所有内容绘制出来，完成整个页面的渲染。</strong></p>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><h1 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h1><p>Preview/TvControlDlg.cpp</p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghdvafs6efj30xm0f8n79.jpg" alt="截屏2020-08-03 下午7.52.30"></p>
 <p>cvr 设备登不上去</p>
+<h2 id="web-的两种方法"><a href="#web-的两种方法" class="headerlink" title="web 的两种方法"></a>web 的两种方法</h2><h3 id="1-cdhtmldialog-类"><a href="#1-cdhtmldialog-类" class="headerlink" title="1. cdhtmldialog 类"></a>1. cdhtmldialog 类</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giv7cs4yyyj30u00u8n0t.jpg" alt="截屏2020-09-18 下午11.04.40"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giv7dd6b94j315v0u0q61.jpg" alt="截屏2020-09-18 下午11.05.17"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giv7f7oa46j30y00swdhy.jpg" alt="截屏2020-09-18 下午11.07.03"></p>
+<p>之后在Preview/TvControlDlg.cpp里面随便找一个按钮的响应函数(我用的是最后那个 3d 放大, 没有录像也可以测试), 直接</p>
+<p><code>AlarmHtml2 m_html;m_html.DoModal();</code>就应该会显示</p>
+<p>但是会报错</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giv7iv33pcj31co08cdh5.jpg" alt="截屏2020-09-18 下午11.10.34"></p>
+<p>网上的资料只有</p>
+<p><a href="https://stackoverflow.com/questions/118727/compile-errors-in-mshtml-h-compiling-with-vs2008" target="_blank" rel="noopener">https://stackoverflow.com/questions/118727/compile-errors-in-mshtml-h-compiling-with-vs2008</a></p>
+<h3 id="2-webbrowser"><a href="#2-webbrowser" class="headerlink" title="2. webbrowser"></a>2. webbrowser</h3><p>这个就是新建一个窗口类, 在资源里对应的 dialog 资源, 添加 activex 控件 webbrowser, 然后右键 webbrowser 添加变量, 然后就应该能直接像上述中的 Domodal 一样使用, 但是发现 domodal 的返回值一直是-1, 不清楚是哪里出了问题, 之前调试, 去掉 webbrowser 就可以弹出对话框…加上了就不行 hhh</p>
 
     </div>
 
@@ -301,7 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定位"><span class="nav-number">1.</span> <span class="nav-text">定位</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cookie"><span class="nav-number">1.1.</span> <span class="nav-text">cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单"><span class="nav-number">1.2.</span> <span class="nav-text">表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM-Document-Object-Model"><span class="nav-number">1.3.</span> <span class="nav-text">DOM (Document Object Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数"><span class="nav-number">1.4.</span> <span class="nav-text">构造函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定位"><span class="nav-number">2.</span> <span class="nav-text">定位</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#web-的两种方法"><span class="nav-number">2.1.</span> <span class="nav-text">web 的两种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-cdhtmldialog-类"><span class="nav-number">2.1.1.</span> <span class="nav-text">1. cdhtmldialog 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-webbrowser"><span class="nav-number">2.1.2.</span> <span class="nav-text">2. webbrowser</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -317,7 +354,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
