@@ -55,13 +55,20 @@
 <meta property="og:site_name" content="Akunda_blog">
 <meta property="og:description" content="简介">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj3y3el1vvj30z60imtox.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj43jinnhsj30780863zv.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj44y5bauwj30u012t15m.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj45ru9yx9j311w0l4dx6.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj45wuj1ekj30rc0d0n6c.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj45ywwml4j30rq08e79y.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gip88f6ju0j30mh0inths.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj41qk2i2gj30gv0exafo.jpg">
 <meta property="article:published_time" content="2020-09-12T09:28:39.000Z">
 <meta property="article:modified_time" content="2020-09-12T09:28:39.000Z">
 <meta property="article:author" content="Akunda">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gip88f6ju0j30mh0inths.jpg">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj3y3el1vvj30z60imtox.jpg">
 
 <link rel="canonical" href="http://lightmanwei.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/2020/09/12/">
 
@@ -221,6 +228,90 @@
 <p>字形码</p>
 <p>偶校验: 如果一组给定数据位中1的个数是奇数，补一个bit为1，使得总的1的个数是偶数。例：0000001, 补一个bit为1, 0000001<strong>1</strong></p>
 <p>奇校验同理</p>
+<h1 id="mooc"><a href="#mooc" class="headerlink" title="mooc"></a>mooc</h1><h2 id="1-计算机系统概论"><a href="#1-计算机系统概论" class="headerlink" title="1. 计算机系统概论"></a>1. 计算机系统概论</h2><ul>
+<li><p>冯诺依曼结构计算的工作原理: 存储程序 程序控制</p>
+<p>对应硬件: 主机(CPU(运算器, 控制器), 内存), 外设(io, 外存储器), 总线(地址线, 数据线, 控制线)</p>
+<ul>
+<li><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj3y3el1vvj30z60imtox.jpg" alt="截屏2020-09-26 下午12.34.11"></li>
+</ul>
+</li>
+<li><p>系统性能评价</p>
+<ul>
+<li><p>非时间指标: 机器字长, 总线宽度, 主存容量与存储带宽(与总线宽度和传输速度相关)</p>
+</li>
+<li><p>时间指标: </p>
+<ul>
+<li><p>主频(1/时间周期) 主频 = 外频 * 倍频</p>
+</li>
+<li><p>CPI(clock cycles per instruction) (加权平均)</p>
+<p>CPI = 指令周期之和/指令总数</p>
+</li>
+<li><p>MPIS 百万为单位</p>
+<p>全性能公式: MPIS = (f/CPI) * 10 ^-6^</p>
+</li>
+<li><p>cpu时间 = 所有指令时钟周期之和 * T</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>计算机性能测试 几款软件</p>
+</li>
+</ul>
+<h2 id="2-数据表示"><a href="#2-数据表示" class="headerlink" title="2. 数据表示"></a>2. 数据表示</h2><ul>
+<li><p>机器数及其特点</p>
+<p>反码最高位进位加到最低位</p>
+</li>
+<li><p>定点数与浮点数</p>
+</li>
+<li><p>数据校验</p>
+<p>码距, 校验码增加的冗余就是为了增大码距</p>
+<p>码距与纠错能力</p>
+<ul>
+<li>码距&gt;=e+1, 可检测 e 个错误</li>
+<li>码距&gt;=2t+1, 可纠正 t 个错误</li>
+<li>码距&gt;=e+t+1, 可纠正 t 个错误, 同时检测 e 个错误(e&gt;=t)</li>
+</ul>
+</li>
+<li><p>奇偶校验</p>
+<p>偶校验: 使得 1 的个数为偶数个, 所有位异或可得偶校验码, G = 传输来的所有位异或, G = 0 则无错误</p>
+<p>奇校验: 所有位异或后取非, G = 传输来的所有位异或后取非, G = 0 则无错误</p>
+<p>特点: 只能检测一位错误, 无错信息不可靠, 不能纠错</p>
+<p>码距: 2</p>
+<p>双向奇偶校验: 在传统基础上加一个垂直的校验, (右下角应该是横向的校验吧)</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj43jinnhsj30780863zv.jpg" alt="截屏2020-09-26 下午3.42.48"></p>
+</li>
+<li><p>crc 校验</p>
+<p>N = k + r &lt;= 2^r^ - 1 k有效信息, r 校验位</p>
+<p>查表得生成多项式 G(x) 然后用 G(x)进行模 2 运算(异或)得到余数, 原数据+余数组成数据发送出去, 接收方把得到的数用 G(x)进行模 2 运算, 余数为 0 则正确, 而如果余数不为 0, 余数和出错位有一个对应关系, 与 G(x)有关, 与数据无关, 要查表</p>
+</li>
+<li><p>海明码</p>
+<p>N = k + r &lt;= 2^r^ - 1</p>
+<p>设从左到右为 1 ~ k+r 位, 数据位 D, 校验位 P</p>
+<p>P 在 2^n^位置</p>
+<p>D<del>i</del> 中的 i 决定参与哪些 P 的校验, P = D<del>xxx</del> ^ D<del>xxx</del> ^ …</p>
+<p>指错字 G<del>i</del> = P<del>i</del> ^ D<del>xxx</del> ^ D<del>xxx</del> ^ …</p>
+<p>G<del>4</del>G<del>3</del>G<del>2</del>G<del>1</del> 就是出错位, 都为 0 时表示无错</p>
+<p>特点: 指错字为 0 不一定无错, 一位出错和两位出错不能由指错字区分(配合奇偶校验可以区分)</p>
+</li>
+</ul>
+<h2 id="3-运算方法与运算器"><a href="#3-运算方法与运算器" class="headerlink" title="3. 运算方法与运算器"></a>3. 运算方法与运算器</h2><ul>
+<li><p>定点数运算和溢出, 定点数补码加减运算器设计</p>
+<p>补码运算, 已知 Y 的补码, 求 -Y 的补码: 可从右向左扫描, 在遇到 1 及以前, 直接输出, 之后取反输出, 得到 -Y 补码</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj44y5bauwj30u012t15m.jpg" alt="深入理解计算机系统（第三版文字版）-60"></p>
+</li>
+<li><p>原码一位乘法</p>
+<p>符号位单独运算</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj45ru9yx9j311w0l4dx6.jpg" alt="截屏2020-09-26 下午4.59.45"></p>
+</li>
+<li><p>补码一位乘法</p>
+<p>[x*y]<del>补</del> = [x]<del>补</del> * Σ(y<del>i+1</del> - y<del>i</del>) * 2^-i^</p>
+<p><strong>算数右移</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj45wuj1ekj30rc0d0n6c.jpg" alt="截屏2020-09-26 下午5.04.39"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj45ywwml4j30rq08e79y.jpg" alt="截屏2020-09-26 下午5.06.47"></p>
+</li>
+<li></li>
+</ul>
 <h1 id="深入理解计算机系统"><a href="#深入理解计算机系统" class="headerlink" title="深入理解计算机系统"></a>深入理解计算机系统</h1><h2 id="第一章-计算机系统漫游"><a href="#第一章-计算机系统漫游" class="headerlink" title="第一章 计算机系统漫游"></a>第一章 计算机系统漫游</h2><h3 id="程序被翻译为不同的格式"><a href="#程序被翻译为不同的格式" class="headerlink" title="程序被翻译为不同的格式"></a>程序被翻译为不同的格式</h3><p>上下文</p>
 <p>hello.c -预处理器(cpp, preprocesser)-&gt; hello.i -编译器(ccl, compiler)-&gt; hello.s -汇编器(as, assembler)-&gt; hello.o -连接器(ld, linker)-&gt; hello</p>
 <p>GNU 项目 GNU is not Unix</p>
@@ -258,6 +349,71 @@
 <h3 id="信息存储"><a href="#信息存储" class="headerlink" title="信息存储"></a>信息存储</h3><p>内存 –&gt; 虚拟内存</p>
 <p>每个字节 –&gt; 地址</p>
 <p>所有可能的地址的集合 –&gt; 虚拟地址空间</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj41qk2i2gj30gv0exafo.jpg" alt="IMG_0A3C8AB125D9-1"></p>
+<p>0x12345678</p>
+<p>大端 12 34 56 78</p>
+<p>小端 78 56 34 12</p>
+<h3 id="整数运算"><a href="#整数运算" class="headerlink" title="整数运算"></a>整数运算</h3><ul>
+<li><p>检测无符号加法中的溢出</p>
+<p>S = x + y - 2^w^</p>
+<p>而 x, y &lt; 2^w^</p>
+<p>所以 S &lt; x, y</p>
+</li>
+<li><p>无符号数求反</p>
+<p>!x = 2^w^ - x</p>
+<p>∵ !x + x = 2^w^</p>
+</li>
+<li><p>补码加法</p>
+<p>x + y = x + y - 2 * 2^w-1^</p>
+<p>x + y = x + y</p>
+<p>x + y = x + y + 2* 2^w-1^</p>
+<p>(符号位的权为 2^w-1^)</p>
+</li>
+<li><p>补码的溢出</p>
+<p>参考补码加法和无符号加法的溢出, 可知 S 与 x, y 符号相反时发生溢出</p>
+</li>
+<li><p>补码乘法</p>
+<p>-2^w-1^&lt;x, y&lt;2^w-1^-1</p>
+<p>-2^w-1^ * (2^w-1^-1) &lt; x*y &lt; 2^w-1^ * 2^w-1^</p>
+</li>
+<li><p>除以 2</p>
+<p>x&gt;&gt;k = x/2^k^ 向下取整 (因为右移出去的 1 变成 0 , 值变小)</p>
+<p>但是对于负数, 我们希望向 0 舍入, 引入概念偏置</p>
+<p>偏置 biasing(b) 移k 位, b = 2^k^-1</p>
+<p>对于不需要舍入的, 不会改变值, 对于需要舍入的会进 1 位, 从而实现向上舍入</p>
+</li>
+</ul>
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><ul>
+<li><p>IEEE 754表示</p>
+<p>SME 为有效值, sfe 为实际存储中的值</p>
+<p>V = (-1)^s^ * M * 2^E^</p>
+<p>S sign 符号</p>
+<p>M significand 尾数</p>
+<p>E exponent 阶码</p>
+<p>32 位 S 31 E 30-23 M 22-0</p>
+<p>64 位 S 63 E 62-52 M 51-0</p>
+<p><strong>分类</strong></p>
+<ul>
+<li><p>规格化 S = s, E = e - bias, M = f + 1</p>
+<p>0&lt;e&lt;2^k^-1</p>
+<p>bias = 2^k-1^-1</p>
+<p>eg: 对于 32 位, E 的取值为 1-127 ~ 254-127</p>
+<p>f+1 是因为有一个隐含的 1(implied leading 1)</p>
+</li>
+<li><p>非规格化 S = s, E = 1 - bias, M = f</p>
+<p>e = 0</p>
+<p>注意规格化数和非规格化数之间的平滑转换</p>
+</li>
+<li><p>特殊值</p>
+<p>e = 2^k^-1</p>
+<p>s=0 正无穷</p>
+<p>s=1 负无穷</p>
+<p>f != 0 NaN(not a number)</p>
+<p>e =0 f = 0 0</p>
+</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -337,7 +493,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机组成原理实验"><span class="nav-number">1.</span> <span class="nav-text">计算机组成原理实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验-1-数据表示实验"><span class="nav-number">1.1.</span> <span class="nav-text">实验 1 数据表示实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#汉字编码实验"><span class="nav-number">1.1.1.</span> <span class="nav-text">汉字编码实验</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深入理解计算机系统"><span class="nav-number">2.</span> <span class="nav-text">深入理解计算机系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-计算机系统漫游"><span class="nav-number">2.1.</span> <span class="nav-text">第一章 计算机系统漫游</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序被翻译为不同的格式"><span class="nav-number">2.1.1.</span> <span class="nav-text">程序被翻译为不同的格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统硬件"><span class="nav-number">2.1.2.</span> <span class="nav-text">系统硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总线"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">总线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#io-设备"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">io 设备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主存"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">主存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理器-CPU"><span class="nav-number">2.1.2.4.</span> <span class="nav-text">处理器 CPU</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储设备形成层次结构"><span class="nav-number">2.1.3.</span> <span class="nav-text">存储设备形成层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统管理硬件"><span class="nav-number">2.1.4.</span> <span class="nav-text">操作系统管理硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟内存"><span class="nav-number">2.1.4.3.</span> <span class="nav-text">虚拟内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件"><span class="nav-number">2.1.4.4.</span> <span class="nav-text">文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要主题"><span class="nav-number">2.1.5.</span> <span class="nav-text">重要主题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#并发和并行"><span class="nav-number">2.1.5.1.</span> <span class="nav-text">并发和并行</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线程级并发"><span class="nav-number">2.1.5.1.1.</span> <span class="nav-text">线程级并发</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#指令级并行"><span class="nav-number">2.1.5.1.2.</span> <span class="nav-text">指令级并行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#单指令-多数据并行"><span class="nav-number">2.1.5.1.3.</span> <span class="nav-text">单指令, 多数据并行</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象"><span class="nav-number">2.1.5.2.</span> <span class="nav-text">抽象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-信息的表示和处理"><span class="nav-number">2.2.</span> <span class="nav-text">第二章 信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#信息存储"><span class="nav-number">2.2.1.</span> <span class="nav-text">信息存储</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机组成原理实验"><span class="nav-number">1.</span> <span class="nav-text">计算机组成原理实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验-1-数据表示实验"><span class="nav-number">1.1.</span> <span class="nav-text">实验 1 数据表示实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#汉字编码实验"><span class="nav-number">1.1.1.</span> <span class="nav-text">汉字编码实验</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mooc"><span class="nav-number">2.</span> <span class="nav-text">mooc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-计算机系统概论"><span class="nav-number">2.1.</span> <span class="nav-text">1. 计算机系统概论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数据表示"><span class="nav-number">2.2.</span> <span class="nav-text">2. 数据表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-运算方法与运算器"><span class="nav-number">2.3.</span> <span class="nav-text">3. 运算方法与运算器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深入理解计算机系统"><span class="nav-number">3.</span> <span class="nav-text">深入理解计算机系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-计算机系统漫游"><span class="nav-number">3.1.</span> <span class="nav-text">第一章 计算机系统漫游</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序被翻译为不同的格式"><span class="nav-number">3.1.1.</span> <span class="nav-text">程序被翻译为不同的格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统硬件"><span class="nav-number">3.1.2.</span> <span class="nav-text">系统硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总线"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">总线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#io-设备"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">io 设备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主存"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">主存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理器-CPU"><span class="nav-number">3.1.2.4.</span> <span class="nav-text">处理器 CPU</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储设备形成层次结构"><span class="nav-number">3.1.3.</span> <span class="nav-text">存储设备形成层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统管理硬件"><span class="nav-number">3.1.4.</span> <span class="nav-text">操作系统管理硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程"><span class="nav-number">3.1.4.1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程"><span class="nav-number">3.1.4.2.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟内存"><span class="nav-number">3.1.4.3.</span> <span class="nav-text">虚拟内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件"><span class="nav-number">3.1.4.4.</span> <span class="nav-text">文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要主题"><span class="nav-number">3.1.5.</span> <span class="nav-text">重要主题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#并发和并行"><span class="nav-number">3.1.5.1.</span> <span class="nav-text">并发和并行</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线程级并发"><span class="nav-number">3.1.5.1.1.</span> <span class="nav-text">线程级并发</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#指令级并行"><span class="nav-number">3.1.5.1.2.</span> <span class="nav-text">指令级并行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#单指令-多数据并行"><span class="nav-number">3.1.5.1.3.</span> <span class="nav-text">单指令, 多数据并行</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象"><span class="nav-number">3.1.5.2.</span> <span class="nav-text">抽象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-信息的表示和处理"><span class="nav-number">3.2.</span> <span class="nav-text">第二章 信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#信息存储"><span class="nav-number">3.2.1.</span> <span class="nav-text">信息存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整数运算"><span class="nav-number">3.2.2.</span> <span class="nav-text">整数运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数"><span class="nav-number">3.2.3.</span> <span class="nav-text">浮点数</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
