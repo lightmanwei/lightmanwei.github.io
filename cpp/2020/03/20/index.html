@@ -55,11 +55,13 @@
 <meta property="og:site_name" content="Akunda_blog">
 <meta property="og:description" content="简介: cpp 简要指北  c艹指南 简单入门：">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj7iqelf3jj30rm0digmj.jpg">
 <meta property="article:published_time" content="2020-03-19T16:09:19.000Z">
 <meta property="article:modified_time" content="2020-03-19T16:09:19.000Z">
 <meta property="article:author" content="Akunda">
 <meta property="article:tag" content="diary">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj7iqelf3jj30rm0digmj.jpg">
 
 <link rel="canonical" href="http://lightmanwei.github.io/cpp/2020/03/20/">
 
@@ -297,7 +299,17 @@
 <li><p>template &lt;typename&gt; … 模板（泛型编程）</p>
 </li>
 </ul>
-<h2 id="qt"><a href="#qt" class="headerlink" title="qt"></a>qt</h2>
+<h2 id="cpp-实验tips"><a href="#cpp-实验tips" class="headerlink" title="cpp 实验tips"></a>cpp 实验tips</h2><h3 id="struct-中的-const-成员"><a href="#struct-中的-const-成员" class="headerlink" title="struct 中的 const 成员"></a>struct 中的 const 成员</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj7iqelf3jj30rm0digmj.jpg" alt="截屏2020-09-29 下午2.45.05"></p>
+<h3 id="初始化-struct"><a href="#初始化-struct" class="headerlink" title="初始化 struct"></a>初始化 struct</h3><p>结构体是常用的自定义构造类型，是一种很常见的数据打包方法。结构体对象的初始化有多种方式，分为顺序初始化、指定初始化、构造函数初始化。假如有如下结构体。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct A &#123;</span><br><span class="line">	int b;</span><br><span class="line">	int c;</span><br><span class="line">&#125;;</span><br><span class="line">1234</span><br></pre></td></tr></table></figure>
+
+<p>（1）顺序初始化因为书写起来较为简约，是我们最常用的初始化方式，但相对于指定初始化，无法变更数据成员初始化顺序，灵活性较差，而且表现形式不直观，不能一眼看出 struct 各个数据成员的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">A a &#x3D; &#123;1, 2&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 点号+赋值符号</span><br><span class="line">A a &#x3D; &#123;.b &#x3D; 1, .c &#x3D; 2&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;冒号</span><br><span class="line">A a &#x3D; &#123;b:1, c:2&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="要注意后面是不是-0-if-检验"><a href="#要注意后面是不是-0-if-检验" class="headerlink" title="% /  要注意后面是不是 0 if 检验"></a>% /  要注意后面是不是 0 if 检验</h3><h3 id="null-与-nullptr-的区别"><a href="#null-与-nullptr-的区别" class="headerlink" title="null 与 nullptr 的区别"></a>null 与 nullptr 的区别</h3><h3 id="delete-和-free-的区别"><a href="#delete-和-free-的区别" class="headerlink" title="delete 和 free 的区别"></a>delete 和 free 的区别</h3><p>但是，free函数只是释放指针指向的内容，而该指针仍然指向原来指向的地方，此时，指针为野指针，如果此时操作该指针会导致不可预期的错误。安全做法是：在使用free函数释放指针指向的空间之后，将指针的值置为NULL。</p>
+<h3 id="处有未经处理的异常-0xC0000005-读取位置-0xcccccccc-时发生访问冲突"><a href="#处有未经处理的异常-0xC0000005-读取位置-0xcccccccc-时发生访问冲突" class="headerlink" title="处有未经处理的异常: 0xC0000005: 读取位置 0xcccccccc 时发生访问冲突"></a>处有未经处理的异常: 0xC0000005: 读取位置 0xcccccccc 时发生访问冲突</h3><p>具体原因是在 destroy 的时候删除了 p 本身(题目未要求删除)</p>
+<p>解决方法：在debug下，未初始化的指针的地址为0xcccccccc ， 检查下有没有什么地方使用了未初始化的指针，定位后应该是data指针没有初始化，应对其初始化：</p>
+
     </div>
 
     
@@ -382,7 +394,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#c艹指南"><span class="nav-number">1.</span> <span class="nav-text">c艹指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#qt"><span class="nav-number">2.</span> <span class="nav-text">qt</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#c艹指南"><span class="nav-number">1.</span> <span class="nav-text">c艹指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cpp-实验tips"><span class="nav-number">2.</span> <span class="nav-text">cpp 实验tips</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#struct-中的-const-成员"><span class="nav-number">2.1.</span> <span class="nav-text">struct 中的 const 成员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化-struct"><span class="nav-number">2.2.</span> <span class="nav-text">初始化 struct</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要注意后面是不是-0-if-检验"><span class="nav-number">2.3.</span> <span class="nav-text">% &#x2F;  要注意后面是不是 0 if 检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null-与-nullptr-的区别"><span class="nav-number">2.4.</span> <span class="nav-text">null 与 nullptr 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delete-和-free-的区别"><span class="nav-number">2.5.</span> <span class="nav-text">delete 和 free 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处有未经处理的异常-0xC0000005-读取位置-0xcccccccc-时发生访问冲突"><span class="nav-number">2.6.</span> <span class="nav-text">处有未经处理的异常: 0xC0000005: 读取位置 0xcccccccc 时发生访问冲突</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
