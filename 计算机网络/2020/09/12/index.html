@@ -55,11 +55,14 @@
 <meta property="og:site_name" content="Akunda_blog">
 <meta property="og:description" content="&lt;计算机网络自顶向下方法&gt;(英文版) 英文缩写和词汇汇总 学会了缩写就学会了计算机网络 —-赛诺">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjb6r2za4aj30y40fuwt9.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjb6vgjgthj31040e2nc8.jpg">
 <meta property="article:published_time" content="2020-09-12T08:48:30.000Z">
 <meta property="article:modified_time" content="2020-09-12T08:48:30.000Z">
 <meta property="article:author" content="Akunda">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjb6r2za4aj30y40fuwt9.jpg">
 
 <link rel="canonical" href="http://lightmanwei.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/2020/09/12/">
 
@@ -288,6 +291,127 @@
 <li><p>数据差错的检查</p>
 </li>
 </ul>
+<h2 id="第二章-应用层"><a href="#第二章-应用层" class="headerlink" title="第二章 应用层"></a>第二章 应用层</h2><ul>
+<li><p>应用层协议原理</p>
+<p>CS 体系结构 p2p 体系结构 混合体系结构</p>
+<p>应用层协议定义了</p>
+<ul>
+<li>交换报文的类型</li>
+<li>各种报文类型的语法</li>
+<li>字段的语义</li>
+<li>进程何时, 如何发送报文及对报文进行响应</li>
+</ul>
+<p>服务</p>
+</li>
+<li><p>万维网与 http</p>
+<ul>
+<li><p>web 的构成</p>
+<p>web 服务器</p>
+<p>浏览器</p>
+<p>协议: 信息表达的协议(html), 信息传输的协议(http)</p>
+</li>
+<li><p>web 内容的表达: html</p>
+</li>
+<li><p>web 内容的传输: tcp 端口 80</p>
+<p>http1.0 非持久性链接 RTT * 2 + 文件传输时间</p>
+<p>http1.1 持久性连接 分为: 非流水, 流水</p>
+</li>
+<li><p>http 报文类型</p>
+<ul>
+<li><p>http 请求报文</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjb6r2za4aj30y40fuwt9.jpg" alt="截屏2020-10-02 下午6.52.38"></p>
+<p>定义的方法:</p>
+<ul>
+<li>get 向服务器请求指定url 的对象</li>
+<li>post 向服务器提交表单数据, 也可以同时请求一个 web 页面</li>
+<li>head 返回响应报文, 不包含请求的对象</li>
+<li>put 上传的文件放在实体主体字段中, 目标路径由 url 字段标明</li>
+<li>delete 删除 url 字段中指定的文件</li>
+</ul>
+</li>
+<li><p>http 响应报文</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjb6vgjgthj31040e2nc8.jpg" alt="截屏2020-10-02 下午6.57.02"></p>
+<p>响应状态码和短语</p>
+<ul>
+<li>200 ok, 请求成功, 被请求的对象在报文里</li>
+<li>301 moved permanently 被请求的对象被移动过, 新的位置在报文中有说明(location)</li>
+<li>400 bad request 服务器不懂请求报文</li>
+<li>404 not found 服务器上找不到请求的对象</li>
+<li>505 http version not supported 服务器不支持请求报文使用的 http 协议版本</li>
+</ul>
+</li>
+<li><p>用户服务器交互 cookie</p>
+<ul>
+<li>目的: 限制用户的访问, 把内容和用户的身份关联起来</li>
+<li>技术组成:<ul>
+<li>在 http 响应报文中有一个 cookie 首部行</li>
+<li>在 http 请求报文中也有一个 cookie 首部行</li>
+<li>在用户的端系统保留了一个 cookie 文件, 由用户浏览器负责管理</li>
+<li>在 web 站点有一个后端数据库</li>
+</ul>
+</li>
+<li>私密性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>smtp</p>
+<ul>
+<li><p>电子邮件系统的构成</p>
+<ul>
+<li>用户代理</li>
+<li>邮件服务器</li>
+<li>smtp 用在邮件服务器之间发送邮件<ul>
+<li>客户端将邮件发到服务器</li>
+<li>服务器接收和转发邮件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>tcp 端口 25, 三个阶段: 握手, 报文传输, 结束 命令响应类型: 命令 ascii 码, 响应状态码和短语</p>
+</li>
+<li><p>邮件传输过程</p>
+<ul>
+<li>持续链接</li>
+<li><strong>7 bit ascii 码</strong></li>
+<li>crlf 表示邮件结束</li>
+</ul>
+</li>
+<li><p>报文格式 rfc 822</p>
+</li>
+<li><p>客户机获取邮件的方法</p>
+<ul>
+<li><p>pop3 协议</p>
+<p>认证, 交互(下载删除-下载保存), 退出</p>
+<p>会话无状态</p>
+</li>
+<li><p>imap 协议</p>
+<p>所有邮件保存在服务器上</p>
+</li>
+<li><p>http 协议</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>域名解析 DNS</p>
+<ul>
+<li><p>分布式数据库 运行在端到端系统, 使用 udp 端口 53 应用层</p>
+</li>
+<li><p>过程</p>
+</li>
+<li><p>ddos 攻击, 重定向攻击</p>
+</li>
+</ul>
+</li>
+<li><p>p2p 协议</p>
+<ul>
+<li>bittorrent</li>
+</ul>
+</li>
+</ul>
 <h1 id="计算机网络自顶向下"><a href="#计算机网络自顶向下" class="headerlink" title="计算机网络自顶向下"></a>计算机网络自顶向下</h1><h2 id="第一章-计算机网络和-Internet"><a href="#第一章-计算机网络和-Internet" class="headerlink" title="第一章 计算机网络和 Internet"></a>第一章 计算机网络和 Internet</h2><p>switch 交换机</p>
 <p>router 路由器</p>
 <p>coaxial cable 同轴电缆</p>
@@ -407,7 +531,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MOOC"><span class="nav-number">1.</span> <span class="nav-text">MOOC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-计算机网络与因特网"><span class="nav-number">1.1.</span> <span class="nav-text">1. 计算机网络与因特网</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络自顶向下"><span class="nav-number">2.</span> <span class="nav-text">计算机网络自顶向下</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-计算机网络和-Internet"><span class="nav-number">2.1.</span> <span class="nav-text">第一章 计算机网络和 Internet</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MOOC"><span class="nav-number">1.</span> <span class="nav-text">MOOC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-计算机网络与因特网"><span class="nav-number">1.1.</span> <span class="nav-text">1. 计算机网络与因特网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-应用层"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 应用层</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络自顶向下"><span class="nav-number">2.</span> <span class="nav-text">计算机网络自顶向下</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-计算机网络和-Internet"><span class="nav-number">2.1.</span> <span class="nav-text">第一章 计算机网络和 Internet</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -423,7 +547,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
