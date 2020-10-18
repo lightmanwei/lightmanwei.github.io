@@ -59,6 +59,8 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjmf8dcke3j311y0fwk53.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjmfiqxiwlj316g0b6n9g.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjmoyhoig0j316c0k816x.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjrgyap57hj30me0l6agd.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjrh7cu3tlj30z00kqk2b.jpg">
 <meta property="article:published_time" content="2020-10-12T03:58:52.000Z">
 <meta property="article:modified_time" content="2020-10-12T03:58:52.000Z">
 <meta property="article:author" content="Akunda">
@@ -234,6 +236,55 @@
 
 <h2 id="eg-熄灯问题"><a href="#eg-熄灯问题" class="headerlink" title="eg 熄灯问题"></a>eg 熄灯问题</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjmoyhoig0j316c0k816x.jpg" alt="截屏2020-10-12 下午5.43.53"></p>
 <p>给定一种初始状态, 求让灯全灭的方案</p>
+<h1 id="2-递归"><a href="#2-递归" class="headerlink" title="2. 递归"></a>2. 递归</h1><h2 id="eg-求阶乘"><a href="#eg-求阶乘" class="headerlink" title="eg 求阶乘"></a>eg 求阶乘</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> n * f(n<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjrgyap57hj30me0l6agd.jpg" alt="截屏2020-10-16 下午8.54.49"></p>
+<h2 id="eg-汉诺塔问题"><a href="#eg-汉诺塔问题" class="headerlink" title="eg 汉诺塔问题"></a>eg 汉诺塔问题</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Hanoi</span><span class="params">(<span class="keyword">int</span> n, cha src, <span class="keyword">char</span> mid, <span class="keyword">char</span> dest)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n==<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;src&lt;&lt;<span class="string">"-&gt;"</span>&lt;&lt;dest&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  Hanoi(n<span class="number">-1</span>, src, dest, mid);</span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;src&lt;&lt;<span class="string">"-&gt;"</span>&lt;&lt;dest&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">  Hanoi(n<span class="number">-1</span>, mid, src, dest);</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="eg-n皇后问题"><a href="#eg-n皇后问题" class="headerlink" title="eg n皇后问题"></a>eg n皇后问题</h2><p>递归替代多重循环</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjrh7cu3tlj30z00kqk2b.jpg" alt="截屏2020-10-16 下午9.03.31"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">queePos[<span class="number">100</span>];</span><br><span class="line"><span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NQueen</span><span class="params">(<span class="keyword">int</span> k)</span><span class="comment">// 0 - k 行都已经摆好了</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="keyword">if</span>(k == n)</span><br><span class="line">  &#123;<span class="comment">//输出方案</span></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;N; i++)</span><br><span class="line">      <span class="built_in">cout</span>&lt;&lt;queenPos[i]+<span class="number">1</span>&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;N; i++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">int</span> j;</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">0</span>; j&lt;k; j++)</span><br><span class="line">    	<span class="keyword">if</span>(queenPos[j]==i || <span class="built_in">abs</span>(queenPos[j]-i == <span class="built_in">abs</span>(k-j)))</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span>(j==k)</span><br><span class="line">    &#123;</span><br><span class="line">      queenPos[k] = i;</span><br><span class="line">      NQueen(k+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="eg-逆波兰表达式"><a href="#eg-逆波兰表达式" class="headerlink" title="eg 逆波兰表达式"></a>eg 逆波兰表达式</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">exp</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> s[<span class="number">20</span>];</span><br><span class="line">  <span class="built_in">cin</span> &gt;&gt; s;</span><br><span class="line">  <span class="keyword">switch</span>(s[<span class="number">0</span>])&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'+'</span>: <span class="keyword">return</span> <span class="built_in">exp</span>()+<span class="built_in">exp</span>();</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'-'</span>: <span class="keyword">return</span> <span class="built_in">exp</span>()-<span class="built_in">exp</span>();</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'*'</span>: <span class="keyword">return</span> <span class="built_in">exp</span>()*<span class="built_in">exp</span>();</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'/'</span>: <span class="keyword">return</span> <span class="built_in">exp</span>()/<span class="built_in">exp</span>();</span><br><span class="line">    <span class="keyword">default</span>: <span class="keyword">return</span> atof(s);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="eg-表达式计算"><a href="#eg-表达式计算" class="headerlink" title="eg 表达式计算"></a>eg 表达式计算</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">factor_value</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </div>
 
@@ -313,7 +364,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-枚举"><span class="nav-number">1.</span> <span class="nav-text">1. 枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#eg完美立方"><span class="nav-number">1.1.</span> <span class="nav-text">eg完美立方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eg-生理周期"><span class="nav-number">1.2.</span> <span class="nav-text">eg 生理周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eg-称硬币"><span class="nav-number">1.3.</span> <span class="nav-text">eg 称硬币</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eg-熄灯问题"><span class="nav-number">1.4.</span> <span class="nav-text">eg 熄灯问题</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-枚举"><span class="nav-number">1.</span> <span class="nav-text">1. 枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#eg完美立方"><span class="nav-number">1.1.</span> <span class="nav-text">eg完美立方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eg-生理周期"><span class="nav-number">1.2.</span> <span class="nav-text">eg 生理周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eg-称硬币"><span class="nav-number">1.3.</span> <span class="nav-text">eg 称硬币</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eg-熄灯问题"><span class="nav-number">1.4.</span> <span class="nav-text">eg 熄灯问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-递归"><span class="nav-number">2.</span> <span class="nav-text">2. 递归</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#eg-求阶乘"><span class="nav-number">2.1.</span> <span class="nav-text">eg 求阶乘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eg-汉诺塔问题"><span class="nav-number">2.2.</span> <span class="nav-text">eg 汉诺塔问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eg-n皇后问题"><span class="nav-number">2.3.</span> <span class="nav-text">eg n皇后问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eg-逆波兰表达式"><span class="nav-number">2.4.</span> <span class="nav-text">eg 逆波兰表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eg-表达式计算"><span class="nav-number">2.5.</span> <span class="nav-text">eg 表达式计算</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
