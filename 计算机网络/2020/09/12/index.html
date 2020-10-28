@@ -57,6 +57,21 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjb6r2za4aj30y40fuwt9.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjb6vgjgthj31040e2nc8.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk46xm0jvyj30lq0botd5.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk47cwe8paj30m20csdp0.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk47g4h758j30n40e8tje.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk47lx65jlj30na0fedrq.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk47v2aecsj30na06aadl.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk47znelcfj30oa0fgqh0.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk481a17asj30n60f0tl4.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk487oge6jj30se0byq99.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk48ibp1ctj30o40bw44s.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk4zstl2kzj30c60eytdx.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk500xl5iaj30li0b2jy5.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk5717czi7j30ms0dcdp7.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk5721ezljj30ni0emn72.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk577xhb9gj30pa0cqwol.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk57t0k08kj30ng0emdqq.jpg">
 <meta property="article:published_time" content="2020-09-12T08:48:30.000Z">
 <meta property="article:modified_time" content="2020-09-12T08:48:30.000Z">
 <meta property="article:author" content="Akunda">
@@ -218,7 +233,7 @@
 </blockquote>
 <a id="more"></a>
 
-<h1 id="MOOC"><a href="#MOOC" class="headerlink" title="MOOC"></a>MOOC</h1><h2 id="1-计算机网络与因特网"><a href="#1-计算机网络与因特网" class="headerlink" title="1. 计算机网络与因特网"></a>1. 计算机网络与因特网</h2><ul>
+<h1 id="MOOC"><a href="#MOOC" class="headerlink" title="MOOC"></a>MOOC</h1><h2 id="第一章-计算机网络与因特网"><a href="#第一章-计算机网络与因特网" class="headerlink" title="第一章 计算机网络与因特网"></a>第一章 计算机网络与因特网</h2><ul>
 <li><p>协议: 语法, 语义, 同步</p>
 </li>
 <li><p>C/S P2P</p>
@@ -412,6 +427,201 @@
 </ul>
 </li>
 </ul>
+<h2 id="第三章-运输层"><a href="#第三章-运输层" class="headerlink" title="第三章 运输层"></a>第三章 运输层</h2><ul>
+<li><p>概述</p>
+<p>网络层: 不同主机之间的逻辑通信</p>
+<p>运输层: 应用进程之间的逻辑通信</p>
+</li>
+<li><p>端口和套接字</p>
+</li>
+<li><p>无连接传输UDP</p>
+<p>1.多路复用, 多路分解</p>
+<p>2.差错检查</p>
+<p>数据报结构: </p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk46xm0jvyj30lq0botd5.jpg" alt="截屏2020-10-27 下午9.01.21"></p>
+</li>
+<li><p>可靠数据传输</p>
+<ul>
+<li><p>概述</p>
+<p>可靠传输</p>
+<ol>
+<li>数据在传输过程中不会丢失</li>
+<li>数据在传输过程中不会出错</li>
+</ol>
+<p>FSM 有限状态机</p>
+</li>
+<li><p>分类</p>
+<ul>
+<li><p>可靠信道上的可靠传输</p>
+</li>
+<li><p>比特受损, 但可按序接受不会丢失</p>
+<p><strong>简单停等协议</strong></p>
+<ol>
+<li>差错检测</li>
+<li>接收方反馈 ACK NAK</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk47cwe8paj30m20csdp0.jpg" alt="截屏2020-10-27 下午9.16.04"></p>
+<p>问题: ack 和 nak 也会受损</p>
+<p>方案: 编号, 对分组进行编号, 便于接收方识别重复分组, 区分连续的两个分组(0, 1)</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk47g4h758j30n40e8tje.jpg" alt=" "></p>
+<p>改进: 只有 ack, 给 ack 加上编号, 接收方对最后一个正确收到的分组发送 ack, double ACK = NAK</p>
+</li>
+<li><p>数据会丢失</p>
+<p><strong>实用停等协议</strong></p>
+<p>问题: 如何检测丢包</p>
+<p>方案: 等待, 计时器</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk47lx65jlj30na0fedrq.jpg" alt="截屏2020-10-27 下午9.24.31"></p>
+</li>
+<li><p><strong>滑动窗口协议</strong></p>
+<p>问题: 解决硬件利用率不高的问题</p>
+<p>方案: 允许发送方发送多个分组而无需等待确认</p>
+<ol>
+<li>必须增大序号范围</li>
+<li>发送方和接收方需要对分组缓存</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk47v2aecsj30na06aadl.jpg" alt="截屏2020-10-27 下午9.33.30"></p>
+<p>分组丢失了怎么办?</p>
+<ul>
+<li><p><strong>GBN</strong> <strong>协议</strong>: 其后的分组全部重传</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk47znelcfj30oa0fgqh0.jpg" alt="截屏2020-10-27 下午9.37.56"></p>
+</li>
+<li><p><strong>SR</strong> <strong>协议</strong>: 仅重传该分组</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk481a17asj30n60f0tl4.jpg" alt="截屏2020-10-27 下午9.39.31"></p>
+</li>
+<li><p>序号问题</p>
+<p>发送窗口的序号和接受窗口的序号不能重复</p>
+<p>两个窗口的序号均在 2^k^-1 内, 发送方+接收方 &lt;= 2^k^</p>
+<p>GBN : 发送方&lt; 2^k^-1 接收方 = 1</p>
+<p>SR: 接收方 = 发送方 &lt;= 2^k-1^</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>TCP</p>
+<ul>
+<li><p>报文首部结构</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk487oge6jj30se0byq99.jpg" alt="截屏2020-10-27 下午9.45.39"></p>
+<p>序号: 对字节流的编号, 在报文段数据中第一个字节在字节流中的编号</p>
+<p>确认号: 期望号(ACK=1), 期待得到的下一个字节的 seq</p>
+<p>窗口: 流量监测</p>
+<p>紧急指针: URG, PSH 开关</p>
+<p>tcp 没有规定如何处理乱序报文段, 由实现者实现</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk48ibp1ctj30o40bw44s.jpg" alt="截屏2020-10-27 下午9.55.51"></p>
+</li>
+<li><p>tcp 超时</p>
+<p>样本 RTT </p>
+<p>EstimatedRTT = (1 - α) * EstimatedRTT + α * SampleRTT</p>
+<p>α = 0.125 第一次 EstimatedRTT = SampleRTT</p>
+<p>偏差 RTT</p>
+<p>DevRTT = (1 - β) * DevRTT + β * |SampleRTT - EstimatedRTT|</p>
+<p>β = 0.25 第一次 DevRTT = 0.5 * SampleRTT</p>
+<p>TCP 中的超时间隔</p>
+<p>TimeoutInterval = EstimatedRTT + 4 * DevRTT</p>
+</li>
+<li><p>TCP 的可靠数据传输</p>
+<p>tcp 的确认永远是期待的分组</p>
+<ul>
+<li><p>快速重传: 在超时到来之前重传报文段</p>
+<p>如果发送方收到一个数据的<strong>三个重复 ACK</strong>, 它会认为确认数据之后的报文段丢失</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk4zstl2kzj30c60eytdx.jpg" alt="截屏2020-10-28 下午1.40.03"></p>
+<p>每一次 TCP 重传均将下一次超时间隔设为先前值的两倍</p>
+</li>
+</ul>
+</li>
+<li><p>TCP 流量控制</p>
+<ul>
+<li><p>可变流量窗口: 将接收方缓冲区的空闲空间发给发送方</p>
+<p>剩余空间为 0 时, 为了避免假死, 发送方发送一个字节的试探报文</p>
+</li>
+</ul>
+</li>
+<li><p>TCP 连接管理</p>
+<ul>
+<li><p>TCP 链接的建立</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk500xl5iaj30li0b2jy5.jpg" alt="截屏2020-10-28 下午1.47.57"></p>
+</li>
+<li><p>TCP 连接的释放</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk5717czi7j30ms0dcdp7.jpg" alt="截屏2020-10-28 下午5.50.24"></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk5721ezljj30ni0emn72.jpg" alt="截屏2020-10-28 下午5.51.11"></p>
+</li>
+<li><p>TCP 链接管理的状态序列</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk577xhb9gj30pa0cqwol.jpg" alt="截屏2020-10-28 下午5.56.52"></p>
+<p>两个 establish 状态可能不同步</p>
+</li>
+</ul>
+</li>
+<li><p>拥塞控制</p>
+<p>拥塞: 过多的源发送了过多的数据, 超出了网络的处理能力</p>
+<p>和流量控制不同的是, 流量控制是发送方发送了过多的数据, 拥塞控制是过多数据积压在网络核心</p>
+<p>现象: 延时长, 包丢失</p>
+<p>拥塞的开销:</p>
+<ol>
+<li>发送方必须重传以补偿因为缓存溢出而丢失的分组</li>
+<li>发送方在遇到大时延锁进行的不必要重传会引起路由器转发不必要的分组拷贝而占用其链路带宽</li>
+<li>当分组被丢弃时, 该分组曾用到的所有上游传输容量被浪费了</li>
+</ol>
+<p>网络辅助的拥塞控制的方法</p>
+<ol>
+<li>直接网络反馈: 路由器以阻塞分组的形式通知发送方”网络堵塞了”</li>
+<li>经由接收方的网络反馈: 路由器标识从发送方流向接收方分组的某个字段以知识拥塞产生, 由接收方通知发送方网络拥塞了</li>
+</ol>
+<p>端到端的拥塞控制</p>
+<ol>
+<li>网络层部位拥塞控制提供任何帮助和支持</li>
+<li>端系统通过对网络行为观测判断网络是否发生拥塞</li>
+<li>TCP 采用以上方法</li>
+</ol>
+</li>
+<li><p>TCP 的拥塞控制</p>
+<p>端到端的拥塞控制</p>
+<ul>
+<li><p>拥塞窗口</p>
+<p>rate = (CongWin/RTT) bytes/sec</p>
+</li>
+<li><p>如何感受拥塞</p>
+<p>超时, 三个冗余 ACK</p>
+</li>
+<li><p>拥塞控制算法(Reno 算法)</p>
+<p>加性增, 乘性减(AIMD)</p>
+<blockquote>
+<p>mss 最大报文段长度</p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk57t0k08kj30ng0emdqq.jpg" alt="截屏2020-10-28 下午6.17.07"></p>
+<p>指数增加到一个门限值</p>
+<p>指数增加阶段 -&gt; 慢启动, 线性增加阶段 -&gt; 拥塞避免</p>
+<ul>
+<li>对收到三个重复 ACK 的反应: 快速重传<ol>
+<li>门限值设为当前 CongWin 的一半</li>
+<li>将 CongWin 减为新的门限值+3 MSS</li>
+<li>线性增加拥塞窗口</li>
+</ol>
+</li>
+<li>超时时间的反应<ol>
+<li>门限值设为当前 CongWin 的一半</li>
+<li>将 CongWin 设为 1  MSS</li>
+<li>窗口以指数速度增大</li>
+<li>窗口增大到门限值以后, 在以线性速度增加</li>
+</ol>
+</li>
+<li>Reno总结<ol>
+<li>门限值 Threshold 决定出于慢启动阶段还是拥塞避免阶段</li>
+<li>triple ACK 门限值变为一半, CongWin 设为门限值+3 MSS</li>
+<li>超时 门限值变为一半, CongWin 设为 1 MSS</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第四章-网络层"><a href="#第四章-网络层" class="headerlink" title="第四章 网络层"></a>第四章 网络层</h2><ul>
+<li>网络层概述</li>
+</ul>
 <h1 id="实验-1-socket-编程"><a href="#实验-1-socket-编程" class="headerlink" title="实验 1 socket 编程"></a>实验 1 socket 编程</h1><h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><p>ip, 端口, 主目录</p>
 <p>处理请求, 穿件套接字</p>
 <p>确定网页文件</p>
@@ -541,7 +751,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MOOC"><span class="nav-number">1.</span> <span class="nav-text">MOOC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-计算机网络与因特网"><span class="nav-number">1.1.</span> <span class="nav-text">1. 计算机网络与因特网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-应用层"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 应用层</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验-1-socket-编程"><span class="nav-number">2.</span> <span class="nav-text">实验 1 socket 编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验要求"><span class="nav-number">2.1.</span> <span class="nav-text">实验要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.2.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络自顶向下"><span class="nav-number">3.</span> <span class="nav-text">计算机网络自顶向下</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-计算机网络和-Internet"><span class="nav-number">3.1.</span> <span class="nav-text">第一章 计算机网络和 Internet</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MOOC"><span class="nav-number">1.</span> <span class="nav-text">MOOC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-计算机网络与因特网"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 计算机网络与因特网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-应用层"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 应用层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-运输层"><span class="nav-number">1.3.</span> <span class="nav-text">第三章 运输层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章-网络层"><span class="nav-number">1.4.</span> <span class="nav-text">第四章 网络层</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验-1-socket-编程"><span class="nav-number">2.</span> <span class="nav-text">实验 1 socket 编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验要求"><span class="nav-number">2.1.</span> <span class="nav-text">实验要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.2.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络自顶向下"><span class="nav-number">3.</span> <span class="nav-text">计算机网络自顶向下</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-计算机网络和-Internet"><span class="nav-number">3.1.</span> <span class="nav-text">第一章 计算机网络和 Internet</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
