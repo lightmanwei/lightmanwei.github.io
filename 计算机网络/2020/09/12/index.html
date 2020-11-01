@@ -72,6 +72,23 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk5721ezljj30ni0emn72.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk577xhb9gj30pa0cqwol.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk57t0k08kj30ng0emdqq.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk58gzl5hdj30ng0ea7ec.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6mdsjenrj30jg06k77d.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6mjektnzj30l60emqc4.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6n6j8572j30nc0esdnj.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6nkk5p1ej30ng0bijwn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6nmqs2l5j30nc09wtea.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6nuwuduwj30no0d4guu.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6o2k52w8j30qc0gm7ej.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6o420nlzj30p00fm49h.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6ofdc3oqj30j007on25.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6orahcgpj30l00ecn6t.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6otwecwaj30oe0c6qar.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9hls0rvzj30ji08i43n.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9hv8j3abj30o60f8thp.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9hyeqkgvj30jm06sn10.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9hzax62lj30ji05ytcd.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9hzmirtsj30km07owik.jpg">
 <meta property="article:published_time" content="2020-09-12T08:48:30.000Z">
 <meta property="article:modified_time" content="2020-09-12T08:48:30.000Z">
 <meta property="article:author" content="Akunda">
@@ -620,7 +637,179 @@
 </li>
 </ul>
 <h2 id="第四章-网络层"><a href="#第四章-网络层" class="headerlink" title="第四章 网络层"></a>第四章 网络层</h2><ul>
-<li>网络层概述</li>
+<li><p>网络层概述</p>
+<p>实现主机到主机的通信</p>
+<ol>
+<li><p>如何选路</p>
+</li>
+<li><p>如何转发</p>
+</li>
+<li><p>确定是否可达</p>
+</li>
+</ol>
+<p>为传输层提供选路转发服务</p>
+<ol>
+<li>虚电路服务<ol>
+<li>收发双方的路径和电话线路一样</li>
+<li>数据传输前呼叫建立, 传输后断开连接</li>
+<li>每一个分组携带虚电路标识(而不是目的主机的地址)</li>
+<li>路径上的每个路由器必须维持连接状态信息</li>
+</ol>
+</li>
+<li>数据报服务<ol>
+<li>在网络层没有建立连接过程</li>
+<li>不维护连接状态信息</li>
+<li>同一对主机的报文可能会走不同的路径</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>路由器的工作原理</p>
+<p>网路程, 数据链路层, 物理层</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk58gzl5hdj30ng0ea7ec.jpg" alt="截屏2020-10-28 下午6.40.10"></p>
+<ul>
+<li><p>输入端口</p>
+<ul>
+<li>线头等待</li>
+</ul>
+</li>
+<li><p>交换结构</p>
+<ul>
+<li><p>分类: 内存类, 总线类, 内联网络类</p>
+<ul>
+<li><p>内存交换: </p>
+<ol>
+<li>输入输出端口的交换是在路由器的直接控制下完成的</li>
+<li>分组被拷贝到系统内存中, 在 cpu 控制下转发至输出端口</li>
+<li>转发速度受限于内存带宽(每个分组走两次总线)</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6mdsjenrj30jg06k77d.jpg" alt="截屏2020-10-29 下午11.26.40"></p>
+</li>
+<li><p>总线交换</p>
+<ol>
+<li>输入报文经共享总线将分组直接转发到输出端口</li>
+<li>总线交换速度受限于总线带宽</li>
+<li>Cisco5600 内置 32Gbps 总线, 能满足大多接入网或企业网的路由转发速率需求</li>
+</ol>
+</li>
+<li><p>内联网络</p>
+<ol>
+<li>克服总线带宽限制</li>
+<li>Banyan 网络: 用于计算机体系结构中多处理机互连</li>
+<li>固定分组转发: 将长度变化的 ip 分组拆分为固定尺寸的信元, 通过交换网络进行转发</li>
+<li>Cisco 12000: 通过内联网络交换速度为 60Gbps</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>输出端口</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6mjektnzj30l60emqc4.jpg" alt="截屏2020-10-29 下午11.32.23"></p>
+</li>
+<li><p>缓存区?</p>
+<p>RFC 3439: B = RTT * R</p>
+<p>对于有 n 条 tcp 链接的链路: B = RTT * R / n^1/2^ </p>
+<p>分组排队丢弃策略: </p>
+<ul>
+<li>被动管理<ol>
+<li>弃尾策略</li>
+<li>删除一个或者多个已排队分组</li>
+</ol>
+</li>
+<li>主动管理–随机早期检测 RED<ol>
+<li>随机计算平均队列长度 avg<del>th</del></li>
+<li>最小阈值 min<del>th</del> 最大阈值 max<del>th</del></li>
+<li>avg<del>th</del> 小于 min<del>th</del>, 允许分组入列</li>
+<li>avg<del>th</del> 大于 max<del>th</del>, 分组被标记或丢弃</li>
+<li>avg<del>th</del> 在 min<del>th</del> 和 max<del>th</del> 之间, 按照概率标记或丢弃分组</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ip 数据报格式</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6n6j8572j30nc0esdnj.jpg" alt="截屏2020-10-29 下午11.54.39"></p>
+<p>版本: IPv4 IPv5 IPv6</p>
+<p>服务类型: 报文处理方式</p>
+<p>生存时间: 控制数据转发的跳数</p>
+<p>报头校验和, 只检查首部</p>
+<p>协议: 1ICMP 2IGMP 4IP 6TCP 8EGP 17UDP 41IPV6</p>
+<p>源地址: 32bit</p>
+<p>目的地址: 32bit</p>
+<p>首部长度</p>
+<p>总长度: 实际长度 = 总长度 - 首部长度, 以太网链路报文只允许 1500 字节</p>
+<p>分片相关的字段(MTU)</p>
+<p>​    标识: 网络层服务的上层传输层的同一次报文使用相同的表示, 相当于每次会话使用相同表示</p>
+<p>​    标志: 1 位保留, 2 位表示能否分片, 3 位表示分片是否结束(1 未结束, 0 结束)</p>
+<p>​    片偏移: 每个分片在整个报文中的位置</p>
+</li>
+<li><p>IP 地址</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6nkk5p1ej30ng0bijwn.jpg" alt="截屏2020-10-30 上午12.08.08"></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6nmqs2l5j30nc09wtea.jpg" alt="截屏2020-10-30 上午12.10.16"></p>
+<p>NAT</p>
+<p>ipv6 报文结构</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6nuwuduwj30no0d4guu.jpg" alt="截屏2020-10-30 上午12.18.02"></p>
+</li>
+<li><p>子网划分</p>
+<p>从主机号中抽取一部分作为子网号, 进行子网划分</p>
+<p>子网掩码</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6o2k52w8j30qc0gm7ej.jpg" alt="截屏2020-10-30 上午12.25.25"></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6o420nlzj30p00fm49h.jpg" alt="截屏2020-10-30 上午12.26.52"></p>
+<ol>
+<li>H<del>1</del>先将本子网的子网掩码与分组的 ip 地址相”与”, 不匹配给路由器</li>
+<li>路由器根据路由表找到目的网络地址, 进行转发</li>
+</ol>
+</li>
+<li><p>CIDR 无类别域间路由(classless interdomain routing)</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6ofdc3oqj30j007on25.jpg" alt="截屏2020-10-30 上午12.37.45"></p>
+<p>/之后是掩码的位数</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6orahcgpj30l00ecn6t.jpg" alt="截屏2020-10-30 上午12.49.10"></p>
+</li>
+<li><p>网络地址转换 NAT</p>
+<ul>
+<li><p>解决的问题</p>
+<ol>
+<li>外网获取的 ip 地址资源有限</li>
+<li>内网 ip 地址变动无需告知外网</li>
+<li>更换 ISP 后内网 ip 地址不变</li>
+<li>内网主机外网不可见</li>
+</ol>
+</li>
+<li><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk6otwecwaj30oe0c6qar.jpg" alt="截屏2020-10-30 上午12.51.42"></p>
+</li>
+<li><p>改变</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9hls0rvzj30ji08i43n.jpg" alt="截屏2020-11-01 上午10.58.23"></p>
+</li>
+</ul>
+</li>
+<li><p>ICMP 协议(差错与控制报文协议)</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9hv8j3abj30o60f8thp.jpg" alt="截屏2020-11-01 上午11.07.31"></p>
+<ul>
+<li><p>ICMP 报文格式</p>
+<ul>
+<li><p>信息报文不可达</p>
+<ol>
+<li>信宿机硬件出现故障或者关机</li>
+<li>发送者指定的地址不存在</li>
+<li>网关不知道去往信宿的路径</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9hyeqkgvj30jm06sn10.jpg" alt="截屏2020-11-01 上午11.10.34"></p>
+</li>
+<li><p>参数出错报文</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9hzax62lj30ji05ytcd.jpg" alt="截屏2020-11-01 上午11.11.14"></p>
+</li>
+<li><p>重定向报文</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9hzmirtsj30km07owik.jpg" alt="截屏2020-11-01 上午11.11.44"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>路由协议概述</p>
+<p>好的路由: 无自环, 可收敛, 路径好</p>
+</li>
 </ul>
 <h1 id="实验-1-socket-编程"><a href="#实验-1-socket-编程" class="headerlink" title="实验 1 socket 编程"></a>实验 1 socket 编程</h1><h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><p>ip, 端口, 主目录</p>
 <p>处理请求, 穿件套接字</p>
