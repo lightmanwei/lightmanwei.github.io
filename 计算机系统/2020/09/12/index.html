@@ -61,6 +61,9 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9k8exdzoj30yp0rs7u2.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9kb3ht5ej313t0rse58.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9zjg7bbwj324s0rsb29.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gka05sph7fj31g40rsx5f.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gka0d393okj31ge0rs1kt.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gka0g52u4pj31kc0rs1kx.jpg">
 <meta property="article:published_time" content="2020-09-12T07:23:11.000Z">
 <meta property="article:modified_time" content="2020-09-12T07:23:11.000Z">
 <meta property="article:author" content="Akunda">
@@ -651,45 +654,60 @@
 </ul>
 <h5 id="应用程序的处理"><a href="#应用程序的处理" class="headerlink" title="应用程序的处理"></a>应用程序的处理</h5><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk9zjg7bbwj324s0rsb29.jpg" alt="image-20201101211858528" style="zoom: 25%;" />
 
+<h3 id="用户接口"><a href="#用户接口" class="headerlink" title="用户接口"></a>用户接口</h3><p>用户接口分类: 操作接口(用户通过此来组织自己的工作流程和控制程序的运行), 程序接口(用户层序可以调用的服务)</p>
+<h3 id="系统功能调用"><a href="#系统功能调用" class="headerlink" title="系统功能调用"></a>系统功能调用</h3><p>定义: 用户程序对操作系统理性子程序的调用应以一种特殊的调用方式, 就是访管方式来实现(用户态和管态之间的转换) <code>svc n</code></p>
+<p>当处理机执行到访管指令时就发生访管中断</p>
+<h4 id="系统功能调用的实现"><a href="#系统功能调用的实现" class="headerlink" title="系统功能调用的实现"></a>系统功能调用的实现</h4><p>实现这种服务是由 SSR(系统服务请求)机构 来实现的</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka05sph7fj31g40rsx5f.jpg" alt="image-20201101214029068" style="zoom:25%;" />
 
+<h3 id="UNIX-系统功能调用"><a href="#UNIX-系统功能调用" class="headerlink" title="UNIX 系统功能调用"></a>UNIX 系统功能调用</h3><p>分类: 进程管理, 文件和外设管理, 系统状态</p>
+<h4 id="UNIX-系统功能调用的实现"><a href="#UNIX-系统功能调用的实现" class="headerlink" title="UNIX 系统功能调用的实现"></a>UNIX 系统功能调用的实现</h4><ul>
+<li><p>访管指令<code>trap</code>是俘获的一种</p>
+</li>
+<li><p>系统调用入口地址表</p>
+</li>
+<li><p>系统调用实现过程</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka0d393okj31ge0rs1kt.jpg" alt="image-20201101214729668" style="zoom:25%;" />
 
+</li>
+</ul>
+<h3 id="Linux-系统功能调用"><a href="#Linux-系统功能调用" class="headerlink" title="Linux 系统功能调用"></a>Linux 系统功能调用</h3><p>linux 中系统调用是通过异常实现的</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka0g52u4pj31kc0rs1kx.jpg" alt="image-20201101215025303" style="zoom:25%;" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h4 id="Linux-系统功能调用的实现机制"><a href="#Linux-系统功能调用的实现机制" class="headerlink" title="Linux 系统功能调用的实现机制"></a>Linux 系统功能调用的实现机制</h4><ul>
+<li><p>系统调用进入 <code>int 0x80</code></p>
+</li>
+<li><p>系统调用号和系统调用表</p>
+<p>每个系统调用被赋予唯一的系统调用号, 定义在文件: include/asm-i386/unistd.h</p>
+<p>系统调用表记录了内核中所有已经注册过的系统调用, 保存在文件 arch/i386/kernel/entry.S</p>
+</li>
+<li><p>系统调用处理程序<code>system_call()</code></p>
+<ol>
+<li><code>SAVE_ALL</code> 保护现场</li>
+<li>进行系统调用正确检查</li>
+<li>调用服务例程</li>
+<li><code>RESRORE_ALL</code> 恢复现场, <code>iret</code> 返回</li>
+</ol>
+</li>
+</ul>
+<h4 id="Linux-增加新的系统调用"><a href="#Linux-增加新的系统调用" class="headerlink" title="Linux 增加新的系统调用"></a>Linux 增加新的系统调用</h4><p>eg. 新增加的系统调用名为<code>mysyscall</code>, 系统调用编号名<code>__NR_mysyscall</code>, 服务例程名<code>sys_mysysycall</code></p>
+<h5 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h5><ol>
+<li><p>添加新的服务例程</p>
+<p>在/usr/src/linux/kernel/sys.c 文件中新增一个函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">asmlinkage <span class="keyword">int</span> <span class="title">sys_mysyscall</span><span class="params">(<span class="keyword">int</span> number)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增加新的系统调用号</p>
+<p>在 include/asm-i386/unistd.h 增加</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __NR_mysyscall XX</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改系统调用表</p>
+<p>在文件 /arch/i386/kernel/entry.S 的 sys_call_table 中增加</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ENTRY(sys_call_table)</span><br><span class="line">  .<span class="keyword">long</span> sys_restart_syscall</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  .<span class="keyword">long</span> sys_mysyscall <span class="comment">//新增</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新编译内核并启动新内核</p>
+</li>
+</ol>
+<h2 id="第四章-进程及进程管理"><a href="#第四章-进程及进程管理" class="headerlink" title="第四章 进程及进程管理"></a>第四章 进程及进程管理</h2><h4 id=""><a href="#" class="headerlink" title=""></a></h4>
     </div>
 
     
@@ -771,7 +789,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机系统"><span class="nav-number">1.</span> <span class="nav-text">计算机系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-绪论"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的地位"><span class="nav-number">1.1.1.</span> <span class="nav-text">操作系统的地位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的形成发展"><span class="nav-number">1.1.2.</span> <span class="nav-text">操作系统的形成发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的概念"><span class="nav-number">1.1.3.</span> <span class="nav-text">操作系统的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统基本类型"><span class="nav-number">1.1.4.</span> <span class="nav-text">操作系统基本类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#批量操作系统"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">批量操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分时操作系统"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">分时操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实时操作系统"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">实时操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#个人计算机操作系统"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">个人计算机操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络操作系统"><span class="nav-number">1.1.4.5.</span> <span class="nav-text">网络操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式操作系统"><span class="nav-number">1.1.4.6.</span> <span class="nav-text">分布式操作系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的关键技术"><span class="nav-number">1.1.5.</span> <span class="nav-text">操作系统的关键技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#并行处理技术"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">并行处理技术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟技术"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">虚拟技术</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNIX-Linux"><span class="nav-number">1.1.6.</span> <span class="nav-text">UNIX, Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UNIX"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">UNIX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">Linux</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-操作系统的结构和硬件支持"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 操作系统的结构和硬件支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统虚拟机"><span class="nav-number">1.2.1.</span> <span class="nav-text">操作系统虚拟机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的结构"><span class="nav-number">1.2.2.</span> <span class="nav-text">操作系统的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时的组织结构"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">运行时的组织结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理机的特权级"><span class="nav-number">1.2.3.</span> <span class="nav-text">处理机的特权级</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#处理机的态和分类"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">处理机的态和分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特权指令"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">特权指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断及其处理"><span class="nav-number">1.2.4.</span> <span class="nav-text">中断及其处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类型"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向量中断"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">向量中断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断进入"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">中断进入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软件中断处理过程"><span class="nav-number">1.2.4.5.</span> <span class="nav-text">软件中断处理过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#中断服务的主要内容"><span class="nav-number">1.2.4.5.1.</span> <span class="nav-text">中断服务的主要内容</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNIX-Linux-系统结构"><span class="nav-number">1.2.5.</span> <span class="nav-text">UNIX Linux 系统结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UNIX-系统的体系结构"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">UNIX 系统的体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux-系统的内核结构"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">Linux 系统的内核结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-系统的特权级与中断处理"><span class="nav-number">1.2.6.</span> <span class="nav-text">Linux 系统的特权级与中断处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中断处理的上半部和下半部"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">中断处理的上半部和下半部</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#上半部"><span class="nav-number">1.2.6.1.1.</span> <span class="nav-text">上半部</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#下半部"><span class="nav-number">1.2.6.1.2.</span> <span class="nav-text">下半部</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-操作系统的用户接口"><span class="nav-number">1.3.</span> <span class="nav-text">第三章 操作系统的用户接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户工作环境"><span class="nav-number">1.3.1.</span> <span class="nav-text">用户工作环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作系统的生成和系统初启"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">操作系统的生成和系统初启</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#系统生成-计算机厂商"><span class="nav-number">1.3.1.1.1.</span> <span class="nav-text">系统生成(计算机厂商)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#系统初始启动-系统引导"><span class="nav-number">1.3.1.1.2.</span> <span class="nav-text">系统初始启动(系统引导)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#应用程序的处理"><span class="nav-number">1.3.1.1.3.</span> <span class="nav-text">应用程序的处理</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机系统"><span class="nav-number">1.</span> <span class="nav-text">计算机系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-绪论"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的地位"><span class="nav-number">1.1.1.</span> <span class="nav-text">操作系统的地位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的形成发展"><span class="nav-number">1.1.2.</span> <span class="nav-text">操作系统的形成发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的概念"><span class="nav-number">1.1.3.</span> <span class="nav-text">操作系统的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统基本类型"><span class="nav-number">1.1.4.</span> <span class="nav-text">操作系统基本类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#批量操作系统"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">批量操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分时操作系统"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">分时操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实时操作系统"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">实时操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#个人计算机操作系统"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">个人计算机操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络操作系统"><span class="nav-number">1.1.4.5.</span> <span class="nav-text">网络操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式操作系统"><span class="nav-number">1.1.4.6.</span> <span class="nav-text">分布式操作系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的关键技术"><span class="nav-number">1.1.5.</span> <span class="nav-text">操作系统的关键技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#并行处理技术"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">并行处理技术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟技术"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">虚拟技术</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNIX-Linux"><span class="nav-number">1.1.6.</span> <span class="nav-text">UNIX, Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UNIX"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">UNIX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">Linux</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-操作系统的结构和硬件支持"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 操作系统的结构和硬件支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统虚拟机"><span class="nav-number">1.2.1.</span> <span class="nav-text">操作系统虚拟机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的结构"><span class="nav-number">1.2.2.</span> <span class="nav-text">操作系统的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时的组织结构"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">运行时的组织结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理机的特权级"><span class="nav-number">1.2.3.</span> <span class="nav-text">处理机的特权级</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#处理机的态和分类"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">处理机的态和分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特权指令"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">特权指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断及其处理"><span class="nav-number">1.2.4.</span> <span class="nav-text">中断及其处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类型"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向量中断"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">向量中断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断进入"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">中断进入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软件中断处理过程"><span class="nav-number">1.2.4.5.</span> <span class="nav-text">软件中断处理过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#中断服务的主要内容"><span class="nav-number">1.2.4.5.1.</span> <span class="nav-text">中断服务的主要内容</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNIX-Linux-系统结构"><span class="nav-number">1.2.5.</span> <span class="nav-text">UNIX Linux 系统结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UNIX-系统的体系结构"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">UNIX 系统的体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux-系统的内核结构"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">Linux 系统的内核结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-系统的特权级与中断处理"><span class="nav-number">1.2.6.</span> <span class="nav-text">Linux 系统的特权级与中断处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中断处理的上半部和下半部"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">中断处理的上半部和下半部</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#上半部"><span class="nav-number">1.2.6.1.1.</span> <span class="nav-text">上半部</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#下半部"><span class="nav-number">1.2.6.1.2.</span> <span class="nav-text">下半部</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-操作系统的用户接口"><span class="nav-number">1.3.</span> <span class="nav-text">第三章 操作系统的用户接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户工作环境"><span class="nav-number">1.3.1.</span> <span class="nav-text">用户工作环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作系统的生成和系统初启"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">操作系统的生成和系统初启</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#系统生成-计算机厂商"><span class="nav-number">1.3.1.1.1.</span> <span class="nav-text">系统生成(计算机厂商)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#系统初始启动-系统引导"><span class="nav-number">1.3.1.1.2.</span> <span class="nav-text">系统初始启动(系统引导)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#应用程序的处理"><span class="nav-number">1.3.1.1.3.</span> <span class="nav-text">应用程序的处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户接口"><span class="nav-number">1.3.2.</span> <span class="nav-text">用户接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统功能调用"><span class="nav-number">1.3.3.</span> <span class="nav-text">系统功能调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#系统功能调用的实现"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">系统功能调用的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNIX-系统功能调用"><span class="nav-number">1.3.4.</span> <span class="nav-text">UNIX 系统功能调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UNIX-系统功能调用的实现"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">UNIX 系统功能调用的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-系统功能调用"><span class="nav-number">1.3.5.</span> <span class="nav-text">Linux 系统功能调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux-系统功能调用的实现机制"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">Linux 系统功能调用的实现机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux-增加新的系统调用"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">Linux 增加新的系统调用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#步骤"><span class="nav-number">1.3.5.2.1.</span> <span class="nav-text">步骤</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章-进程及进程管理"><span class="nav-number">1.4.</span> <span class="nav-text">第四章 进程及进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#"><span class="nav-number">1.4.0.1.</span> <span class="nav-text"></span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
