@@ -63,6 +63,13 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj45ru9yx9j311w0l4dx6.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj45wuj1ekj30rc0d0n6c.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj45ywwml4j30rq08e79y.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb7np7zrnj30c40gk78l.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb825f5zuj30zs0ieh1b.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb851v7z3j30rc0eq45p.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb8bnovhcj30ys0hedwb.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb8esl6d9j30xw0is1ck.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb8j4w095j30yy0d6wpl.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb8oqsco8j30xy0ee15g.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gip88f6ju0j30mh0inths.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj41qk2i2gj30gv0exafo.jpg">
 <meta property="article:published_time" content="2020-09-12T09:28:39.000Z">
@@ -232,6 +239,206 @@
 <p>奇校验同理</p>
 <h2 id="实验-2"><a href="#实验-2" class="headerlink" title="实验 2"></a>实验 2</h2><p>gsp  c4 c3</p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk3z8s4incj31gm0pgnid.jpg" alt="截屏2020-10-27 下午4.35.03"></p>
+<h2 id="实验-4"><a href="#实验-4" class="headerlink" title="实验 4"></a>实验 4</h2><h3 id="中断处理机制"><a href="#中断处理机制" class="headerlink" title="中断处理机制"></a>中断处理机制</h3><ul>
+<li><p>异常与中断概念</p>
+<ul>
+<li><p>内部异常</p>
+<ul>
+<li><p>CPU内部引起的异常事件，也称内部中断</p>
+</li>
+<li><p>分类</p>
+<ul>
+<li><p>故障（Fault）</p>
+<ul>
+<li><p>指令执行引起，未定义指令、除数为零、缺页等</p>
+</li>
+<li><p>可恢复的故障，指令需恢复执行</p>
+</li>
+<li><p>不可恢复故障，进程被终止</p>
+</li>
+</ul>
+</li>
+<li><p>自陷（trap）</p>
+<ul>
+<li>系统调用、条件陷阱，位置固定，类似函数调用</li>
+</ul>
+</li>
+<li><p>终止（Abort）</p>
+<ul>
+<li>随机出现的使得 CPU 无法继续执行的硬件故障，和具体指令无关。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>外部中断</p>
+<ul>
+<li><p>由外部设备向 CPU 发出的中断请求（如鼠标点击、按键动作）</p>
+</li>
+<li><p>CPU 暂时中断当前正在执行的程序，转去执行为某外设事件服务的中断服务程序，处理完毕后再返回断点继续执行</p>
+</li>
+<li><p>可屏蔽中断，非可屏蔽中断</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>外部中断处理过程</p>
+<ul>
+<li><p>中断时机？</p>
+<ul>
+<li>指令执行周期最后一拍，如有中断请求则进入中断响应周期</li>
+</ul>
+</li>
+<li><p>中断判别？</p>
+<ul>
+<li>外部中断会通过中断请求IntR信号发送给CPU</li>
+</ul>
+</li>
+<li><p>完整中断流程</p>
+<ul>
+<li><p>中断响应</p>
+<ul>
+<li><p>实现中断函数的调用</p>
+</li>
+<li><p>中断隐指令完成的数据通路</p>
+<ul>
+<li><p>关中断</p>
+<ul>
+<li><p>清除中断使能寄存器IE</p>
+</li>
+<li><p>IE与中断请求逻辑与后送控制器</p>
+</li>
+<li><p>关中断后控制器无法接收新的中断请求</p>
+</li>
+</ul>
+</li>
+<li><p>保存断点</p>
+<ul>
+<li>保存PC值，X86进堆栈，MIPS送EPC</li>
+</ul>
+</li>
+<li><p>中断识别</p>
+<ul>
+<li>识别中断源，并将对应中断服务程序入口地址送PC</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CPU执行中断服务程序</p>
+</li>
+<li><p>中断返回</p>
+<ul>
+<li><p>中断服务程序最后一条指令为中断返回指令</p>
+</li>
+<li><p>MIPS：eret     X86：iret</p>
+</li>
+<li><p>单级中断中该指令开中断同时将断点地址送PC</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>支持中断的CPU设计</p>
+<ul>
+<li><p>硬件支持</p>
+<ul>
+<li><p>增加中断响应周期</p>
+<ul>
+<li><p>修改指令执行状态机</p>
+</li>
+<li><p>所有指令的最后一个状态需要进行中断请求判断</p>
+</li>
+<li><p>有中断进入中断响应周期</p>
+</li>
+<li><p>中断响应周期结束进入取指令公操作</p>
+</li>
+</ul>
+</li>
+<li><p>相关硬件与数据通路</p>
+<ul>
+<li><p>开关中断</p>
+<ul>
+<li><p>增加IE寄存器，用于屏蔽中断请求，为0时关中断，为1时开中断</p>
+</li>
+<li><p>开中断，关中断信号分别连接置位和复位信号</p>
+</li>
+<li><p>默认开中断，可以连接寄存器的~Q端</p>
+</li>
+</ul>
+</li>
+<li><p>保存断点</p>
+<ul>
+<li><p>增加EPC寄存器/堆栈</p>
+</li>
+<li><p>增加EPC与PC之间的通路</p>
+</li>
+</ul>
+</li>
+<li><p>中断识别</p>
+<ul>
+<li><p>增加中断控制逻辑</p>
+</li>
+<li><p>能识别中断源，产生中断请求和中断号</p>
+</li>
+<li><p>能根据中断号自动获取中断入口地址送PC</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>软件支持</p>
+<ul>
+<li><p>中断返回指令支持</p>
+</li>
+<li><p>编写中断服务程序</p>
+<ul>
+<li><p>保护现场</p>
+<ul>
+<li><p>压栈方式保护</p>
+</li>
+<li><p>所有在中断服务程序中被改写的通用寄存器都需要压栈</p>
+</li>
+<li><p>EPC，中断屏蔽字等</p>
+</li>
+</ul>
+</li>
+<li><p>中断服务</p>
+</li>
+<li><p>恢复现场</p>
+</li>
+<li><p>中断返回</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>控制器实现</p>
+<ul>
+<li><p>在原有状态机中增加中断响应周期路径和eret指令路径</p>
+</li>
+<li><p>微程序</p>
+<ul>
+<li><p>控制字段增加与中断相关的控制信号</p>
+</li>
+<li><p>判别测试字段增加Pend位，表示当前微指令为微程序的最后一条微指令，需要根据中断请求信号Intr的值进行中断判别</p>
+</li>
+<li><p>注意中断响应周期最后一个状态也需要设置Pend</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h1 id="mooc"><a href="#mooc" class="headerlink" title="mooc"></a>mooc</h1><h2 id="1-计算机系统概论"><a href="#1-计算机系统概论" class="headerlink" title="1. 计算机系统概论"></a>1. 计算机系统概论</h2><ul>
 <li><p>冯诺依曼结构计算的工作原理: 存储程序 程序控制</p>
 <p>对应硬件: 主机(CPU(运算器, 控制器), 内存), 外设(io, 外存储器), 总线(地址线, 数据线, 控制线)</p>
@@ -333,21 +540,77 @@
 <li><p>定点数除法</p>
 </li>
 </ul>
-<h2 id="4-存储系统"><a href="#4-存储系统" class="headerlink" title="4. 存储系统"></a>4. 存储系统</h2><blockquote>
+<h2 id="4-存储系统"><a href="#4-存储系统" class="headerlink" title="4. 存储系统"></a>4. 存储系统</h2><h3 id="存储系统的层次结构"><a href="#存储系统的层次结构" class="headerlink" title="存储系统的层次结构"></a>存储系统的层次结构</h3><blockquote>
 <p>cache</p>
+<p>cpu -&gt; cache -&gt; 主存 -&gt; 辅存</p>
 </blockquote>
+<p>L1 cache 集成在 CPU 中, 分数据 cache(D-Cache)和指令 cache(I-Cache)</p>
+<p>L2 cahce 在主板上或与 cpu 集成在同一电路板上, 随着工艺提高 L2cahce 被集成在 cpu 内核中, 不分 d-cahce 和 i-cache</p>
+<p>局部性原理:</p>
 <ul>
-<li><p>存储字长: 主存中一个存储单元所包含的二进制位数</p>
+<li><p>时间局部性</p>
+<p>现在访问的信息在不久以后还会被访问</p>
 </li>
-<li><p>ISA 设计时要考虑的两个问题</p>
-<ul>
-<li>如何根据字节地址读取一个 32 位的字</li>
-<li>一个字能否存放在主存的任何字节边界</li>
+<li><p>空间局部性</p>
+<p>下一次访问的信息在这次访问的附近</p>
+</li>
+</ul>
+<h3 id="主存中的数据组织"><a href="#主存中的数据组织" class="headerlink" title="主存中的数据组织"></a>主存中的数据组织</h3><ul>
+<li>存储字长: 主存中一个存储单元所包含的二进制位数</li>
+<li>ISA 设计时要考虑的两个问题<ul>
+<li>如何根据字节地址读取一个 32 位的字 字的存放问题</li>
+<li>一个字能否存放在主存的任何字节边界 字的边界对齐问题</li>
 </ul>
 </li>
-<li><p>大端小端</p>
+<li>大端 高字节地址是数据的地址</li>
+<li>小端 低字节地址是数据的地址</li>
+</ul>
+<h3 id="静态存储器的工作原理"><a href="#静态存储器的工作原理" class="headerlink" title="静态存储器的工作原理"></a>静态存储器的工作原理</h3><ul>
+<li><p>SRAM 存储单元结构</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb7np7zrnj30c40gk78l.jpg" alt="截屏2020-11-02 下午10.45.20" style="zoom:33%;" />
+
+<ul>
+<li><p>工作管: t1, t2(保存数据)</p>
+</li>
+<li><p>负载管: t3 t4(补充电荷)</p>
+</li>
+<li><p>门控管: t5 t6 t7 t8(开关作用)</p>
+</li>
+<li><p>写操作 </p>
+<p>x 有效, t5 t6 通, a 与 i/o 连通</p>
+<p>y 有效, t7 t8 通, b 与 !i/o 连通</p>
+<p>i/o = 1 -&gt; A = 1 -&gt; T2 通 -&gt; B = 0 -&gt; T1 截止</p>
+<p>!i/o = 0 -&gt; B = 0 -&gt; T1 截止 -&gt; A = 1 -&gt; T2 通</p>
+<p>此时 T1 T2形成了稳态, A = 1, B = 0</p>
+<p>此时写 1</p>
+<p>相反写 0</p>
+</li>
+<li><p>读操作</p>
+<p>x 有效, t5 t6 通, a 与 i/o 连通</p>
+<p>y 有效, t7 t8 通, b 与 !i/o 连通</p>
+<p>读 1 的时候, A = 1, B = 0</p>
+<p>通过外接于 i/o 和!i/o 之间的电流放大器中的电流方向可以判断出读的是 1 还是 0</p>
+</li>
+<li><p>无论读写, xy 译码线都要有效</p>
+</li>
+<li><p>保持: xy 撤销后, 由 t3t4 为 t1t2 提供工作电流, 保持其稳定互锁状态不变</p>
+</li>
+<li><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb825f5zuj30zs0ieh1b.jpg" alt="截屏2020-11-02 下午10.59.16"></p>
+</li>
+<li><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb851v7z3j30rc0eq45p.jpg" alt="截屏2020-11-02 下午11.02.05"></p>
 </li>
 </ul>
+</li>
+</ul>
+<h3 id="动态存储器的工作原理"><a href="#动态存储器的工作原理" class="headerlink" title="动态存储器的工作原理"></a>动态存储器的工作原理</h3><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb8bnovhcj30ys0hedwb.jpg" alt="截屏2020-11-02 下午11.08.22"></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb8esl6d9j30xw0is1ck.jpg" alt="截屏2020-11-02 下午11.11.27"></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb8j4w095j30yy0d6wpl.jpg" alt="截屏2020-11-02 下午11.15.37"></p>
+<ul>
+<li>集中刷新</li>
+<li>分散刷新</li>
+<li>异步刷新</li>
+</ul>
+<h3 id="存储扩展"><a href="#存储扩展" class="headerlink" title="存储扩展"></a>存储扩展</h3><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkb8oqsco8j30xy0ee15g.jpg" alt="截屏2020-11-02 下午11.21.01"></p>
 <h1 id="深入理解计算机系统"><a href="#深入理解计算机系统" class="headerlink" title="深入理解计算机系统"></a>深入理解计算机系统</h1><h2 id="第一章-计算机系统漫游"><a href="#第一章-计算机系统漫游" class="headerlink" title="第一章 计算机系统漫游"></a>第一章 计算机系统漫游</h2><h3 id="程序被翻译为不同的格式"><a href="#程序被翻译为不同的格式" class="headerlink" title="程序被翻译为不同的格式"></a>程序被翻译为不同的格式</h3><p>上下文</p>
 <p>hello.c -预处理器(cpp, preprocesser)-&gt; hello.i -编译器(ccl, compiler)-&gt; hello.s -汇编器(as, assembler)-&gt; hello.o -连接器(ld, linker)-&gt; hello</p>
 <p>GNU 项目 GNU is not Unix</p>
@@ -532,7 +795,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机组成原理实验"><span class="nav-number">1.</span> <span class="nav-text">计算机组成原理实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验-1-数据表示实验"><span class="nav-number">1.1.</span> <span class="nav-text">实验 1 数据表示实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#汉字编码实验"><span class="nav-number">1.1.1.</span> <span class="nav-text">汉字编码实验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验-2"><span class="nav-number">1.2.</span> <span class="nav-text">实验 2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mooc"><span class="nav-number">2.</span> <span class="nav-text">mooc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-计算机系统概论"><span class="nav-number">2.1.</span> <span class="nav-text">1. 计算机系统概论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数据表示"><span class="nav-number">2.2.</span> <span class="nav-text">2. 数据表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-运算方法与运算器"><span class="nav-number">2.3.</span> <span class="nav-text">3. 运算方法与运算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-存储系统"><span class="nav-number">2.4.</span> <span class="nav-text">4. 存储系统</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深入理解计算机系统"><span class="nav-number">3.</span> <span class="nav-text">深入理解计算机系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-计算机系统漫游"><span class="nav-number">3.1.</span> <span class="nav-text">第一章 计算机系统漫游</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序被翻译为不同的格式"><span class="nav-number">3.1.1.</span> <span class="nav-text">程序被翻译为不同的格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统硬件"><span class="nav-number">3.1.2.</span> <span class="nav-text">系统硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总线"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">总线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#io-设备"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">io 设备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主存"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">主存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理器-CPU"><span class="nav-number">3.1.2.4.</span> <span class="nav-text">处理器 CPU</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储设备形成层次结构"><span class="nav-number">3.1.3.</span> <span class="nav-text">存储设备形成层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统管理硬件"><span class="nav-number">3.1.4.</span> <span class="nav-text">操作系统管理硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程"><span class="nav-number">3.1.4.1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程"><span class="nav-number">3.1.4.2.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟内存"><span class="nav-number">3.1.4.3.</span> <span class="nav-text">虚拟内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件"><span class="nav-number">3.1.4.4.</span> <span class="nav-text">文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要主题"><span class="nav-number">3.1.5.</span> <span class="nav-text">重要主题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#并发和并行"><span class="nav-number">3.1.5.1.</span> <span class="nav-text">并发和并行</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线程级并发"><span class="nav-number">3.1.5.1.1.</span> <span class="nav-text">线程级并发</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#指令级并行"><span class="nav-number">3.1.5.1.2.</span> <span class="nav-text">指令级并行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#单指令-多数据并行"><span class="nav-number">3.1.5.1.3.</span> <span class="nav-text">单指令, 多数据并行</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象"><span class="nav-number">3.1.5.2.</span> <span class="nav-text">抽象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-信息的表示和处理"><span class="nav-number">3.2.</span> <span class="nav-text">第二章 信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#信息存储"><span class="nav-number">3.2.1.</span> <span class="nav-text">信息存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整数运算"><span class="nav-number">3.2.2.</span> <span class="nav-text">整数运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数"><span class="nav-number">3.2.3.</span> <span class="nav-text">浮点数</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机组成原理实验"><span class="nav-number">1.</span> <span class="nav-text">计算机组成原理实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验-1-数据表示实验"><span class="nav-number">1.1.</span> <span class="nav-text">实验 1 数据表示实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#汉字编码实验"><span class="nav-number">1.1.1.</span> <span class="nav-text">汉字编码实验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验-2"><span class="nav-number">1.2.</span> <span class="nav-text">实验 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验-4"><span class="nav-number">1.3.</span> <span class="nav-text">实验 4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#中断处理机制"><span class="nav-number">1.3.1.</span> <span class="nav-text">中断处理机制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mooc"><span class="nav-number">2.</span> <span class="nav-text">mooc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-计算机系统概论"><span class="nav-number">2.1.</span> <span class="nav-text">1. 计算机系统概论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数据表示"><span class="nav-number">2.2.</span> <span class="nav-text">2. 数据表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-运算方法与运算器"><span class="nav-number">2.3.</span> <span class="nav-text">3. 运算方法与运算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-存储系统"><span class="nav-number">2.4.</span> <span class="nav-text">4. 存储系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存储系统的层次结构"><span class="nav-number">2.4.1.</span> <span class="nav-text">存储系统的层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主存中的数据组织"><span class="nav-number">2.4.2.</span> <span class="nav-text">主存中的数据组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态存储器的工作原理"><span class="nav-number">2.4.3.</span> <span class="nav-text">静态存储器的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态存储器的工作原理"><span class="nav-number">2.4.4.</span> <span class="nav-text">动态存储器的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储扩展"><span class="nav-number">2.4.5.</span> <span class="nav-text">存储扩展</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深入理解计算机系统"><span class="nav-number">3.</span> <span class="nav-text">深入理解计算机系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-计算机系统漫游"><span class="nav-number">3.1.</span> <span class="nav-text">第一章 计算机系统漫游</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序被翻译为不同的格式"><span class="nav-number">3.1.1.</span> <span class="nav-text">程序被翻译为不同的格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统硬件"><span class="nav-number">3.1.2.</span> <span class="nav-text">系统硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总线"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">总线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#io-设备"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">io 设备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主存"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">主存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理器-CPU"><span class="nav-number">3.1.2.4.</span> <span class="nav-text">处理器 CPU</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储设备形成层次结构"><span class="nav-number">3.1.3.</span> <span class="nav-text">存储设备形成层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统管理硬件"><span class="nav-number">3.1.4.</span> <span class="nav-text">操作系统管理硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程"><span class="nav-number">3.1.4.1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程"><span class="nav-number">3.1.4.2.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟内存"><span class="nav-number">3.1.4.3.</span> <span class="nav-text">虚拟内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件"><span class="nav-number">3.1.4.4.</span> <span class="nav-text">文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要主题"><span class="nav-number">3.1.5.</span> <span class="nav-text">重要主题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#并发和并行"><span class="nav-number">3.1.5.1.</span> <span class="nav-text">并发和并行</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线程级并发"><span class="nav-number">3.1.5.1.1.</span> <span class="nav-text">线程级并发</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#指令级并行"><span class="nav-number">3.1.5.1.2.</span> <span class="nav-text">指令级并行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#单指令-多数据并行"><span class="nav-number">3.1.5.1.3.</span> <span class="nav-text">单指令, 多数据并行</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象"><span class="nav-number">3.1.5.2.</span> <span class="nav-text">抽象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-信息的表示和处理"><span class="nav-number">3.2.</span> <span class="nav-text">第二章 信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#信息存储"><span class="nav-number">3.2.1.</span> <span class="nav-text">信息存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整数运算"><span class="nav-number">3.2.2.</span> <span class="nav-text">整数运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数"><span class="nav-number">3.2.3.</span> <span class="nav-text">浮点数</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
