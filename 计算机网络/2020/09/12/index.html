@@ -258,14 +258,14 @@
 <li><p>接入</p>
 <ul>
 <li>点对点<ul>
-<li>电话线 ADSL 非对称数字用户环线（Asymmetrical Digital Subscriber Loop）</li>
+<li>电话线 ADSL 非对称数字用户环线（Asymmetrical Digital Subscriber Loop）双绞铜线</li>
 <li>电缆/光纤混合线路 HFC (电视)</li>
 <li>光纤到户 FTTH</li>
 <li>卫星</li>
 </ul>
 </li>
 <li>以太网/wifi<ul>
-<li>有线以太网</li>
+<li>有线以太网 双绞铜线</li>
 <li>wifi</li>
 </ul>
 </li>
@@ -809,9 +809,75 @@
 </li>
 <li><p>路由协议概述</p>
 <p>好的路由: 无自环, 可收敛, 路径好</p>
+<ul>
+<li>AS<ul>
+<li>AS 内</li>
+<li>AS 外</li>
+</ul>
 </li>
 </ul>
-<h1 id="实验-1-socket-编程"><a href="#实验-1-socket-编程" class="headerlink" title="实验 1 socket 编程"></a>实验 1 socket 编程</h1><h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><p>ip, 端口, 主目录</p>
+</li>
+<li><p>选路算法</p>
+<ul>
+<li><p>OSPF 基于路径成本最优, 是一种 LS 协议</p>
+<p>迪克斯特拉算法构造最短路径树, 只记录下一跳的节点, 不记录整个路径</p>
+</li>
+<li><p>RIP 基于路径距离最短, 是一种 DV 协议</p>
+<p>相邻节点</p>
+</li>
+<li><p>BGP-4 协议</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第五章-链路层和局域网"><a href="#第五章-链路层和局域网" class="headerlink" title="第五章 链路层和局域网"></a>第五章 链路层和局域网</h2><ul>
+<li><p>ALOHA</p>
+</li>
+<li><p>CSMA</p>
+<ul>
+<li>非坚持</li>
+<li>1 坚持</li>
+<li>p 坚持</li>
+</ul>
+</li>
+<li><p>信道划分协议</p>
+<ul>
+<li>TDMA</li>
+<li>FDMA</li>
+</ul>
+</li>
+<li><p>随机访问协议</p>
+</li>
+<li><p>轮流协议</p>
+</li>
+<li><p>令牌传递协议</p>
+</li>
+<li><p>MAC 地址</p>
+<p>48bit 链路层标识</p>
+</li>
+<li><p>ARP 协议 地址解析协议</p>
+</li>
+<li><p>以太网</p>
+<ul>
+<li><p>总线式</p>
+</li>
+<li><p>交换式</p>
+</li>
+<li><p>帧: 数据字段, 前同步码, 地址, 类型, CRC</p>
+</li>
+<li><p>集线器(转发器)</p>
+</li>
+<li><p>网桥 mac 层 lan 互连</p>
+</li>
+</ul>
+</li>
+<li><p>交换机</p>
+</li>
+<li><p>web:</p>
+<p>dhcp dns arp </p>
+</li>
+</ul>
+<h2 id="第六章-wifi"><a href="#第六章-wifi" class="headerlink" title="第六章 wifi"></a>第六章 wifi</h2><h1 id="实验-1-socket-编程"><a href="#实验-1-socket-编程" class="headerlink" title="实验 1 socket 编程"></a>实验 1 socket 编程</h1><h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><p>ip, 端口, 主目录</p>
 <p>处理请求, 穿件套接字</p>
 <p>确定网页文件</p>
 <p>响应报文</p>
@@ -851,6 +917,28 @@
 <p>按序发送 ack, 否则发送上一个 ack</p>
 </li>
 </ul>
+<h3 id="rdt"><a href="#rdt" class="headerlink" title="rdt"></a>rdt</h3><ul>
+<li><p>rdt 1.0 无差错</p>
+<p>发送接收</p>
+</li>
+<li><p>rdt 2.0 比特差错</p>
+<p>checksum, ack, nak</p>
+<p>除非接收方接收到了正确的数据, 否则发送方不会发送新的数据–停等协议</p>
+</li>
+<li><p>rdt 2.1 ack 或者 nak 受损</p>
+<p>增加序号(sequence number)可以让接收方知道发送方是否在重传一个分组</p>
+</li>
+<li><p>rdt 2.2 冗余 ack</p>
+<p>用两个 ack 表示 nak</p>
+</li>
+<li><p>rdt 3.0 丢包</p>
+<p>等待与重传, 定时器</p>
+<p>每发送一个分组就启动定时器</p>
+</li>
+<li><p>流水线 解决 RTT 占比过多的问题</p>
+<p>每一个分组都要有自己的序号, 接收方和发送方要有缓冲区, 对于损坏的分组如何处理(GBN, SR)</p>
+</li>
+</ul>
 <h1 id="计算机网络自顶向下"><a href="#计算机网络自顶向下" class="headerlink" title="计算机网络自顶向下"></a>计算机网络自顶向下</h1><h2 id="第一章-计算机网络和-Internet"><a href="#第一章-计算机网络和-Internet" class="headerlink" title="第一章 计算机网络和 Internet"></a>第一章 计算机网络和 Internet</h2><p>switch 交换机</p>
 <p>router 路由器</p>
 <p>coaxial cable 同轴电缆</p>
@@ -888,6 +976,122 @@
 <p>​    PoPs(points of presence) 网络入网点</p>
 <p>​    IXPs(Internet exchange points) 互联网交换节点</p>
 <p>​    peer 同级交换</p>
+<p>throughput 吞吐量</p>
+<p>layer</p>
+<p>​    application</p>
+<p>​    transport</p>
+<p>​    network</p>
+<p>​    link</p>
+<p>​    physic</p>
+<p>ISO(International Organization for Standardization) 国际标准化组织</p>
+<p>OSI 开放系统互连(模型)</p>
+<p>DoS denial of service attack 拒绝服务攻击</p>
+<p>DDoS distributed DoS 分布式 DoS</p>
+<h2 id="第二章-应用层-1"><a href="#第二章-应用层-1" class="headerlink" title="第二章 应用层"></a>第二章 应用层</h2><p>CS client-server architecture 客户-服务器</p>
+<p>P2P 对等体系架构</p>
+<p>process 进程</p>
+<p>message 报文</p>
+<p>socket 套接字</p>
+<p>API application programming interface 应用程序编程接口</p>
+<p>RDT reliable data transfer可靠数据传输</p>
+<p>SSL secure socket layer 安全套接字层</p>
+<p>HTTP hypertext transfer protocol 超文本传输协议</p>
+<p>RTT round-trip time 往返时间</p>
+<p>web cache web 缓存器 也叫代理服务器(proxy server)</p>
+<p>CDN content distribution network 内容分发网络</p>
+<p>SMTP simple mail transfer protocol 简单邮件传输协议</p>
+<p>user agent 用户代理</p>
+<p>mail server 邮件服务器</p>
+<p>POP3 post office protocol-version3 第三版邮局协议</p>
+<p>IMAP internet mail access protocol 因特网邮件访问协议</p>
+<p>DNS domain name system 域名系统</p>
+<p>BIND (Berkeley internet name domain) BIND 软件</p>
+<p>TLD top-level domain</p>
+<p>torrent 洪流</p>
+<p>DASH dynamic adaptive streaming over HTTP 经 http 的动态适应性流</p>
+<h2 id="第三章-运输层-1"><a href="#第三章-运输层-1" class="headerlink" title="第三章 运输层"></a>第三章 运输层</h2><p>UDP user datagram protocol</p>
+<p>TCP transfer control protocol</p>
+<p>segment 报文段(运输层)</p>
+<p>transport-layer multiplexing 多路复用</p>
+<p>demultiplexing 多路分解</p>
+<p>FSM finite-state machine 有限状态机</p>
+<p>ARQ automatic repeat reQuest 自动重传请求协议</p>
+<p>stop-and-wait 停等协议</p>
+<p>alter-nating-bit protocol 比特交替协议</p>
+<p>GBN go-back N 回退 N 步(又叫sliding-window protocol 滑动窗口协议)</p>
+<p>SR selective repeat 选择重传</p>
+<p>MSS maximum segment size 最大报文段长度(应用层数据的最大长度)</p>
+<p>MTU maximum transmission unit 最大传输单元 (最大链路层帧长度)</p>
+<p>cumulative acknowledgment 累计确认</p>
+<p>SampleRTT 样本 RTT</p>
+<p>​    EstimateRTT DevRTT</p>
+<p>fast retransmit 快速重传</p>
+<h2 id="第四章-网络层-数据平面"><a href="#第四章-网络层-数据平面" class="headerlink" title="第四章 网络层:数据平面"></a>第四章 网络层:数据平面</h2><p>forwarding 转发</p>
+<p>routing 路由选择</p>
+<p>SDN software defined networking 软件定义网络</p>
+<p>head-of-the-line HOL 线路前部(阻塞)</p>
+<p>FIFO FCFS 先进先出, 先来先服务</p>
+<p>priority queueing 优先权排队</p>
+<p>WFQ weighted fair queueing 加权公平排队</p>
+<p>TTL time-to-live 寿命</p>
+<p>MTU</p>
+<p>network mask 子网掩码</p>
+<p>CIDR classless interdomain routing 无类别域间路由选择</p>
+<p>ICANN internet corporation for assigned names and numbers 英特网名字和编号分配机构</p>
+<p>DHCP dynamic host configuration 动态主机配置协议</p>
+<p>WAN wide area network 广域网</p>
+<p>LAN local area network 局域网</p>
+<p>WLAN wireless LAN 无线局域网</p>
+<p>VLAN virtual LAN 虚拟局域网</p>
+<p>wifi wireless fidelity</p>
+<p>NAT network address translation 网络地址转换</p>
+<h2 id="第五章-网络层-控制平面"><a href="#第五章-网络层-控制平面" class="headerlink" title="第五章 网络层: 控制平面"></a>第五章 网络层: 控制平面</h2><p>LS link state 链路状态算法</p>
+<p>decentralized routing algorithm 分散式路由选择算法</p>
+<p>dijkstra 狄利克雷算法</p>
+<p>DV distance-vector 距离向量算法</p>
+<p>bellman-ford 方程</p>
+<p>OSPF open shortest path first 开放式最短路径有限</p>
+<p>AS autonomous system 自治系统</p>
+<p>ASN AS号</p>
+<p>BGP broder gateway protocol 边界网关协议</p>
+<h1 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h1><h2 id="http-状态码"><a href="#http-状态码" class="headerlink" title="http 状态码"></a>http 状态码</h2><p>200 OK 成功</p>
+<p>301 moved permanently 永久转移</p>
+<p>400 bad request 不能被服务器理解</p>
+<p>404 not found</p>
+<p>505 http version not supported</p>
+<h2 id="报文等概念"><a href="#报文等概念" class="headerlink" title="报文等概念"></a>报文等概念</h2><p>报文 message 应用层</p>
+<p>报文段 segment 传输层TCP</p>
+<p>数据报 datagram 传输层 UDP</p>
+<p>分组(包) packet 网络层</p>
+<p>帧 frame 链路层</p>
+<h2 id="abcde-类-ip"><a href="#abcde-类-ip" class="headerlink" title="abcde 类 ip"></a>abcde 类 ip</h2><p>A类地址第1字节为网络地址，其它3个字节为主机地址。另外第1个字节的最高位固定为0。 </p>
+<p>​    A类地址范围：1.0.0.0到127.255.255.255。 </p>
+<p>​    A类地址中的私有地址和保留地址： </p>
+<p>​        10.0.0.0到10.255.255.255是私有地址（所谓的私有地址就是在互联网上不使用，而被用在局域网络中的地址）。 </p>
+<p>　　127.0.0.0到127.255.255.255是保留地址，用做循环测试用的。 </p>
+<p>　　0.0.0.0到0.255.255.255也是保留地址，用做表示所有的IP地址。 </p>
+<p>​    A类地址默认子网掩码为255.0.0.0</p>
+<p>B类地址第1字节和第2字节为网络地址，其它2个字节为主机地址。另外第1个字节的前两位固定为10。 </p>
+<p>　B类地址范围：128.0.0.1到191.255.255.255。 </p>
+<p>　B类地址的私有地址和保留地址 </p>
+<p>　    172.16.0.0到172.31.255.255是私有地址 </p>
+<p>　　169.254.0.0到169.254.255.255是保留地址。如果你的IP地址是自动获取IP地址，而你在网络上又没有找到可用的DHCP服务器，这时你将会从169.254.0.0到169.254.255.255中临时获得一个IP地址。 </p>
+<p>　B类地址默认子网掩码为255.255.0.0</p>
+<p>C类地址第1字节、第2字节和第3个字节为网络地址，第4个字节为主机地址。另外第1个字节的前三位固定为110。 </p>
+<p>　　C类地址范围：192.0.0.1到223.255.255.255。 </p>
+<p>　　C类地址中的私有地址：192.168.0.0到192.168.255.255是私有地址。 </p>
+<p>　　C类地址默认子网掩码为255.255.255.0</p>
+<p>D类地址不分网络地址和主机地址，它的第1个字节的前四位固定为1110。 </p>
+<p>　　D类地址范围：224.0.0.0到239.255.255.255 </p>
+<p>　　D类地址用于多点播送。 </p>
+<p>　　D类IP地址第一个字节以“lll0”开始，它是一个专门保留的地址。它并不指向特定的网络，目前这一类地址被用在多点广播（Multicast）中。多点广播地址用来一次寻址一组计算机，它标识共享同一协议的一组计算机。 </p>
+<p>　　D类地址又分为三种类型：即专用地址、公用地址和私用地址；其中专用地址（224.0.0.0-224.0.0.255）用于网络协议组的广播，公用地址（224.0.1.0-238.255.255.255）用于其它组播，私用地址（239.0.0.0-239.255.255.255）用于测试。 </p>
+<p>　　在IPv6协议中，第一个字节必须是0xFF。</p>
+<p>E类地址也不分网络地址和主机地址，它的第1个字节的前五位固定为11110。 </p>
+<p>　　E类地址范围：240.0.0.1到255.255.255.254 </p>
+<p>　　E类IP地址以“llll0”开始，为将来使用保留。 </p>
+<p>　　全零（“0．0．0．0”）地址对应于当前主机。全“1”的IP地址（“255．255．255．255”）是当前子网的广播地址。 </p>
+<p>　　E类IP地址的第一段数字范围为240～254，E类地址保留，仅作为搜索、Internet的实验和开发之用。</p>
 
     </div>
 
@@ -970,7 +1174,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MOOC"><span class="nav-number">1.</span> <span class="nav-text">MOOC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-计算机网络与因特网"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 计算机网络与因特网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-应用层"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 应用层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-运输层"><span class="nav-number">1.3.</span> <span class="nav-text">第三章 运输层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章-网络层"><span class="nav-number">1.4.</span> <span class="nav-text">第四章 网络层</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验-1-socket-编程"><span class="nav-number">2.</span> <span class="nav-text">实验 1 socket 编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验要求"><span class="nav-number">2.1.</span> <span class="nav-text">实验要求</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验-2-rdt-协议"><span class="nav-number">3.</span> <span class="nav-text">实验 2 rdt 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#要求"><span class="nav-number">3.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟环境"><span class="nav-number">3.2.</span> <span class="nav-text">模拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识"><span class="nav-number">3.3.</span> <span class="nav-text">知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GBN"><span class="nav-number">3.3.1.</span> <span class="nav-text">GBN</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络自顶向下"><span class="nav-number">4.</span> <span class="nav-text">计算机网络自顶向下</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-计算机网络和-Internet"><span class="nav-number">4.1.</span> <span class="nav-text">第一章 计算机网络和 Internet</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MOOC"><span class="nav-number">1.</span> <span class="nav-text">MOOC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-计算机网络与因特网"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 计算机网络与因特网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-应用层"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 应用层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-运输层"><span class="nav-number">1.3.</span> <span class="nav-text">第三章 运输层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章-网络层"><span class="nav-number">1.4.</span> <span class="nav-text">第四章 网络层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五章-链路层和局域网"><span class="nav-number">1.5.</span> <span class="nav-text">第五章 链路层和局域网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六章-wifi"><span class="nav-number">1.6.</span> <span class="nav-text">第六章 wifi</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验-1-socket-编程"><span class="nav-number">2.</span> <span class="nav-text">实验 1 socket 编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验要求"><span class="nav-number">2.1.</span> <span class="nav-text">实验要求</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验-2-rdt-协议"><span class="nav-number">3.</span> <span class="nav-text">实验 2 rdt 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#要求"><span class="nav-number">3.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟环境"><span class="nav-number">3.2.</span> <span class="nav-text">模拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识"><span class="nav-number">3.3.</span> <span class="nav-text">知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GBN"><span class="nav-number">3.3.1.</span> <span class="nav-text">GBN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rdt"><span class="nav-number">3.3.2.</span> <span class="nav-text">rdt</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络自顶向下"><span class="nav-number">4.</span> <span class="nav-text">计算机网络自顶向下</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-计算机网络和-Internet"><span class="nav-number">4.1.</span> <span class="nav-text">第一章 计算机网络和 Internet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-应用层-1"><span class="nav-number">4.2.</span> <span class="nav-text">第二章 应用层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-运输层-1"><span class="nav-number">4.3.</span> <span class="nav-text">第三章 运输层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章-网络层-数据平面"><span class="nav-number">4.4.</span> <span class="nav-text">第四章 网络层:数据平面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五章-网络层-控制平面"><span class="nav-number">4.5.</span> <span class="nav-text">第五章 网络层: 控制平面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小总结"><span class="nav-number">5.</span> <span class="nav-text">小总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#http-状态码"><span class="nav-number">5.1.</span> <span class="nav-text">http 状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文等概念"><span class="nav-number">5.2.</span> <span class="nav-text">报文等概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#abcde-类-ip"><span class="nav-number">5.3.</span> <span class="nav-text">abcde 类 ip</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
